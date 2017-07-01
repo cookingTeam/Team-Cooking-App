@@ -2,12 +2,13 @@
 .center {
   margin: auto;
   width: 50%;
-  border: 2px solid grey;
-  padding: 10px;
+}
+.searchbar {
+  width: 90%;
+  border: 1px solid grey;
 }
 .glyphicon-search {
-  border: 2px solid grey;
   padding: 11px;
+  width: 8%;
   padding-bottom: 15px;
-  text-align: center;
 }
