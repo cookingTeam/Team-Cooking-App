@@ -1,7 +1,6 @@
 /* CSS declarations go here */
 .center {
   margin: auto;
-  width: 50%;
 }
 .searchbar {
   width: 90%;
@@ -11,4 +10,10 @@
   padding: 11px;
   width: 8%;
   padding-bottom: 15px;
+}
+.mainpage {
+  width: 50%;
+}
+.aboutpage {
+  width: 80%;
 }
