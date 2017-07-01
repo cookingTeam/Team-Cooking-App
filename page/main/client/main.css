@@ -1,1 +1,13 @@
 /* CSS declarations go here */
+.center {
+  margin: auto;
+  width: 50%;
+  border: 2px solid grey;
+  padding: 10px;
+}
+.glyphicon-search {
+  border: 2px solid grey;
+  padding: 11px;
+  padding-bottom: 15px;
+  text-align: center;
+}

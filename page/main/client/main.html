@@ -1,18 +1,14 @@
 <template name="main">
 <body>
   <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-  <h1>Welcome to Meteor!</h1>
-  <ul>
-    <li>Katherine</li>
-    <li>Molly Marcus</li>
-    <li>魏玮</li>
-  </ul>
-  <!-- <img src="images/yuan.jpg" width="200"> -->
-  {{> hello}}
-  {{> info}}
-</div>
+      <input type="text" name="search" placeholder="Find Food..." class="center">
+      <span class="glyphicon glyphicon-search"></span>
+  </div>
 </body>
-
+<hr>
+{{> hello}}
+<hr>
+{{> info}}
 </template>
 
 <template name="hello">
