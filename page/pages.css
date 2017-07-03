@@ -1,0 +1,26 @@
+/* CSS declarations go here */
+.center {
+  margin: auto;
+}
+.searchbar {
+  width: 90%;
+  border: 1px solid grey;
+}
+.glyphicon-search {
+  padding: 11px;
+  width: 8%;
+  padding-bottom: 15px;
+}
+.mainpage {
+  width: 50%;
+}
+.aboutpage {
+  width: 80%;
+}
+.browseRecipes{
+  margin: auto;
+  text-align:center;
+}
+.profilepage {
+  width:80%;
+}
