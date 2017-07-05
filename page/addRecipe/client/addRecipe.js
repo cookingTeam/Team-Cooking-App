@@ -23,3 +23,9 @@ Template.recipeRow.helpers({
   isOwner() {console.dir(this);
     return this.recipe.owner == Meteor.userId()}
 })
+
+Template.recipeRow.events({
+  'click span'(elt,instance){
+    Meteor.call('dish.remove',this.recipe)
+  }
+})
