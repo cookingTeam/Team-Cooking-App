@@ -21,5 +21,4 @@ autopublish@1.0.7             # Publish all data to the clients (for prototyping
 accounts-password
 twbs:bootstrap
 iron:router
-ian:accounts-ui-bootstrap-3
 accounts-ui
