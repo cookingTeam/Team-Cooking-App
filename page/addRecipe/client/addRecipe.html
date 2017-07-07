@@ -13,20 +13,27 @@
     {{#each r in recipeData}}
     <li>
     {{> recipeRow recipe = r}}
-    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
     </li>
     {{/each}}
   </ul>
 </template>
 
 <template name="recipeRow">
-  <em><strong>{{recipe.dishName}}</strong></em><br>{{recipe.recipe}}
+  <em><strong>{{recipe.dishName}}</strong></em><br>{{recipe.steps}}
+  {{#if isOwner}}
+  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  {{/if}}
 </template>
 
 <template name="askforrecipe">
   <form>
       <input type="text" placeholder="Dish Name" id="dishName"><br><br>
+<<<<<<< HEAD
       <textarea placeholder="Recipe Details" rows="3" cols="90" id="recipe"></textarea><br><br>
       <button class="btn btn-small btn-primary" id="add">Add My Recipe</button>
+=======
+      <textarea placeholder="Recipe Details" rows="3" cols="90" id="steps"></textarea><br><br>
+      <center><button class="btn btn-small btn-primary" id="add">Add My Recipe</button></center>
+>>>>>>> katherine
   </form>
 </template>
