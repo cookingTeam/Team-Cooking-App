@@ -3,20 +3,23 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-Template.hello.onCreated(function helloOnCreated() {
+Template.main.onCreated(function() {
   // counter starts at 0
-  this.counter = new ReactiveVar(0);
+  this.advance = new ReactiveVar(false);
 });
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
+Template.main.helpers({
+  adSearch() {
+    return Template.instance().advance.get();
   },
 });
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
+Template.main.events({
+  'click #advanceSearch'(event, instance) {
+    if(Template.instance().advance.get()==true){
+      instance.advance.set(false);
+    }else{
+      instance.advance.set(true);
+    }
   },
 });
