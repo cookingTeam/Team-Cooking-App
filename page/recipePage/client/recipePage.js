@@ -15,8 +15,9 @@ Template.recipePage.onCreated(
             }
             console.log(result);
             r = JSON.parse(result);
-            console.log("r[0].steps[0].step: "+r[0].steps[0].step);
+            // console.log("r[0].steps[0].step: "+r[0].steps[0].step);
             //console.log(dict);
+              console.log("r  "+r[0].title);
             return Session.set("dict",r[0]);
             //return r[0];
             }
@@ -27,7 +28,7 @@ Template.recipePage.onCreated(
 
 Template.recipePage.helpers({
   recipe: function(){
-    console.log(Session.get("dict"));
+    console.log("session:     " + Session.get("dict"));
     return Session.get("dict");
   }
 })
