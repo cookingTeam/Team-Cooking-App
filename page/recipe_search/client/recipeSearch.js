@@ -9,8 +9,8 @@ Template.recipeSearch.onCreated(
 
 Template.recipeSearch.events({
   "click #search": function(elt, instance){
-      const dish = instance.$('#input').val();
-      Meteor.apply("getRecipe",[dish],{returnStubValue: true},
+      const search_param_dish = instance.$('#input').val();
+      Meteor.apply("getRecipe",[search_param_dish],{returnStubValue: true},
         function(error,result){
           console.dir(['getRecipe',error,result]);
           if (error) {
