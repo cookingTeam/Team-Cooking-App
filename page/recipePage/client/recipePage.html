@@ -1,16 +1,17 @@
 <template name="recipePage">
     <body>
       <div class="w3-main w3-content w3-padding center recipePage" style="max-width:1200px;margin-top:100px">
-          {{> recipeheader}} <br>
+          <!-- {{> recipeheader}} <br>
 
           {{> ingredients}} <br>
 
-          {{> steps}}
+          {{> steps}} -->
 
       </div>
     </body>
 </template>
 
+<!--
 <template name="recipeheader">
   <h1>{{title}}</h1>
   <img src={{image}}>
@@ -18,7 +19,7 @@
 
 <template name="ingredients">
   <ul>
-    {{#each ingredient in ingredientList}}
+    {{#each recipe in recipe}}
         <li>{{ingredient.amount}} {{ingredient.unitLong}} of {{ingredient.name}}</li>
     {{/each}}
   </ul>
@@ -28,4 +29,4 @@
     {{#each step is stepList}}
         {{steps.number}}: {{steps.step}}<br>
     {{/each}}
-</template>
+</template> -->

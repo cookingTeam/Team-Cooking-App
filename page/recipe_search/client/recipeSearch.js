@@ -27,7 +27,7 @@ Template.recipeSearch.events({
 Template.res.events({
       "click .clickable-row": function(event,instance){
           console.log(this.r.id);
-          var href = "/searchdata/"+this.r.id;
+          var href = "/recipePage/"+this.r.id;
           console.log(href);
           if (href) {
               window.location.assign(href);
