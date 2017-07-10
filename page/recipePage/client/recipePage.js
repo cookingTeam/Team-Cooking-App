@@ -17,7 +17,7 @@ Template.recipePage.onCreated(
             r = JSON.parse(result);
             // console.log("r[0].steps[0].step: "+r[0].steps[0].step);
             //console.log(dict);
-              console.log("r  "+r[0].title);
+              console.log("r  "+r[0].analyzedInstructions[0].steps[1].number + " " + r[0].analyzedInstructions[0].steps[1].step);
             return Session.set("dict",r[0]);
             //return r[0];
             }
@@ -30,5 +30,19 @@ Template.recipePage.helpers({
   recipe: function(){
     console.log("session:     " + Session.get("dict"));
     return Session.get("dict");
+  }
+})
+
+Template.recipePage.events({
+  "click #popup_button": function(){
+    $("#popup1").css("visibility", "visible");
+    $("#popup1").css("opacity", 1);
+  }
+})
+
+Template.recipePage.events({
+  "click #popup_close":function(){
+    $("#popup1").css("visibility","hidden");
+    $('#popup1').css("opacity",0);
   }
 })
