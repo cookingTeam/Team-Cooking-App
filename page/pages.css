@@ -12,7 +12,7 @@
   padding-bottom: 15px;
 }
 .mainpage {
-  width: 50%;
+  width: 60%;
 }
 .aboutpage {
   width: 80%;
@@ -25,6 +25,10 @@
   width:60%;
 }
 .addrecipepage{
+  width:60%;
+}
+
+.recipePage{
   width:60%;
 }
 
