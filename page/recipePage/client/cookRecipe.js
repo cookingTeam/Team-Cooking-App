@@ -1,5 +1,6 @@
 Template.cookRecipe.events({
   'click #rec': function(){
+        // This is our accessToken to our group's account
         var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
         var baseUrl = "https://api.api.ai/v1/";
         $(document).ready(function() {
@@ -51,6 +52,7 @@ Template.cookRecipe.events({
         function setInput(text) {
           $("#input").val(text);
           send();
+          // action();
         }
         function updateRec() {
           $("#rec").text(recognition ? "Stop" : "Speak");
@@ -67,6 +69,7 @@ Template.cookRecipe.events({
             },
             data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
             success: function(data) {
+              console.log(data);
               setResponse(JSON.stringify(data, undefined, 2));
             },
             error: function() {
@@ -78,6 +81,32 @@ Template.cookRecipe.events({
         function setResponse(val) {
           $("#response").text(val);
         }
+
+        // function action() {
+        //   var text = $("#input").val();
+        //   $.ajax({
+        //     type: "POST",
+        //     url: baseUrl + "query?v=20150910",
+        //     contentType: "application/json; charset=utf-8",
+        //     dataType: "json",
+        //     headers: {
+        //       "Authorization": "Bearer " + accessToken
+        //     },
+        //     data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
+        //     success: function(data) {
+        //       if (data.result.action=='next_step'){
+        //           console.log('success');
+        //
+        //       }
+        //       console.log(data);
+        //       setResponse(JSON.stringify(data.result.action, undefined, 2));
+        //     },
+        //     error: function() {
+        //       setResponse("Internal Server Error");
+        //     }
+        //   });
+        //   setResponse("Loading...");
+        // }
   }
 
 })
