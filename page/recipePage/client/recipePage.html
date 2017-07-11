@@ -4,16 +4,30 @@
           <!-- {{> recipeheader}} <br> -->
           <div class="row">
             <div class="col-md-6">
-              <img src={{recipe.image}} style="width:100%">
-              <h3>ingredients</h3><hr>
+              <img src={{recipe.image}} style="width:100%"><hr>
+              <h3>Ingredients</h3>
+              <ul>
+              {{#each ingredient in recipe.extendedIngredients}}
+                <li>
+                  {{ingredient.originalString}}
+                </li>
+              {{/each}}
+            </ul>
+              <hr>
+
+
             </div>
             <div class="col-md-4 col-md-offset-1">
               <h1>{{recipe.title}}</h1>
               <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
               You need {{recipe.readyInMinutes}} minutes to cook <hr>
+
+              <ol>
               {{#each step in recipe.analyzedInstructions.[0].steps}}
-                {{step.number}} : {{step.step}}<br>
+
+                 <li>{{step.step}}</li><hr>
               {{/each}}
+            </ol>
             </div>
           </div>
 
