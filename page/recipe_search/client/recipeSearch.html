@@ -1,0 +1,35 @@
+<template name="recipeSearch">
+  <head>
+    <style>
+      .clickable-row {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+    <body>
+    <p>
+      We will be using recipes from <a href=”http://allrecipes.com”> this great recipes website </a>
+    </p>
+
+    Search <input type="text" id="input" class="searchbar"><br><br>
+        <button id='search'>Search</button><br>
+
+    <hr>
+    <table class="bg-warning table table-bordered table-striped">
+      <tbody>
+        {{#each r in recipes}}
+        {{> res r=r}}
+        {{/each}}
+      </tbody>
+    </table>
+    </body>
+  </div>
+</template>
+
+<template name="res">
+  <tr class='clickable-row'>
+   <td><img src="https://spoonacular.com/recipeImages/{{r.imageUrls}}" width="100"></td>
+   <td><b>{{r.title}}:</b> Ready in: {{r.readyInMinutes}} minutes</td>
+ </tr>
+</template>

@@ -21,3 +21,6 @@ accounts-password
 twbs:bootstrap
 iron:router
 accounts-ui
+reactive-dict
+http
+session
