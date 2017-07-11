@@ -2,11 +2,21 @@
 
       <div class="w3-main w3-content w3-padding center recipePage" style="max-width:1200px;margin-top:100px">
           <!-- {{> recipeheader}} <br> -->
-          <h1>{{recipe.title}}</h1>
-          <!-- <span class="glyphicons glyphicons-clock" aria-hidden="true"></span> -->
-          <h2>You need {{recipe.readyInMinutes}} minutes to cook</h2><br>
-          <img src={{recipe.image}} style="width:50%"><hr>
-          {{recipe.instructions}}
+          <div class="row">
+            <div class="col-md-6">
+              <img src={{recipe.image}} style="width:100%">
+              <h3>ingredients</h3><hr>
+            </div>
+            <div class="col-md-4 col-md-offset-1">
+              <h1>{{recipe.title}}</h1>
+              <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+              You need {{recipe.readyInMinutes}} minutes to cook <hr>
+              {{#each step in recipe.analyzedInstructions.[0].steps}}
+                {{step.number}} : {{step.step}}<br>
+              {{/each}}
+            </div>
+          </div>
+
           <button type="btn" name="detail" id="popup_button">More Details</button>
       </div>
 
@@ -15,34 +25,14 @@
 			       <h1>Here are each step and corresponding ingredients</h1>
 			       <a class="close" id="popup_close">&times;</a>
 			       <div id="step">
-               {{#each step in steplist}}
-                 step.number : step.step
+               <ul>
+               {{#each step in recipe.analyzedInstructions.[0].steps}}
+
+                  <li>{{step.step}}</li>
                {{/each}}
-			         {{recipe.analyzedInstructions.[0].steps.[0].number}} : {{recipe.analyzedInstructions.[0].steps.[0].step}}
+             </ul>
+			         <!-- {{recipe.analyzedInstructions.[0].steps.[0].number}} : {{recipe.analyzedInstructions.[0].steps.[0].step}} -->
 			       </div>
 		      </div>
 	   </div>
 </template>
-
-
-<!-- <template name="recipeheader"> -->
-  <!-- <h1>{{recipe.title}}</h1>
-  {{#each step is stepList}}
-      {{steps.number}}: {{steps.step}}<br>
-  {{/each}} -->
-  <!-- <img src={{image}}> -->
-<!-- </template> -->
-
-<!-- <template name="ingredients">
-  <ul>
-    {{#each recipe in recipe}}
-        <li>{{ingredient.amount}} {{ingredient.unitLong}} of {{ingredient.name}}</li>
-    {{/each}}
-  </ul>
-</template>
-
-<template name="steps">
-    {{#each step is stepList}}
-        {{steps.number}}: {{steps.step}}<br>
-    {{/each}}
-</template> -->
