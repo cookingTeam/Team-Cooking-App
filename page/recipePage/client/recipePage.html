@@ -1,24 +1,41 @@
 <template name="recipePage">
-    <body>
+
       <div class="w3-main w3-content w3-padding center recipePage" style="max-width:1200px;margin-top:100px">
-          {{> recipeheader}} <br>
-
-          {{> ingredients}} <br>
-
-          {{> steps}}
-
+          <!-- {{> recipeheader}} <br> -->
+          <h1>{{recipe.title}}</h1>
+          <!-- <span class="glyphicons glyphicons-clock" aria-hidden="true"></span> -->
+          <h2>You need {{recipe.readyInMinutes}} minutes to cook</h2><br>
+          <img src={{recipe.image}} style="width:50%"><hr>
+          {{recipe.instructions}}
+          <button type="btn" name="detail" id="popup_button">More Details</button>
       </div>
-    </body>
+
+      <div id="popup1" class="overlay">
+		      <div class="popup">
+			       <h1>Here are each step and corresponding ingredients</h1>
+			       <a class="close" id="popup_close">&times;</a>
+			       <div id="step">
+               {{#each step in steplist}}
+                 step.number : step.step
+               {{/each}}
+			         {{recipe.analyzedInstructions.[0].steps.[0].number}} : {{recipe.analyzedInstructions.[0].steps.[0].step}}
+			       </div>
+		      </div>
+	   </div>
 </template>
 
-<template name="recipeheader">
-  <h1>{{title}}</h1>
-  <img src={{image}}>
-</template>
 
-<template name="ingredients">
+<!-- <template name="recipeheader"> -->
+  <!-- <h1>{{recipe.title}}</h1>
+  {{#each step is stepList}}
+      {{steps.number}}: {{steps.step}}<br>
+  {{/each}} -->
+  <!-- < img src={{image}}> -->
+<!-- </template> -->
+
+<!-- <template name="ingredients">
   <ul>
-    {{#each ingredient in ingredientList}}
+    {{#each recipe in recipe}}
         <li>{{ingredient.amount}} {{ingredient.unitLong}} of {{ingredient.name}}</li>
     {{/each}}
   </ul>
@@ -28,4 +45,4 @@
     {{#each step is stepList}}
         {{steps.number}}: {{steps.step}}<br>
     {{/each}}
-</template>
+</template> -->
