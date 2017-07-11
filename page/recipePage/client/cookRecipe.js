@@ -3,17 +3,19 @@ Template.cookRecipe.events({
         // This is our accessToken to our group's account
         var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
         var baseUrl = "https://api.api.ai/v1/";
-
-        $(document).ready(function() {
-            $("#input").keypress(function(event) {
-              if (event.which == 13) {
-                event.preventDefault();
-                send();
-              }
-            });
-            $("#rec").click(function(event) {
+        // this is if you want to type into the input textbox rather than speak
+        // $(document).ready(function() {
+        //
+        //     // $("#input").keypress(function(event) {
+        //     //   if (event.which == 13) {
+        //     //     event.preventDefault();
+        //     //     send();
+        //     //   }
+        //     // });
+        //
+        // });
+        $("#rec").click(function(event) {
               switchRecognition();
-            });
         });
 
         //creating speech recognition functions
@@ -99,6 +101,7 @@ Template.cookRecipe.events({
             success: function(data) {
               if (data.result.action=='next_step'){
                   console.log('success');
+                  //i++, write function nextStep(recipe.steps[i]) and call it here
               }
               console.log(data);
             },
