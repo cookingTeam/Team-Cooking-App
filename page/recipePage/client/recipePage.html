@@ -15,7 +15,10 @@
 			       <h1>Here are each step and corresponding ingredients</h1>
 			       <a class="close" id="popup_close">&times;</a>
 			       <div id="step">
-			         <!-- {{recipe.analyzedInstructions [0].steps [0].number}} : {{recipe.analyzedInstructions [0].steps [0].step}} -->
+               {{#each step in steplist}}
+                 step.number : step.step
+               {{/each}}
+			         {{recipe.analyzedInstructions.[0].steps.[0].number}} : {{recipe.analyzedInstructions.[0].steps.[0].step}}
 			       </div>
 		      </div>
 	   </div>
