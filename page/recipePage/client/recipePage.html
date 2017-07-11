@@ -36,17 +36,20 @@
 
       <div id="popup1" class="overlay">
 		      <div class="popup">
-			       <h1>Here are each step and corresponding ingredients</h1>
-			       <a class="close" id="popup_close">&times;</a>
-			       <div id="step">
-               <ul>
-               {{#each step in recipe.analyzedInstructions.[0].steps}}
-
-                  <li>{{step.step}}</li>
-               {{/each}}
-             </ul>
-			         <!-- {{recipe.analyzedInstructions.[0].steps.[0].number}} : {{recipe.analyzedInstructions.[0].steps.[0].step}} -->
-			       </div>
+			       {{> slide}}
 		      </div>
 	   </div>
+</template>
+
+<template name="slide">
+
+ <div class="pagination">
+  <a href="#">&laquo;</a>
+  <span name="number">
+    {{#each s in page}}
+      <button name="number">{{s.number}}</button>
+    {{/each}}
+  </span>
+  <a href="#">&raquo;</a>
+ </div>
 </template>
