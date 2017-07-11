@@ -52,6 +52,7 @@ Template.cookRecipe.events({
             startRecognition();
           }
         }
+        //this just prints the utterance in the textbar
         function setInput(text) {
           $("#input").val(text);
           action();
