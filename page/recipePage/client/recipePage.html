@@ -28,6 +28,7 @@
                  <li>{{step.step}}</li><hr>
               {{/each}}
             </ol>
+            <button type="btn" name="detail" id="popup_button">More Details</button>
             </div>
           </div>
       </div>
@@ -42,44 +43,38 @@
 
 <template name="slide">
   <div name="showslide">
-    <h3>Instruction:</h3>
-     {{thisStep.step}}<br>
+    <h3>{{thisStep.step}}<br></h3>
     <h4>ingredients:</h4>
     {{#unless thisStep.ingredients.[0]}}
          <h5>N/A</h5>
+      {{else}}
+        <ul>
+          {{#each ing in thisStep.ingredients}}
+            <li> {{ing.name}}</li>
+          {{/each}}
+        </ul>
+    {{/unless}}
+    <h4>Equipment: </h4>
+    {{#unless thisStep.equipment.[0]}}
+         <h5>N/A</h5>
 
- <div class="pagination">
+      {{else}}
+        <ul>
+          {{#each eq in thisStep.equipment}}
+            {{eq.name}},
+          {{/each}}
+        </ul>
+    {{/unless}}
+  </div>
 
-  <ul>
-  <h3>{{thisStep.step}}<br></h3>
-  <h4>ingredients:</h4>
-  {{#unless thisStep.ingredients.[0]}}
-       <h5>N/A</h5>
-
-    {{else}}
-      {{#each ing in thisStep.ingredients}}
-        <li> {{ing.name}}</li>
+  <div class="pagination">
+    <span name="number">
+      <a href="#">&laquo;</a>
+      {{#each s in page}}
+        <a href="#" name="number">{{s.number}}</a>
       {{/each}}
-  {{/unless}}
-  <h4>Equipment: </h4>
-  {{#unless thisStep.equipment.[0]}}
-       <h5>N/A</h5>
+      <a href="#">&raquo;</a>
+    </span>
+  </div>
 
-    {{else}}
-      {{#each eq in thisStep.equipment}}
-        {{eq.name}},
-      {{/each}}
-  {{/unless}}
-
-  </ul>
-
-  <span name="number">
-    <a href="#">&laquo;</a>
-    {{#each s in page}}
-      <a href="#" name="number">{{s.number}}</a>
-    {{/each}}
-    <a href="#">&raquo;</a>
-  </span>
-
- </div>
 </template>
