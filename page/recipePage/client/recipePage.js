@@ -28,7 +28,7 @@ Template.recipePage.onCreated(
 
 Template.recipePage.helpers({
   recipe: function(){
-    console.log("session:     " + Session.get("dict"));
+    // console.log("session:     " + Session.get("dict"));
     return Session.get("dict");
   }
 })

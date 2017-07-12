@@ -30,11 +30,8 @@ Template.res.events({
           var href = "/recipePage/"+this.r.id;
           console.log(href);
           if (href) {
-              window.location.assign(href);
+              window.location.assign(href);//jump to recipe detail page
           }
-          // if (href) {
-          //     window.location.assign("https://www.youtube.com/");
-          // }
       }
 })
 

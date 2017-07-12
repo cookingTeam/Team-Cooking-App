@@ -1,50 +1,44 @@
 Template.cookRecipe.events({
   'click #rec': function(){
-        var interim_result, final_result;
+        var interim_result, final_result, stop_word;
+        stop_word="stop";
         var recognition_engine = new webkitSpeechRecognition();
-
         recognition_engine.continuous = true;
         recognition_engine.interimResults = true;
         recognition_engine.lang = 'en-US';
+        recognition_engine.start();
         recognition_engine.onresult = function(e) {
             var result, i;
-
             interim_result = '';
             if (typeof e.results === 'undefined') {
-
               recognition_engine.stop();
               console.log('SPEECH RECOGNITION : stopping due to empty result.', e);
               return;
             }
-
             //I may want to make an if statment here where I check if the e.results matches an intent called "listen"
             //so that it knows what to listen for. Like "HEy Alexa"
             for (i = event.resultIndex; i < event.results.length; ++i) {
               result = event.results[i];
-              // console.log('RESULT IS *******= '+ result);
-              // if(event.results[i]=="stop"){
-              //     recognition_engine.stop();
-              // }
               if (result.isFinal) {
                 final_result = result[0].transcript;
-                console.log('SPEECH RECOGNITION : final transcript = ' + final_result, e);
+                console.log('SPEECH RECOGNITION : final transcript = ' + final_result+ "type: "+(typeof interim_result) , e);
+                // if (final_result.includes("stop")){
+                //   console.log("result includes stop");
+                //   recognition_engine.stop();
+                //   console.log('SPEECH RECOGNITION : stopping');
+                // }
                 // trigger a command matching the final utterance here
               } else {
                 interim_result += result[0].transcript;
-                if(result[0].transcript==='stop'){
-                  console.log("stopped");
+                console.log(interim_result);
+                if(result[0].transcript.includes('stop')){
+                  console.log("record stopped");
                   recognition_engine.stop();
                 }
               }
             }
-            console.log('SPEECH RECOGNITION : interim result = ' + interim_result);
-            if (interim_result === 'stop'){
-              recognition_engine.stop();
-              console.log('SPEECH RECOGNITION : stopping due to empty result.', e);
-              return;
-            }
           };
-        recognition_engine.start();
+
 
 
         // This is our accessToken to our group's account
