@@ -45,8 +45,32 @@
 <template name="slide">
 
  <div class="pagination">
-  <a href="#">&laquo;</a>
+
+  <ul>
+  <h3>{{thisStep.step}}<br></h3>
+  <h4>ingredients:</h4>
+  {{#unless thisStep.ingredients.[0]}}
+       <h5>N/A</h5>
+
+    {{else}}
+      {{#each ing in thisStep.ingredients}}
+        <li> {{ing.name}}</li>
+      {{/each}}
+  {{/unless}}
+  <h4>Equipment: </h4>
+  {{#unless thisStep.equipment.[0]}}
+       <h5>N/A</h5>
+
+    {{else}}
+      {{#each eq in thisStep.equipment}}
+        {{eq.name}},
+      {{/each}}
+  {{/unless}}
+
+  </ul>
+
   <span name="number">
+    <a href="#">&laquo;</a>
     {{#each s in page}}
       <button name="number">{{s.number}}</button>
     {{/each}}
