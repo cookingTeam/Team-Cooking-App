@@ -21,11 +21,18 @@ Template.cookRecipe.events({
               result = event.results[i];
               if (result.isFinal) {
                 final_result = result[0].transcript;
+                  console.log(final_result);
+                console.log(final_result===('alexa'));
+                if(final_result.includes('alexa')){
+                  console.log("alexa is here");
+                  break;
+                }
                 console.log('SPEECH RECOGNITION : final transcript = ' + final_result+ "type: "+(typeof interim_result) , e);
                 // trigger a command matching the final utterance here
               } else {
                 interim_result += result[0].transcript;
                 // console.log(interim_result);
+
                 if(result[0].transcript.includes('stop')){
                   console.log("record stopped");
                   recognition_engine.stop();
