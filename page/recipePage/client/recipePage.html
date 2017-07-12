@@ -18,20 +18,18 @@
 
             </div>
             <div class="col-md-5 col-md-offset-1">
+              <center><span class="glyphicon glyphicon-play-circle" style="cursor: pointer" id="popup_button"></span><h1>Start Cooking</h1></center>
               <h2>{{recipe.title}}</h2>
               <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
               You need {{recipe.readyInMinutes}} minutes to cook <hr>
 
               <ol>
               {{#each step in recipe.analyzedInstructions.[0].steps}}
-
                  <li>{{step.step}}</li><hr>
               {{/each}}
             </ol>
             </div>
           </div>
-
-          <button type="btn" name="detail" id="popup_button">More Details</button>
       </div>
 
       <div id="popup1" class="overlay">
@@ -43,6 +41,12 @@
 </template>
 
 <template name="slide">
+  <div name="showslide">
+    <h3>Instruction:</h3>
+     {{thisStep.step}}<br>
+    <h4>ingredients:</h4>
+    {{#unless thisStep.ingredients.[0]}}
+         <h5>N/A</h5>
 
  <div class="pagination">
 
@@ -72,9 +76,10 @@
   <span name="number">
     <a href="#">&laquo;</a>
     {{#each s in page}}
-      <button name="number">{{s.number}}</button>
+      <a href="#" name="number">{{s.number}}</a>
     {{/each}}
+    <a href="#">&raquo;</a>
   </span>
-  <a href="#">&raquo;</a>
+
  </div>
 </template>

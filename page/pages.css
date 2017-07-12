@@ -97,3 +97,6 @@ textarea {
     padding: 8px 16px;
     text-decoration: none;
 }
+.pagination a:hover {
+    color: #06D85F;
+}

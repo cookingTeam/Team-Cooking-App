@@ -16,9 +16,8 @@ Template.slide.helpers({
 })
 
 Template.slide.events({
-  "click button": function(elt,instance){
-     Session.set("step",(Session.get("dict").analyzedInstructions[0].steps[elt.currentTarget.innerText-1]));
-     console.log((Session.get("step").ingredients));
-     console.log(Session.get("dict").analyzedInstructions[0].steps[elt.currentTarget.innerText-1])
+  "click a": function(elt,instance){
+    console.log(Session.get("dict").analyzedInstructions[0].steps[elt.currentTarget.innerText-1]);
+    Session.set("step",Session.get("dict").analyzedInstructions[0].steps[elt.currentTarget.innerText-1]);
   }
 })
