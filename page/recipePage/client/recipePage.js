@@ -1,3 +1,4 @@
+
 Template.recipePage.onCreated(
   function(){
     // dict = new ReactiveDict();
@@ -133,22 +134,67 @@ Template.recipePage.events({
                   var recipe = Session.get("dict")
                   if (attribute=='vegetarian'){
                     console.log(recipe.vegetarian);
+                    if (recipe.vegetarian){
+                      responsiveVoice.speak("yes, it is" + attribute, "UK English Male");
+                    } else {
+                      responsiveVoice.speak("no, it is not" + attribute, "UK English Male");
+                    }
                   } else if (attribute=='vegan'){
                     console.log(recipe.vegan);
-                  } else if (attribute=='glutenFree'){
+                    if (recipe.vegan){
+                      responsiveVoice.speak("yes, it is" + attribute, "UK English Male");
+                    } else {
+                      responsiveVoice.speak("no, it is not" + attribute, "UK English Male");
+                    }
+                  } else if (attribute=='gluten'){
                     console.log(recipe.glutenFree);
+                    if (recipe.glutenFree){
+                      responsiveVoice.speak("yes, it is gluten-free", "UK English Male");
+                    } else {
+                      responsiveVoice.speak("no, it is not gluten free", "UK English Male");
+                    }
                   } else if (attribute=='dairyFree'){
                     console.log(recipe.dairyFree);
+                    if (recipe.dairyFree){
+                      responsiveVoice.speak("yes, it is dairy free", "UK English Male");
+                    } else {
+                      responsiveVoice.speak("no, it is not dairy free", "UK English Male");
+                    }
                   } else if (attribute=='veryHealthy'){
                     console.log(recipe.veryHealthy);
+                    if (recipe.veryHealthy){
+                      responsiveVoice.speak("yes, it is healthy", "UK English Male");
+                    } else {
+                      responsiveVoice.speak("no, it is not very healthy", "UK English Male");
+                    }
                   } else if (attribute=='veryPopular'){
                     console.log(recipe.veryPopular);
+                    if (recipe.veryPopular){
+                      responsiveVoice.speak("yes, it is popular", "UK English Male");
+                    } else {
+                      responsiveVoice.speak("no, it is not very popular", "UK English Male");
+                    }
                   } else if (attribute=='cheap'){
                     console.log(recipe.cheap);
+                    if (recipe.cheap){
+                      responsiveVoice.speak("yes, it is" + attribute, "UK English Male");
+                    } else {
+                      responsiveVoice.speak("no, it is not" + attribute, "UK English Male");
+                    }
                   } else if (attribute=='sustainable'){
                     console.log(recipe.sustainable);
+                    if (recipe.sustainable){
+                      responsiveVoice.speak("yes, it is" + attribute, "UK English Male");
+                    } else {
+                      responsiveVoice.speak("no, it is not" + attribute, "UK English Male");
+                    }
                   } else if (attribute=='ketogenic'){
                     console.log(recipe.ketogenic);
+                    if (recipe.ketogenic){
+                      responsiveVoice.speak("yes, it is" + attribute, "UK English Male");
+                    } else {
+                      responsiveVoice.speak("no, it is not" + attribute, "UK English Male");
+                    }
                   }
               }
               console.log(data);
