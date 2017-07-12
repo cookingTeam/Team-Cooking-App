@@ -30,8 +30,6 @@
 
 .recipePage{
   width:1000%;
-  margin: auto;
-  text-align: center;
 }
 
 textarea {
@@ -86,4 +84,16 @@ textarea {
 .popup .content {
       max-height: 50%;
       overflow: auto;
+}
+
+/*pager*/
+.pagination {
+    /*display: inline-block;*/
+}
+
+.pagination a {
+    color: black;
+    /*float: left;*/
+    padding: 8px 16px;
+    text-decoration: none;
 }
