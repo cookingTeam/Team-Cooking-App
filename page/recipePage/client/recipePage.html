@@ -17,8 +17,8 @@
 
 
             </div>
-            <div class="col-md-4 col-md-offset-1">
-              <h1>{{recipe.title}}</h1>
+            <div class="col-md-5 col-md-offset-1">
+              <h2>{{recipe.title}}</h2>
               <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
               You need {{recipe.readyInMinutes}} minutes to cook <hr>
 
@@ -36,37 +36,21 @@
 
       <div id="popup1" class="overlay">
 		      <div class="popup">
-			       <h1>Here are each step and corresponding ingredients</h1>
-			       <a class="close" id="popup_close">&times;</a>
-			       <div id="step">
-               {{#each step in steplist}}
-                 step.number : step.step
-               {{/each}}
-			         {{recipe.analyzedInstructions.[0].steps.[0].number}} : {{recipe.analyzedInstructions.[0].steps.[0].step}}
-			       </div>
+            <a class="close" id="popup_close">&times;</a>
+			       {{> slide}}
 		      </div>
 	   </div>
 </template>
 
+<template name="slide">
 
-<!-- <template name="recipeheader"> -->
-  <!-- <h1>{{recipe.title}}</h1>
-  {{#each step is stepList}}
-      {{steps.number}}: {{steps.step}}<br>
-  {{/each}} -->
-  <!-- < img src={{image}}> -->
-<!-- </template> -->
-
-<!-- <template name="ingredients">
-  <ul>
-    {{#each recipe in recipe}}
-        <li>{{ingredient.amount}} {{ingredient.unitLong}} of {{ingredient.name}}</li>
+ <div class="pagination">
+  <a href="#">&laquo;</a>
+  <span name="number">
+    {{#each s in page}}
+      <button name="number">{{s.number}}</button>
     {{/each}}
-  </ul>
+  </span>
+  <a href="#">&raquo;</a>
+ </div>
 </template>
-
-<template name="steps">
-    {{#each step is stepList}}
-        {{steps.number}}: {{steps.step}}<br>
-    {{/each}}
-</template> -->
