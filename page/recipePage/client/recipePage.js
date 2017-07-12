@@ -91,30 +91,6 @@ Template.recipePage.events({
         function updateRec() {
           $("#ask").text(recognition ? "Stop" : "Speak");
         }
-        // function send() {
-        //   var text = $("#input").val();
-        //   $.ajax({
-        //     type: "POST",
-        //     url: baseUrl + "query?v=20150910",
-        //     contentType: "application/json; charset=utf-8",
-        //     dataType: "json",
-        //     headers: {
-        //       "Authorization": "Bearer " + accessToken
-        //     },
-        //     data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
-        //     success: function(data) {
-        //       console.log(data);
-        //       setResponse(JSON.stringify(data, undefined, 2));
-        //     },
-        //     error: function() {
-        //       setResponse("Internal Server Error");
-        //     }
-        //   });
-        //   setResponse("Loading...");
-        // }
-        // function setResponse(val) {
-        //   $("#response").text(val);
-        // }
 
         function action(text) {
           // var text = $("#input").val();
