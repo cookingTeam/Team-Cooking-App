@@ -1,3 +1,4 @@
+
 Template.recipePage.onCreated(
   function(){
     // dict = new ReactiveDict();
@@ -5,11 +6,11 @@ Template.recipePage.onCreated(
     //     d: {}
     //   });
     Session.set("dict", {})
-    console.log(Session.get("dict"));
-    console.log(this)
+    // console.log(Session.get("dict"));
+    // console.log(this)
     Meteor.apply("getInstruction",[this.data], {returnStubValue:true},
           function(error,result){
-            console.dir(['getInstruction',error,result]);
+            // console.dir(['getInstruction',error,result]);
             if (error) {
               console.log("Error!!"+JSON.stringify(error)); return;
             }
@@ -17,7 +18,7 @@ Template.recipePage.onCreated(
             r = JSON.parse(result);
             // console.log("r[0].steps[0].step: "+r[0].steps[0].step);
             //console.log(dict);
-              console.log("r  "+r[0]);
+              // console.log("r  "+r[0]);
             return Session.set("dict",r[0]);
             //return r[0];
             }
@@ -28,7 +29,7 @@ Template.recipePage.onCreated(
 
 Template.recipePage.helpers({
   recipe: function(){
-    console.log("session:     " + Session.get("dict"));
+    // console.log("session:     " + Session.get("dict"));
     return Session.get("dict");
   }
 })
@@ -178,6 +179,7 @@ Template.recipePage.events({
           });
         }
   }
+
 })
 
 Template.recipePage.events({

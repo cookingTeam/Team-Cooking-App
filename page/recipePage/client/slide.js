@@ -7,7 +7,7 @@ Template.slide.onCreated(function(){
 Template.slide.helpers({
   page: function(){
     var big = Session.get("dict");
-    console.log("big "+big.analyzedInstructions);
+    // console.log("big "+big.analyzedInstructions);
     return big.analyzedInstructions[0].steps;
   },
   thisStep: function(){
