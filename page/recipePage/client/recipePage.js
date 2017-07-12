@@ -17,7 +17,7 @@ Template.recipePage.onCreated(
             r = JSON.parse(result);
             // console.log("r[0].steps[0].step: "+r[0].steps[0].step);
             //console.log(dict);
-              console.log("r  "+r[0].analyzedInstructions[0].steps[1].number + " " + r[0].analyzedInstructions[0].steps[1].step);
+              console.log("r  "+r[0]);
             return Session.set("dict",r[0]);
             //return r[0];
             }
