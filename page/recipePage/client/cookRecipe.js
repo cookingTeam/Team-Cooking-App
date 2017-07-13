@@ -31,20 +31,10 @@ Template.cookRecipe.events({
                   // This is our accessToken to our group's account
                   var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
                   var baseUrl = "https://api.api.ai/v1/";
-                  // this is if you want to type into the input textbox rather than speak
-                  // $(document).ready(function() {
                   //
-                  //     // $("#input").keypress(function(event) {
-                  //     //   if (event.which == 13) {
-                  //     //     event.preventDefault();
-                  //     //     send();
-                  //     //   }
-                  //     // });
-                  //
+                  // $("#rec").click(function(event) {
+                  //       switchRecognition();
                   // });
-                  $("#rec").click(function(event) {
-                        switchRecognition();
-                  });
 
                   //creating speech recognition functions
                   var recognition;
@@ -84,39 +74,13 @@ Template.cookRecipe.events({
                   }
                   //this just prints the utterance in the textbar
                   function setInput(text) {
-                    $("#input").val(text);
-                    action();
+
+                    action(text);
                   }
                   function updateRec() {
                     $("#rec").text(recognition ? "Stop" : "Speak");
                   }
-                  // function send() {
-                  //   var text = $("#input").val();
-                  //   $.ajax({
-                  //     type: "POST",
-                  //     url: baseUrl + "query?v=20150910",
-                  //     contentType: "application/json; charset=utf-8",
-                  //     dataType: "json",
-                  //     headers: {
-                  //       "Authorization": "Bearer " + accessToken
-                  //     },
-                  //     data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
-                  //     success: function(data) {
-                  //       console.log(data);
-                  //       setResponse(JSON.stringify(data, undefined, 2));
-                  //     },
-                  //     error: function() {
-                  //       setResponse("Internal Server Error");
-                  //     }
-                  //   });
-                  //   setResponse("Loading...");
-                  // }
-                  // function setResponse(val) {
-                  //   $("#response").text(val);
-                  // }
-
                   function action() {
-                    var text = $("#input").val();
                     $.ajax({
                       type: "POST",
                       url: baseUrl + "query?v=20150910",
@@ -130,17 +94,11 @@ Template.cookRecipe.events({
                         if (data.result.action=='next_step'){
                             console.log('success');
                             //i++, write function nextStep(recipe.steps[i]) and call it here
-                        } else if (data.result.action=='stop'){
-                            recognition_engine.stop();
-                            console.log('creepy thing has stopped')
-                        }
+                        } 
                         console.log(data);
                       },
                     });
                   }
-
-
-
                 }
                 if(result[0].transcript.includes('stop')){
                   console.log("record stopped");
