@@ -15,18 +15,18 @@ Template.cookRecipe.events({
               console.log('SPEECH RECOGNITION : stopping due to empty result.', e);
               return;
             }
-            //I may want to make an if statment here where I check if the e.results matches an intent called "listen"
-            //so that it knows what to listen for. Like "HEy Alexa"
+            
             for (i = event.resultIndex; i < event.results.length; ++i) {
               result = event.results[i];
               if (result.isFinal) {
                 final_result = result[0].transcript;
                 // console.log(final_result);
-                console.log('SPEECH RECOGNITION : final transcript = ' + final_result+ "  type: "+(typeof interim_result) , e);
+                // console.log('SPEECH RECOGNITION : final transcript = ' + final_result+ "  type: "+(typeof interim_result) , e);
                 // trigger a command matching the final utterance here
               } else {
                 interim_result += result[0].transcript;
                 if(result[0].transcript.includes('Alexa')){
+                  recognition_engine.stop();
                   console.log("Alexa is here");
                   // This is our accessToken to our group's account
                   var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
@@ -35,13 +35,13 @@ Template.cookRecipe.events({
                   // $("#rec").click(function(event) {
                   //       switchRecognition();
                   // });
-
+                  startRecognition();
                   //creating speech recognition functions
                   var recognition;
                   function startRecognition() {
                     recognition = new webkitSpeechRecognition();
                     recognition.onstart = function(event) {
-                      updateRec();
+                      // updateRec();
                     };
                     recognition.onresult = function(event) {
                       var text = "";
@@ -63,7 +63,7 @@ Template.cookRecipe.events({
                       recognition.stop();
                       recognition = null;
                     }
-                    updateRec();
+                    // updateRec();
                   }
                   function switchRecognition() {
                     if (recognition) {
@@ -74,13 +74,12 @@ Template.cookRecipe.events({
                   }
                   //this just prints the utterance in the textbar
                   function setInput(text) {
-
                     action(text);
                   }
-                  function updateRec() {
-                    $("#rec").text(recognition ? "Stop" : "Speak");
-                  }
-                  function action() {
+                  // function updateRec() {
+                  //   $("#rec").text(recognition ? "Stop" : "Speak");
+                  // }
+                  function action(text) {
                     $.ajax({
                       type: "POST",
                       url: baseUrl + "query?v=20150910",
@@ -94,10 +93,11 @@ Template.cookRecipe.events({
                         if (data.result.action=='next_step'){
                             console.log('success');
                             //i++, write function nextStep(recipe.steps[i]) and call it here
-                        } 
+                        }
                         console.log(data);
                       },
                     });
+                    recognition_engine.start();
                   }
                 }
                 if(result[0].transcript.includes('stop')){
