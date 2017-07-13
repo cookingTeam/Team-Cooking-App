@@ -15,7 +15,7 @@ Template.cookRecipe.events({
               console.log('SPEECH RECOGNITION : stopping due to empty result.', e);
               return;
             }
-            
+
             for (i = event.resultIndex; i < event.results.length; ++i) {
               result = event.results[i];
               if (result.isFinal) {
@@ -26,7 +26,6 @@ Template.cookRecipe.events({
               } else {
                 interim_result += result[0].transcript;
                 if(result[0].transcript.includes('Alexa')){
-                  recognition_engine.stop();
                   console.log("Alexa is here");
                   // This is our accessToken to our group's account
                   var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
@@ -35,10 +34,11 @@ Template.cookRecipe.events({
                   // $("#rec").click(function(event) {
                   //       switchRecognition();
                   // });
-                  startRecognition();
+                  switchRecognition();
                   //creating speech recognition functions
                   var recognition;
                   function startRecognition() {
+                    recognition_engine.stop();
                     recognition = new webkitSpeechRecognition();
                     recognition.onstart = function(event) {
                       // updateRec();
@@ -62,6 +62,7 @@ Template.cookRecipe.events({
                     if (recognition) {
                       recognition.stop();
                       recognition = null;
+                      recognition_engine.start();
                     }
                     // updateRec();
                   }
@@ -76,9 +77,7 @@ Template.cookRecipe.events({
                   function setInput(text) {
                     action(text);
                   }
-                  // function updateRec() {
-                  //   $("#rec").text(recognition ? "Stop" : "Speak");
-                  // }
+
                   function action(text) {
                     $.ajax({
                       type: "POST",
@@ -97,7 +96,8 @@ Template.cookRecipe.events({
                         console.log(data);
                       },
                     });
-                    recognition_engine.start();
+                    switchRecognition();
+                    
                   }
                 }
                 if(result[0].transcript.includes('stop')){
