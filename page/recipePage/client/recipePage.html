@@ -1,0 +1,79 @@
+<template name="recipePage">
+      <div class="w3-main w3-content w3-padding center recipePage" style="max-width:1200px;margin-top:100px">
+          <!-- {{> recipeheader}} <br> -->
+          <div class="row">
+            <div class="col-md-6">
+              <img src={{recipe.image}} style="width:100%"><hr>
+              <h3>Ingredients</h3>
+              <ul>
+                  {{#each ingredient in recipe.extendedIngredients}}
+                    <li>
+                      {{ingredient.originalString}}
+                    </li>
+                  {{/each}}
+              </ul>
+              <hr>
+
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+              <center><span class="glyphicon glyphicon-play-circle" style="cursor: pointer" id="popup_button"></span><h1>Start Cooking</h1></center>
+              <h2>{{recipe.title}}</h2>
+              <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+              You need {{recipe.readyInMinutes}} minutes to cook
+              <button class="btn btn-sm btn-warning" id="ask">Info Query?</button><hr>
+
+              <ol>
+              {{#each step in recipe.analyzedInstructions.[0].steps}}
+                 <li>{{step.step}}</li><hr>
+              {{/each}}
+            </ol>
+            <button type="btn" name="detail" id="popup_button">More Details</button>
+            </div>
+          </div>
+      </div>
+
+      <div id="popup1" class="overlay">
+		      <div class="popup">
+            <a class="close" id="popup_close">&times;</a>
+			       {{> slide}}
+		      </div>
+	   </div>
+</template>
+
+<template name="slide">
+  <div name="showslide">
+    <h3>{{thisStep.step}}<br></h3>
+    <h4>ingredients:</h4>
+    {{#unless thisStep.ingredients.[0]}}
+         <h5>N/A</h5>
+      {{else}}
+        <ul>
+          {{#each ing in thisStep.ingredients}}
+            <li> {{ing.name}}</li>
+          {{/each}}
+        </ul>
+    {{/unless}}
+    <h4>Equipment: </h4>
+    {{#unless thisStep.equipment.[0]}}
+         <h5>N/A</h5>
+
+      {{else}}
+        <ul>
+          {{#each eq in thisStep.equipment}}
+            {{eq.name}},
+          {{/each}}
+        </ul>
+    {{/unless}}
+  </div>
+
+  <div class="pagination">
+    <span name="number">
+      <a href="#">&laquo;</a>
+      {{#each s in page}}
+        <a href="#" name="number">{{s.number}}</a>
+      {{/each}}
+      <a href="#">&raquo;</a>
+    </span>
+  </div>
+
+</template>

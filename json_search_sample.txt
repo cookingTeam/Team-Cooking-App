@@ -1,0 +1,82 @@
+Step1:use keywords to search for recipe and get recipe ID
+step sample:
+{ id: 766301,
+   title: 'Queso Cheese Burgers',
+   readyInMinutes: 60,
+   image: 'queso-cheese-burgers-766301.jpg',
+   imageUrls: [Object] },
+ { id: 506584,
+   title: 'Chickpea Sunflower Seed Burgers',
+   readyInMinutes: 45,
+   image: 'Chickpea-Sunflower-Seed-Burgers-506584.jpg',
+   imageUrls: [Object] } ],
+
+Step2: use recipeID to find instruction seperated by step through "Get Analyzed Recipe Instructions"
+Sample:
+"steps": [
+      {
+        "number": 1,
+        "step": "Preheat the oven to 200 degrees F.",
+        "ingredients": [],
+        "equipment": [
+          {
+            "id": 404784,
+            "name": "oven",
+            "image": "https://spoonacular.com/cdn/equipment_100x100/oven.jpg",
+            "temperature": {
+              "number": 200,
+              "unit": "Fahrenheit"
+            }
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "step": "Whisk together the flour, pecans, granulated sugar, light brown sugar, baking powder, baking soda, and salt in a medium bowl.",
+        "ingredients": [
+          {
+            "id": 19334,
+            "name": "light brown sugar",
+            "image": "https://spoonacular.com/cdn/ingredients_100x100/brown-sugar-light.jpg"
+          },
+          {
+            "id": 19335,
+            "name": "granulated sugar",
+            "image": "https://spoonacular.com/cdn/ingredients_100x100/sugar-cubes.jpg"
+          },
+          {
+            "id": 18371,
+            "name": "baking powder",
+            "image": "https://spoonacular.com/cdn/ingredients_100x100/white-powder.jpg"
+
+Step3: use recipe ID to get recipe list
+sample recipe list:
+ "id": 20081,
+        "aisle": "Baking",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/flour.png",
+        "name": "flour",
+        "amount": 1.5,
+        "unit": "cups",
+        "unitShort": "cup",
+        "unitLong": "cups",
+        "originalString": "1 1/2 cups all-purpose flour",
+        "metaInformation": [
+          "all-purpose"
+        ]
+      },
+      {
+        "id": 12142,
+        "aisle": "Nuts;Baking",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/pecans.jpg",
+        "name": "pecans",
+        "amount": 0.5,
+        "unit": "cup",
+        "unitShort": "cup",
+        "unitLong": "cups",
+        "originalString": "1/2 cup finely chopped toasted pecans",
+        "metaInformation": [
+          "toasted",
+          "finely chopped"
+        ]
+      },
+      {
