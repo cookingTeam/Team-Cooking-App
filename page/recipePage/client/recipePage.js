@@ -172,7 +172,12 @@ Template.recipePage.events({
                     } else {
                       responsiveVoice.speak("no, it is not" + attribute, "UK English Male");
                     }
+                  } else {
+                    responsiveVoice.speak("I cannot help you with that. Try reading the recipe", "UK English Male");
                   }
+              }
+              else {
+                responsiveVoice.speak("I certainly don't know", "UK English Male");
               }
               console.log(data);
             },

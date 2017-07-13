@@ -101,3 +101,7 @@ textarea {
 .pagination a:hover {
     color: #06D85F;
 }
+
+.clickable-row {
+  cursor: pointer;
+}
