@@ -36,6 +36,10 @@ Template.recipePage.helpers({
 
 Template.recipePage.events({
   'click #like'(elt,instance){
+      // var save = {
+      //   recipe:Session.get("dict"),
+      //   owner:Meteor.userId()
+      // }
       Meteor.call('save.insert',Session.get("dict"));
       console.log(Like.findOne());
   },
