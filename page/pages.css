@@ -70,6 +70,7 @@ textarea {
 }
 .popup .close {
       position: absolute;
+      z-index: 1;
       top: 20px;
       right: 30px;
       transition: all 200ms;
@@ -86,6 +87,9 @@ textarea {
       overflow: auto;
 }
 
+.showslide {
+  display: inline-block;
+}
 /*pager*/
 .pagination {
     /*display: inline-block;*/

@@ -14,7 +14,7 @@ Template.recipePage.onCreated(
             if (error) {
               console.log("Error!!"+JSON.stringify(error)); return;
             }
-            console.log(result);
+            // console.log(result);
             r = JSON.parse(result);
             // console.log("r[0].steps[0].step: "+r[0].steps[0].step);
             //console.log(dict);

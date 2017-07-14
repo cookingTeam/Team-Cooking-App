@@ -13,11 +13,17 @@ Template.slide.helpers({
   page: function(){
     var big = Session.get("dict");
     // console.log("big "+big.analyzedInstructions);
-    return big.analyzedInstructions[0].steps;
+    if(big.analyzedInstructions){
+      return big.analyzedInstructions[0].steps;
+    } else {
+      return;
+    }
   },
   thisStep: function(){
-    console.log(Session.get("step"));
     return Session.get("step");
+  },
+  firstStep: function(){
+    return Session.get("step").number==1;
   }
 })
 
