@@ -63,16 +63,24 @@
 
 <template name="showSave">
   <h3>Saved</h3>
-    <table class="table">
+    <table class="table table-hover">
         <thead>
-            <th>Dish</th>
+            <th>Dish</th><th>Dish Type</th><th>Health Score</th>
         </thead>
         <tbody>
-          {{#each saved in savedRecipe}}
-          <tr>
-            <td>{{saved.title}}</td>
-          </tr>
+          {{#each s in savedRecipe}}
+            {{> savedrow saved=s}}
           {{/each}}
         </tbody>
     </table>
+</template>
+
+<template name="savedrow">
+    <tr class="clickable-row">
+      <td>{{saved.title}}</td>
+      <td>{{saved.dishTypes.[0]}}</td>
+      <td>{{saved.healthScore}}</td>
+      <td><span class="glyphicon glyphicon-remove-circle"></span></td>
+    </tr>
+
 </template>

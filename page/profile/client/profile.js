@@ -36,9 +36,26 @@ Template.showProfile.events({
     }
 })
 
+Template.savedrow.events({
+    'click span'(elt,instance){
+        Meteor.call('save.remove',this.saved)
+    }
+})
+
 Template.showSave.helpers({
     savedRecipe(){
       console.log(Like.findOne());
       return Like.find();
     }
+})
+
+Template.savedrow.events({
+      "click .clickable-row": function(event,instance){
+          console.log(this.saved.id);
+          var href = "/recipePage/"+this.saved.id;
+          console.log(href);
+          if (href) {
+              window.location.assign(href);//jump to recipe detail page
+          }
+      }
 })
