@@ -56,9 +56,10 @@ textarea {
 .popup {
       margin: 100px auto;
       padding: 20px;
+      padding-bottom: 50px;
       background: #fff;
       border-radius: 5px;
-      width: 70%;
+      width: 95%;
       position: relative;
       transition: all 5s ease-in-out;
 }
@@ -104,9 +105,4 @@ textarea {
 
 .clickable-row {
   cursor: pointer;
-}
-
-.popup{
-  width:100%;
-
 }
