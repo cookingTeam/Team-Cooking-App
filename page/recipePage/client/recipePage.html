@@ -42,17 +42,24 @@
 
 <template name="slide">
   <div name="showslide">
-    <h3>{{thisStep.step}}<br></h3>
-    <h4>ingredients:</h4>
-    {{#unless thisStep.ingredients.[0]}}
-         <h5>N/A</h5>
-      {{else}}
-        <ul>
-          {{#each ing in thisStep.ingredients}}
-            <li> {{ing.name}}</li>
-          {{/each}}
-        </ul>
-    {{/unless}}
+    {{# if firstStep }}
+    <button id="talk" class="btn btn-lg btn-danger">Start Cooking!</button>
+    {{/if}}
+    <div name="instruction" class="col-md-5">
+        <h3>{{thisStep.step}}<br></h3>
+    </div>
+    <div name="ingredients" class="col-md-5 col-md-offset-2">
+        <h3>Ingredients:</h3>
+        {{#unless thisStep.ingredients.[0]}}
+             <h5>N/A</h5>
+        {{else}}
+            <ul>
+              {{#each ing in thisStep.ingredients}}
+                <li> {{ing.name}}</li>
+              {{/each}}
+            </ul>
+        {{/unless}}
+    </div>
     <h4>Equipment: </h4>
     {{#unless thisStep.equipment.[0]}}
          <h5>N/A</h5>

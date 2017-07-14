@@ -12,6 +12,9 @@ Template.slide.helpers({
   },
   thisStep: function(){
     return Session.get("step");
+  },
+  firstStep: function(){
+    return Session.get("step").number==1;
   }
 })
 
