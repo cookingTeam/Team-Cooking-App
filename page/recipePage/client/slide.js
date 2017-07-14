@@ -16,6 +16,7 @@ Template.slide.helpers({
     return big.analyzedInstructions[0].steps;
   },
   thisStep: function(){
+    console.log(Session.get("step"));
     return Session.get("step");
   }
 })
