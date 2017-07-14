@@ -41,38 +41,40 @@
 </template>
 
 <template name="slide">
+  {{# if firstStep }}
+  <button id="talk" class="btn btn-lg btn-danger">Start Cooking!</button>
+  {{/if}}<br>
   <div name="showslide">
-    {{# if firstStep }}
-    <button id="talk" class="btn btn-lg btn-danger">Start Cooking!</button>
-    {{/if}}
-    <div name="instruction" class="col-md-5">
-        <h3>{{thisStep.step}}<br></h3>
-    </div>
-    <div name="ingredients" class="col-md-5 col-md-offset-2">
-        <h3>Ingredients:</h3>
-        {{#unless thisStep.ingredients.[0]}}
-             <h5>N/A</h5>
-        {{else}}
-            <ul>
-              {{#each ing in thisStep.ingredients}}
-                <li> {{ing.name}}</li>
-              {{/each}}
-            </ul>
-        {{/unless}}
-    </div>
-    <h4>Equipment: </h4>
-    {{#unless thisStep.equipment.[0]}}
-         <h5>N/A</h5>
+      <div name="ingredients" class="col-xs-6">
+          <h3>Ingredients:
+          {{#unless thisStep.ingredients.[0]}}
+               <h5>N/A</h5>
+          {{else}}
+              <ul>
+                {{#each ing in thisStep.ingredients}}
+                  <li> {{ing.name}}</li>
+                {{/each}}
+              </ul>
+          {{/unless}}</h3>
+      </div>
+      <div name="instruction" class="col-xs-6">
+          <h3>Step {{thisStep.number}}:<br>
+            {{thisStep.step}}<br></h3>
+      </div>
+      <div name="equip" class="col-xs-12">
+          <h4>Equipment: </h4>
+          {{#unless thisStep.equipment.[0]}}
+               <h5>N/A</h5>
 
-      {{else}}
-        <ul>
-          {{#each eq in thisStep.equipment}}
-            {{eq.name}},
-          {{/each}}
-        </ul>
-    {{/unless}}
+            {{else}}
+              <ul>
+                {{#each eq in thisStep.equipment}}
+                  {{eq.name}},
+                {{/each}}
+              </ul>
+          {{/unless}}
+      </div>
   </div>
-
   <div class="pagination">
     <span name="number">
       <a href="#">&laquo;</a>
