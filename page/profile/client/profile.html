@@ -13,16 +13,7 @@
         You need to Sign in
         {{/if}}
         <hr>
-        <div name="savedRecipes">
-          <h3>Saved</h3>
-            <table class="table">
-                <thead>
-                    <th>Dish</th><th>Date</th><th>Rating</th>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
+        {{> showSave}}
         <hr>
         <div name="favoritedRecipes">
           <h3>Favorited</h3>
@@ -39,7 +30,7 @@
 </template>
 
 <template name="showProfile">
-  <div name="savedRecipes">
+  <div name="personInfo">
     <h3>Personal Information</h3>
       <ul>
         <li>Name: {{content.name}}</li>
@@ -47,7 +38,7 @@
         <li>Diet Restrictions: {{content.restriction}}</li>
         <li>Preferred Cuisine: {{content.cuisine}}</li>
       </ul>
-      <button type="btn" id="delete">Delete</button>
+      <button type="btn" id="delete">Edit</button>
   </div>
 </template>
 
@@ -68,9 +59,20 @@
         <br><br>
         <button type="btn" id="submit">Submit</button>
     </div>
-    <!-- <ul>
-      <li>Name:<input type="text" id="name"></li>
-      <li>Age:<input type="text" id="age"></li>
-    </ul> -->
+</template>
 
+<template name="showSave">
+  <h3>Saved</h3>
+    <table class="table">
+        <thead>
+            <th>Dish</th>
+        </thead>
+        <tbody>
+          {{#each saved in savedRecipe}}
+          <tr>
+            <td>{{saved.title}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+    </table>
 </template>

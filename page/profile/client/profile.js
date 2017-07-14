@@ -34,15 +34,11 @@ Template.showProfile.events({
         console.log(Content.findOne({id:Meteor.userId()}));
         Meteor.call('info.remove',Content.findOne({id:Meteor.userId()}));
     }
+})
 
-
-
-    // 'click #update'(elt,instance){
-    //     const name = instance.$('#name').val();
-    //     const age = instance.$('#age').val();
-    //     instance.$('#newContent').val("");
-    //     Meteor.call('info.update',this.fb,newContent);
-    //     instance.edit.set(false);
-    // }
-
+Template.showSave.helpers({
+    savedRecipe(){
+      console.log(Like.findOne());
+      return Like.find();
+    }
 })

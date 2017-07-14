@@ -35,6 +35,11 @@ Template.recipePage.helpers({
 })
 
 Template.recipePage.events({
+  'click #like'(elt,instance){
+      Meteor.call('save.insert',Session.get("dict"));
+      console.log(Like.findOne());
+  },
+
   "click #popup_button": function(){
     $("#popup1").css("visibility", "visible");
     $("#popup1").css("opacity", 1);
