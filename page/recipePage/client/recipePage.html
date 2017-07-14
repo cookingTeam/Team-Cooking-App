@@ -45,7 +45,7 @@
   <button id="talk" class="btn btn-lg btn-danger">Start Cooking!</button>
   {{/if}}<br>
   <div name="showslide">
-      <div name="ingredients" class="col-xs-6">
+      <div name="ingredients" class="col-xs-5">
           <h3>Ingredients:
           {{#unless thisStep.ingredients.[0]}}
                <h5>N/A</h5>
@@ -57,7 +57,7 @@
               </ul>
           {{/unless}}</h3>
       </div>
-      <div name="instruction" class="col-xs-6">
+      <div name="instruction" class="col-xs-7">
           <h3>Step {{thisStep.number}}:<br>
             {{thisStep.step}}<br></h3>
       </div>

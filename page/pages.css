@@ -105,3 +105,8 @@ textarea {
 .clickable-row {
   cursor: pointer;
 }
+
+.popup{
+  width:100%;
+
+}
