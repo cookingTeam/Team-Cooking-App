@@ -3,8 +3,15 @@
     <div class="w3-main w3-content w3-padding center profilepage" style="max-width:1200px;margin-top:100px">
         <h1>Profile</h1>
         <img src="https://cdn1.iconfinder.com/data/icons/profession-avatar-solid-1/48/43-512.png" class="w3-card-4" style="width:16%"><br><br>
-        Name: <br>
-        Diet Restricions: <br>
+        {{#if currentUser}}
+            {{#if hasProfile}}
+              {{> showProfile}}
+            {{else}}
+              {{> askProfile}}
+            {{/if}}
+        {{else}}
+        You need to Sign in
+        {{/if}}
         <hr>
         <div name="savedRecipes">
           <h3>Saved</h3>
@@ -29,4 +36,41 @@
         </div>
     </div>
   </body>
+</template>
+
+<template name="showProfile">
+  <div name="savedRecipes">
+    <h3>Personal Information</h3>
+      <ul>
+        <li>Name: {{content.name}}</li>
+        <li>Age: {{content.age}}</li>
+        <li>Diet Restrictions: {{content.restriction}}</li>
+        <li>Preferred Cuisine: {{content.cuisine}}</li>
+      </ul>
+      <button type="btn" id="delete">Delete</button>
+  </div>
+</template>
+
+<template name="askProfile">
+    <div class="container">
+        Full Name<input type="text" id="name" name="name" placeholder="Your full name..">
+        Age<input type="text" id="age" name="age" placeholder="Your age">
+        Your Diet Restrictions
+        <textarea id="restriction" name="restriction" placeholder="Write something.." style="height:200px"></textarea>
+        Preferred Cuisine
+        <select id="cuisine" name="cuisine">
+        <option value="American">American</option>
+        <option value="Italian">Italian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="French">French</option>
+        <option value="Thai">Thai</option>
+        </select>
+        <br><br>
+        <button type="btn" id="submit">Submit</button>
+    </div>
+    <!-- <ul>
+      <li>Name:<input type="text" id="name"></li>
+      <li>Age:<input type="text" id="age"></li>
+    </ul> -->
+
 </template>
