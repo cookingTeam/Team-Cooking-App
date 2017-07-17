@@ -1,5 +1,5 @@
 Template.askforrecipe.events({
-  'click button'(elt,instance){
+  'click #add'(elt,instance){
     const dishName = instance.$('#dishName').val();
     const steps = instance.$('#steps').val();
 
@@ -12,8 +12,26 @@ Template.askforrecipe.events({
 
     instance.$('#dishName').val("");
     instance.$('#steps').val("");
+  },
+
+  'click #addIngredient': function(){
+      var container = document.getElementById("container");
+      container.appendChild(document.createTextNode("Ingredient "));
+      var input = document.createElement("input");
+      input.type = "text";
+      container.appendChild(input);
+      container.appendChild(document.createElement("br"));
+  },
+
+  'click #addStep': function(){
+      var container = document.getElementById("stepscontainer");
+      container.appendChild(document.createTextNode("Step "));
+      var input = document.createElement("textarea");
+      container.appendChild(input);
+      container.appendChild(document.createElement("br"));
   }
 })
+
 
 Template.showRecipe.helpers({
   recipeData() {return MyRecipe.find()}
