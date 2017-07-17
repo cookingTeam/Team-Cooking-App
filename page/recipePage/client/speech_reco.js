@@ -59,11 +59,13 @@ Template.slide.onCreated(function(){
                     };
                     recognition.lang = "en-US";
                     recognition.start();
+                    recognition_engine.stop();
                   }
 
                   function stopRecognition() {
                     if (recognition) {
                       recognition.stop();
+                      recognition_engine.start();
                       recognition = null;
                     }
                     // updateRec();
@@ -122,7 +124,7 @@ Template.slide.onCreated(function(){
                         console.log(data);
                       },
                     });
-                    recognition_engine.start();
+                    switchRecognition();
                   }
                 }
               }
