@@ -38,7 +38,7 @@ Template.recipePage.events({
   "click #popup_button": function(){
     $("#popup1").css("visibility", "visible");
     $("#popup1").css("opacity", 1);
-    console.log("loglog: "+Session.get("dict").analyzedInstructions[0].steps[0]);
+    // console.log("loglog: "+Session.get("dict").analyzedInstructions[0].steps[0]);
     Session.set("step", Session.get("dict").analyzedInstructions[0].steps[0]);
   },
   'click #ask': function(){

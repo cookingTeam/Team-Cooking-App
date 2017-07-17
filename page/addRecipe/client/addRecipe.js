@@ -15,23 +15,35 @@ Template.askforrecipe.events({
   },
 
   'click #addIngredient': function(){
+      Session.set('textboxNum', Session.get('textboxNum')+1);
       var container = document.getElementById("container");
-      container.appendChild(document.createTextNode("Ingredient "));
+      // container.appendChild(document.createTextNode("Ingredient "+Session.get('textboxNum')));
       var input = document.createElement("input");
       input.type = "text";
+      input.id= "ingredient"+Session.get('textboxNum');
+      input.placeholder= "Ingredient "+Session.get('textboxNum');
       container.appendChild(input);
       container.appendChild(document.createElement("br"));
   },
 
   'click #addStep': function(){
-      var container = document.getElementById("stepscontainer");
-      container.appendChild(document.createTextNode("Step "));
+      Session.set('textareaNum', Session.get('textareaNum')+1);
+      var container = document.getElementById("stepcontainer");
+      // container.appendChild(document.createTextNode("Ingredient "+Session.get('textboxNum')));
       var input = document.createElement("textarea");
+      input.type = "text";
+      input.id= "step"+Session.get('textareaNum');
+      input.placeholder= "Step "+Session.get('textareaNum');
       container.appendChild(input);
       container.appendChild(document.createElement("br"));
   }
 })
-
+Template.askforrecipe.onCreated(
+  function(){
+    Session.set('textboxNum', 3);
+    Session.set('textareaNum', 3);
+  }
+)
 
 Template.showRecipe.helpers({
   recipeData() {return MyRecipe.find()}
