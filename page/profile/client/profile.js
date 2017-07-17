@@ -44,8 +44,8 @@ Template.savedrow.events({
 
 Template.showSave.helpers({
     savedRecipe(){
-      console.log(Like.findOne());
-      return Like.find();
+      console.log(Like.find({owner:Meteor.userId()}).fetch());
+      return Like.find({owner:Meteor.userId()}).fetch();
     }
 })
 

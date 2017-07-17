@@ -15,7 +15,7 @@
         <hr>
         {{> showSave}}
         <hr>
-        <div name="favoritedRecipes">
+        <!-- <div name="favoritedRecipes">
           <h3>Favorited</h3>
             <table class="table">
                 <thead>
@@ -24,7 +24,7 @@
                 <tbody>
                 </tbody>
             </table>
-        </div>
+        </div> -->
     </div>
   </body>
 </template>
@@ -63,6 +63,7 @@
 
 <template name="showSave">
   <h3>Saved</h3>
+    {{#if currentUser}}
     <table class="table table-hover">
         <thead>
             <th>Dish</th><th>Dish Type</th><th>Health Score</th>
@@ -73,13 +74,16 @@
           {{/each}}
         </tbody>
     </table>
+    {{else}}
+    You need an account to save recipes
+    {{/if}}
 </template>
 
 <template name="savedrow">
     <tr class="clickable-row">
-      <td>{{saved.title}}</td>
-      <td>{{saved.dishTypes.[0]}}</td>
-      <td>{{saved.healthScore}}</td>
+      <td>{{saved.recipe.title}}</td>
+      <td>{{saved.recipe.dishTypes.[0]}}</td>
+      <td>{{saved.recipe.healthScore}}</td>
       <td><span class="glyphicon glyphicon-remove-circle"></span></td>
     </tr>
 
