@@ -19,7 +19,18 @@
               <h2>{{recipe.title}}</h2>
               <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
               You need {{recipe.readyInMinutes}} minutes to cook <br>
-              <span class="glyphicon glyphicon-heart" style="cursor: pointer" id="like"></span> Love it and save for later<br>
+              {{#if isliked}}
+              <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+              {{else}}
+              <span class="glyphicon glyphicon-heart-empty" style="cursor:pointer" id="like"></span>
+              {{/if}}
+              Love it and save for later  <br>
+              <!-- {{#if isliked}}
+              <span class="glyphicon glyphicon-heart"></span>
+              {{else}}
+              <span class="glyphicon glyphicon-heart-empty" style="cursor:pointer" id="like"></span>
+              {{/if}}
+              Love it and save for later <br> -->
               <span class="glyphicon glyphicon-play-circle" style="cursor: pointer" id="popup_button"></span> Start cooking <br>
               <button class="btn btn-sm btn-warning" id="ask">Info Query?</button><hr>
 
@@ -28,7 +39,6 @@
                  <li>{{step.step}}</li><hr>
               {{/each}}
             </ol>
-            <button type="btn" name="detail" id="popup_button">More Details</button>
             </div>
           </div>
       </div>

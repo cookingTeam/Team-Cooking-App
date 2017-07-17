@@ -31,11 +31,20 @@ Template.recipePage.helpers({
   recipe: function(){
     // console.log("session:     " + Session.get("dict"));
     return Session.get("dict");
+  },
+
+  isliked(){
+    return Template.instance().saveR.get();
   }
 })
 
+Template.recipePage.onCreated(function(){
+  this.saveR = new ReactiveVar(false);
+})
+
 Template.recipePage.events({
-  'click #like'(elt,instance){
+  'click #like'(event,instance){
+      instance.saveR.set(true);
       var detail = Session.get("dict");
       var save = {
         recipe:detail,

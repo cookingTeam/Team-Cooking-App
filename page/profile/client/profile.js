@@ -52,7 +52,7 @@ Template.showSave.helpers({
 Template.savedrow.events({
       "click .clickable-row": function(event,instance){
           console.log(this.saved.id);
-          var href = "/recipePage/"+this.saved.id;
+          var href = "/recipePage/"+this.saved.recipe.id;
           console.log(href);
           if (href) {
               window.location.assign(href);//jump to recipe detail page
