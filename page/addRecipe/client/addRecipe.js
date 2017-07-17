@@ -1,5 +1,5 @@
 Template.askforrecipe.events({
-  'click button'(elt,instance){
+  'click #add'(elt,instance){
     const dishName = instance.$('#dishName').val();
     const steps = instance.$('#steps').val();
 
