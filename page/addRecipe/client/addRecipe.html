@@ -1,6 +1,7 @@
 <template name="addRecipe">
     <body>
-      <div class="w3-main w3-content w3-padding center addrecipepage" style="max-width:1200px;margin-top:100px">
+      <div class="w3-main w3-content w3-padding addrecipepage" style="max-width:1200px;margin-top:100px">
+          <h1>Add Recipes to Profile</h1>
           {{> askforrecipe}}
           <hr>
           {{> showRecipe}}
@@ -30,9 +31,9 @@
 
 
   <div id="container">
-    <input type="text" placeholder="Ingredient 1"><br>
-    <input type="text" placeholder="Ingredient 2"><br>
-    <input type="text" placeholder="Ingredient 3"><br>
+    <input type="text" placeholder="amt" id="amt1" size="3"><input type="text" placeholder="unit" id="unit1" size="5"><input type="text" placeholder="Ingredient 1"><br>
+    <input type="text" placeholder="amt" id="amt2" size="3"><input type="text" placeholder="unit" id="unit2" size="5"><input type="text" placeholder="Ingredient 2"><br>
+    <input type="text" placeholder="amt" id="amt3" size="3"><input type="text" placeholder="unit" id="unit3" size="5"><input type="text" placeholder="Ingredient 3"><br>
   </div>
   <button id="addIngredient" class="btn btn-sm">+Ingredient</button><br><br>
 

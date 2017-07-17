@@ -17,11 +17,26 @@ Template.askforrecipe.events({
   'click #addIngredient': function(){
       Session.set('textboxNum', Session.get('textboxNum')+1);
       var container = document.getElementById("container");
-      // container.appendChild(document.createTextNode("Ingredient "+Session.get('textboxNum')));
+      var amt = document.createElement("input");
+      var unit = document.createElement("input");
       var input = document.createElement("input");
+      
+      amt.type="text";
+      amt.id="amt"+ Session.get('textboxNum');
+      amt.placeholder="amt";
+      amt.size="3";
+
+      unit.type="text";
+      unit.id="unit"+Session.get('textboxNum');
+      unit.placeholder="unit"
+      unit.size="5"
+
       input.type = "text";
       input.id= "ingredient"+Session.get('textboxNum');
       input.placeholder= "Ingredient "+Session.get('textboxNum');
+
+      container.appendChild(amt);
+      container.appendChild(unit);
       container.appendChild(input);
       container.appendChild(document.createElement("br"));
   },
