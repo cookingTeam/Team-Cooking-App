@@ -1,5 +1,5 @@
-Template.recipePage.events({
-  'click #popup_button': function(){
+Template.slide.events({
+  'click #talk': function(){
         var interim_result, final_result, stop_word;
         stop_word="stop";
         var recognition_engine = new webkitSpeechRecognition();
@@ -95,8 +95,12 @@ Template.recipePage.events({
                       data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
                       success: function(data) {
                         if (data.result.action=='next_step'){
-                          var current_step = Session.get("step");
+                          var current_step_instruction = Session.get("step");
+                          var current_step = Session.get("step_number");
                             console.log('success');
+                            console.log("current step: "+current_step);
+                            console.log(current_step_instruction.step);
+                            responsiveVoice.speak("step"+ current_step + current_step_instruction, "UK English Male");
                             //i++, write function nextStep(recipe.steps[i]) and call it here
                         }
                         console.log(data);
