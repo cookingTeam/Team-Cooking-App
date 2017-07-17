@@ -40,7 +40,7 @@ Template.recipePage.helpers({
 
 Template.recipePage.onCreated(function(){
   // console.log(Like.find({recipe:Session.get('dict'),owner:Meteor.userId()}));
-  this.saveR = new ReactiveVar(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}));
+  this.saveR = new ReactiveVar(false);
   console.log(this);
 })
 
