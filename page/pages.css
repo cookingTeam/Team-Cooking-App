@@ -6,6 +6,9 @@
   width: 90%;
   border: 1px solid grey;
 }
+.glyphicon-play-circle {
+  font-size: 50px;
+}
 .glyphicon-search {
   padding: 11px;
   width: 8%;

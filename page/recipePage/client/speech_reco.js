@@ -94,14 +94,7 @@ Template.slide.onCreated(function(){
                       data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
                       success: function(data) {
                         if (data.result.action=='next_step'){
-<<<<<<< HEAD:page/recipePage/client/cookRecipe.js
-                          var current_step_instruction = Session.get("step");
-                          var current_step = Session.get("step_number");
-                            console.log('success');
-                            console.log("current step: "+current_step);
-                            console.log(current_step_instruction.step);
-                            responsiveVoice.speak("step"+ current_step + current_step_instruction, "UK English Male");
-=======
+
                           var current_step = Session.get("step");
                           current_step.number = current_step.number + 1;
                           Session.set("step", current_step);
@@ -110,7 +103,6 @@ Template.slide.onCreated(function(){
                             console.log("current step: "+current_step.number);
                             console.log(current_step_instruction);
                             responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
->>>>>>> autoSpeechReco:page/recipePage/client/speech_reco.js
                             //i++, write function nextStep(recipe.steps[i]) and call it here
                         }
                         if (data.result.action=='show_instructions'){
