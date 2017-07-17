@@ -41,9 +41,6 @@
 </template>
 
 <template name="slide">
-  {{# if firstStep }}
-  <button id="talk" class="btn btn-lg btn-danger">Start Cooking!</button>
-  {{/if}}<br>
   <div name="showslide">
       <div name="ingredients" class="col-xs-5">
           <h3>Ingredients:
@@ -79,7 +76,7 @@
     <span name="number">
       <a href="#">&laquo;</a>
       {{#each s in page}}
-        <a href="#" name="number">{{s.number}}</a>
+        <a href="#" name="number_{{s.number}}">{{s.number}}</a>
       {{/each}}
       <a href="#">&raquo;</a>
     </span>

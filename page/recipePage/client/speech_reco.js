@@ -1,5 +1,4 @@
-Template.slide.events({
-  'click #talk': function(){
+Template.slide.onCreated(function(){
         var interim_result, final_result, stop_word;
         stop_word="stop";
         var recognition_engine = new webkitSpeechRecognition();
@@ -30,7 +29,7 @@ Template.slide.events({
                   recognition_engine.stop();
                 }
                 if(result[0].transcript.includes('Alexa')){
-                  recognition_engine.stop();
+                  // recognition_engine.stop();
                   console.log("Alexa is here");
                   // This is our accessToken to our group's account
                   var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
@@ -95,13 +94,34 @@ Template.slide.events({
                       data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
                       success: function(data) {
                         if (data.result.action=='next_step'){
+<<<<<<< HEAD:page/recipePage/client/cookRecipe.js
                           var current_step_instruction = Session.get("step");
                           var current_step = Session.get("step_number");
                             console.log('success');
                             console.log("current step: "+current_step);
                             console.log(current_step_instruction.step);
                             responsiveVoice.speak("step"+ current_step + current_step_instruction, "UK English Male");
+=======
+                          var current_step = Session.get("step");
+                          current_step.number = current_step.number + 1;
+                          Session.set("step", current_step);
+                          $("span[name=number] a[name=number_" + Session.get("step").number + "]").click();
+                          var current_step_instruction = Session.get("step").step;
+                            console.log("current step: "+current_step.number);
+                            console.log(current_step_instruction);
+                            responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
+>>>>>>> autoSpeechReco:page/recipePage/client/speech_reco.js
                             //i++, write function nextStep(recipe.steps[i]) and call it here
+                        }
+                        if (data.result.action=='show_instructions'){
+                          $(".glyphicon.glyphicon-play-circle").click();
+                        }
+                        if (data.result.action=='repeat'){
+                          console.log('repeat');
+                          var current_step = Session.get("step");
+                          var current_step_instruction = Session.get("step").step;
+                          responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
+
                         }
                         console.log(data);
                       },
@@ -113,4 +133,4 @@ Template.slide.events({
             }
           };
         }
-      })
+    )

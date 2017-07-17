@@ -26,10 +26,22 @@
 </template>
 
 <template name="askforrecipe">
-  <form>
-      <input type="text" placeholder="Dish Name" id="dishName"><br><br>
-      <textarea placeholder="Recipe Details" rows="3" cols="90" id="recipe"></textarea><br><br>
-      <button class="btn btn-small btn-primary" id="add">Add My Recipe</button>
+  <input type="text" placeholder="Dish Name" id="dishName"><br><br>
+  Ingredient <input type="text"><br>
+  Ingredient <input type="text"><br>
+  Ingredient <input type="text"><br>
 
-  </form>
+  <div id="container">
+  </div>
+
+  <button id="addIngredient" class="btn btn-sm">+</button>
+  <div id="stepcontainer">
+  </div>
+      <textarea placeholder="Step 1" rows="3" cols="90"></textarea><br>
+      <textarea placeholder="Step 2" rows="3" cols="90"></textarea><br>
+      <textarea placeholder="Step 3" rows="3" cols="90"></textarea><br>
+      <textarea placeholder="Recipe Details" rows="3" cols="90" id="recipe"></textarea><br><br>
+
+    <button id="addStep" class="btn btn-sm">+</button>
+    <button class="btn btn-small btn-primary" id="add">Add My Recipe</button>
 </template>
