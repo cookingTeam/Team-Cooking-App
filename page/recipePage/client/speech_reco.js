@@ -59,11 +59,13 @@ Template.slide.onCreated(function(){
                     };
                     recognition.lang = "en-US";
                     recognition.start();
+                    recognition_engine.stop();
                   }
 
                   function stopRecognition() {
                     if (recognition) {
                       recognition.stop();
+                      recognition_engine.start();
                       recognition = null;
                     }
                     // updateRec();
@@ -104,8 +106,13 @@ Template.slide.onCreated(function(){
                             responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
                             //i++, write function nextStep(recipe.steps[i]) and call it here
                         }
-                        if (data.result.action=='show_instructions'){
+                        if (data.result.action=='show_instruction'){
+                          console.log("show_instruction");
                           $(".glyphicon.glyphicon-play-circle").click();
+                          var current_step = Session.get("step");
+                          var current_step_instruction = Session.get("step").step;
+                          responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
+
                         }
                         if (data.result.action=='repeat'){
                           console.log('repeat');
@@ -117,7 +124,7 @@ Template.slide.onCreated(function(){
                         console.log(data);
                       },
                     });
-                    recognition_engine.start();
+                    switchRecognition();
                   }
                 }
               }
