@@ -39,8 +39,9 @@ Template.recipePage.helpers({
 })
 
 Template.recipePage.onCreated(function(){
-  console.log(Like.find({recipe:Session.get('dict'),owner:Meteor.userId()}).fetch());
-  this.saveR = new ReactiveVar(Like.find({recipe:Session.get('dict'),owner:Meteor.userId()}).fetch());
+  // console.log(Like.find({recipe:Session.get('dict'),owner:Meteor.userId()}));
+  this.saveR = new ReactiveVar(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}));
+  console.log(this);
 })
 
 Template.recipePage.events({
@@ -52,7 +53,7 @@ Template.recipePage.events({
         owner:Meteor.userId()
       }
       Meteor.call('save.insert',save);
-      console.log(Like.findOne());
+      console.log(Like.find().fetch());
   },
 
   "click #popup_button": function(){
