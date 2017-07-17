@@ -29,7 +29,7 @@ Template.slide.onCreated(function(){
                   recognition_engine.stop();
                 }
                 if(result[0].transcript.includes('Alexa')){
-                  recognition_engine.stop();
+                  // recognition_engine.stop();
                   console.log("Alexa is here");
                   // This is our accessToken to our group's account
                   var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
@@ -99,14 +99,20 @@ Template.slide.onCreated(function(){
                           Session.set("step", current_step);
                           $("span[name=number] a[name=number_" + Session.get("step").number + "]").click();
                           var current_step_instruction = Session.get("step").step;
-
-                            console.log('success');
                             console.log("current step: "+current_step.number);
                             console.log(current_step_instruction);
                             responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
                             //i++, write function nextStep(recipe.steps[i]) and call it here
-                        } else if (data.result.action=='show_instructions'){
+                        }
+                        if (data.result.action=='show_instructions'){
                           $(".glyphicon.glyphicon-play-circle").click();
+                        }
+                        if (data.result.action=='repeat'){
+                          console.log('repeat');
+                          var current_step = Session.get("step");
+                          var current_step_instruction = Session.get("step").step;
+                          responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
+
                         }
                         console.log(data);
                       },
