@@ -1,3 +1,9 @@
+
+Template.profile.onCreated(function(){
+  Meteor.subscribe('content');
+})
+
+
 Template.profile.helpers({
     hasProfile: function(){
         return Content.findOne({id:Meteor.userId()});
