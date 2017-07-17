@@ -5,7 +5,9 @@ Template.recipePage.onCreated(
     // dict.setDefault({
     //     d: {}
     //   });
+    this.saveR = new ReactiveVar();
     Session.set("dict", {})
+    const saveR = this.saveR;
     // console.log(Session.get("dict"));
     // console.log(this)
     Meteor.apply("getInstruction",[this.data], {returnStubValue:true},
@@ -19,7 +21,10 @@ Template.recipePage.onCreated(
             // console.log("r[0].steps[0].step: "+r[0].steps[0].step);
             //console.log(dict);
               // console.log("r  "+r[0]);
-            return Session.set("dict",r[0]);
+            Session.set("dict",r[0]);
+            saveR.set(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}).fetch());
+            console.log(Session.get('dict'));
+            console.log(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}).fetch());
             //return r[0];
             }
           //.steps[0].step
@@ -38,21 +43,17 @@ Template.recipePage.helpers({
   }
 })
 
-Template.recipePage.onCreated(function(){
-  // console.log(Like.find({recipe:Session.get('dict'),owner:Meteor.userId()}));
-  this.saveR = new ReactiveVar(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}));
-  console.log(this);
-})
-
 Template.recipePage.events({
   'click #like'(event,instance){
       instance.saveR.set(true);
       var detail = Session.get("dict");
+      console.log(Session.get('dict'));
       var save = {
         recipe:detail,
         owner:Meteor.userId()
       }
       Meteor.call('save.insert',save);
+      instance.saveR.set(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}));
       console.log(Like.find().fetch());
   },
 
