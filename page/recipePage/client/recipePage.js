@@ -44,11 +44,7 @@ Template.recipePage.helpers({
 })
 
 
-Template.recipePage.onCreated(function(){
-  // console.log(Like.find({recipe:Session.get('dict'),owner:Meteor.userId()}));
-  this.saveR = new ReactiveVar(false);
-  console.log(this);
-})
+
 
 Template.recipePage.events({
   'click #like'(event,instance){
