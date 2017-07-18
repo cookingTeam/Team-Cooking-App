@@ -43,6 +43,13 @@ Template.recipePage.helpers({
   }
 })
 
+Template.recipePage.onRendered(
+  function(){
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+  }
+)
 
 
 
@@ -219,3 +226,15 @@ Template.recipePage.events({
   }
 
 })
+
+
+
+
+//Any other function:
+//vegan advanced search
+//search according to profile
+//possible modification
+
+//special diet
+//to let the app read out the steps
+//go through steps
