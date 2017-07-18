@@ -30,7 +30,9 @@ Template.slide.onCreated(function(){
                 }
                 if(result[0].transcript.includes('Alexa')){
                   // recognition_engine.stop();
+                  alert("I'm listening");
                   console.log("Alexa is here");
+
                   // This is our accessToken to our group's account
                   var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
                   var baseUrl = "https://api.api.ai/v1/";
@@ -58,8 +60,9 @@ Template.slide.onCreated(function(){
                       stopRecognition();
                     };
                     recognition.lang = "en-US";
-                    recognition.start();
                     recognition_engine.stop();
+                    recognition.start();
+
                   }
 
                   function stopRecognition() {

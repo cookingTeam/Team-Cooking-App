@@ -20,14 +20,15 @@
               <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
               You need {{recipe.readyInMinutes}} minutes to cook <br>
               {{#if isliked}}
-              <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-heart save" aria-hidden="true"></span>
               {{else}}
-              <span class="glyphicon glyphicon-heart-empty" style="cursor:pointer" id="like"></span>
+              <span class="glyphicon glyphicon-heart-empty save" style="cursor:pointer" id="like"></span>
               {{/if}}
               Love it and save for later  <br>
-              <button type="button" class="btn btn-danger" id="popup_button">Start Cooking</button>
 
-              <button class="btn btn-sm btn-warning" id="ask">Info Query?</button><hr>
+              <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Alexa, Pause, Then go through by saying 'next step'" id="popup_button">Start Cooking</button>
+
+              <button class="btn btn-sm btn-warning" data-toggle="tooltip" title="Ask the app things like 'is this recipe vegetarian?'" id="ask">Info Query?</button><hr>
 
               <ol>
               {{#each step in recipe.analyzedInstructions.[0].steps}}

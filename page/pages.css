@@ -117,6 +117,14 @@ textarea {
     background-color: #f2f2f2;
     padding: 20px;
 }
+.glyphicon{
+    font-size: 25px;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
 input[type=text], select, textarea {
     width: 100%;
     padding: 12px;
@@ -129,7 +137,7 @@ input[type=text], select, textarea {
 }
 
 /*.startCooking {
-    background-color: #4CAF50; 
+    background-color: #4CAF50;
     border: none;
     color: white;
     padding: 15px 32px;
