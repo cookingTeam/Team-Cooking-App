@@ -1,5 +1,4 @@
 Template.slide.onCreated(function(){
-
         var interim_result, final_result, stop_word;
         stop_word="stop";
         var recognition_engine = new webkitSpeechRecognition();
@@ -21,19 +20,15 @@ Template.slide.onCreated(function(){
               if (result.isFinal) {
                 final_result = result[0].transcript;
                 // console.log(final_result);
-                // console.log('SPEECH RECOGNITION : final transcript = ' + final_result+ "  type: "+(typeof interim_result) , e);
+                console.log('SPEECH RECOGNITION : final transcript = ' + final_result, e);
                 // trigger a command matching the final utterance here
-              } else {
-                interim_result += result[0].transcript;
-                if(result[0].transcript.includes('stop')){
+                if(final_result.includes('stop')){
                   console.log("record stopped");
                   recognition_engine.stop();
                 }
-                if(result[0].transcript.includes('Alexa')){
+                if(final_result.includes('Alexa')){
                   // recognition_engine.stop();
-
                   console.log("Alexa is here");
-                  responsiveVoice.speak("I'm listening", "UK English Male");
                   // This is our accessToken to our group's account
                   var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
                   var baseUrl = "https://api.api.ai/v1/";
@@ -61,10 +56,8 @@ Template.slide.onCreated(function(){
                       stopRecognition();
                     };
                     recognition.lang = "en-US";
-                    recognition_engine.stop();
                     recognition.start();
-                    document.getElementById('listen').style.color="red";
-
+                    recognition_engine.stop();
                   }
 
                   function stopRecognition() {
@@ -72,7 +65,6 @@ Template.slide.onCreated(function(){
                       recognition.stop();
                       recognition_engine.start();
                       recognition = null;
-                      document.getElementById('listen').style.color="#9DA1A2";
                     }
                     // updateRec();
                   }
@@ -114,7 +106,7 @@ Template.slide.onCreated(function(){
                         }
                         if (data.result.action=='show_instruction'){
                           console.log("show_instruction");
-                          $(".glyphicon.glyphicon-play-circle").click();
+                          $("#popup_button").click();
                           var current_step = Session.get("step");
                           var current_step_instruction = Session.get("step").step;
                           responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
@@ -133,6 +125,9 @@ Template.slide.onCreated(function(){
                     switchRecognition();
                   }
                 }
+              } else {
+                interim_result = result[0].transcript;
+                console.log(interim_result);
               }
             }
           };
