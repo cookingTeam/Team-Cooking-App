@@ -1,5 +1,6 @@
 Template.slide.onCreated(function(){
   Session.set("step", {});
+
 })
 
 Template.slide.onCreated(function(){
@@ -24,7 +25,8 @@ Template.slide.helpers({
   },
   firstStep: function(){
     return Session.get("step").number==1;
-  }
+  },
+  
 })
 
 Template.slide.events({
