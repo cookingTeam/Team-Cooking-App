@@ -1,4 +1,5 @@
 Template.slide.onCreated(function(){
+
         var interim_result, final_result, stop_word;
         stop_word="stop";
         var recognition_engine = new webkitSpeechRecognition();
@@ -30,6 +31,7 @@ Template.slide.onCreated(function(){
                 }
                 if(result[0].transcript.includes('Alexa')){
                   // recognition_engine.stop();
+
                   console.log("Alexa is here");
                   responsiveVoice.speak("I'm listening", "UK English Male");
                   // This is our accessToken to our group's account
@@ -61,6 +63,7 @@ Template.slide.onCreated(function(){
                     recognition.lang = "en-US";
                     recognition_engine.stop();
                     recognition.start();
+                    document.getElementById('listen').style.color="red";
 
                   }
 
@@ -69,6 +72,7 @@ Template.slide.onCreated(function(){
                       recognition.stop();
                       recognition_engine.start();
                       recognition = null;
+                      document.getElementById('listen').style.color="#9DA1A2";
                     }
                     // updateRec();
                   }
