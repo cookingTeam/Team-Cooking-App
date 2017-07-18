@@ -118,7 +118,7 @@ textarea {
     padding: 20px;
 }
 .glyphicon{
-    font-size: 25px;
+    font-size: 20px;
 }
 .tooltip {
     position: relative;
@@ -135,7 +135,13 @@ input[type=text], select, textarea {
     margin-bottom: 16px;
     resize: vertical;
 }
-
+.login{
+  padding-right:5px;
+  font-size: 18px;
+}
+.glyphicon-bullhorn{
+  font-size: 10px;
+}
 /*.startCooking {
     background-color: #4CAF50;
     border: none;

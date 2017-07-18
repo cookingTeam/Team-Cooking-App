@@ -63,7 +63,7 @@ Template.slide.onCreated(function(){
                     recognition.lang = "en-US";
                     recognition_engine.stop();
                     recognition.start();
-                    document.getElementById('listen').style.color="red";
+                    document.getElementById('pageListen').style.color="red";
 
                   }
 
@@ -72,7 +72,7 @@ Template.slide.onCreated(function(){
                       recognition.stop();
                       recognition_engine.start();
                       recognition = null;
-                      document.getElementById('listen').style.color="#9DA1A2";
+                      document.getElementById('pageListen').style.color="#9DA1A2";
                     }
                     // updateRec();
                   }

@@ -98,11 +98,13 @@ Template.recipePage.events({
           };
           recognition.lang = "en-US";
           recognition.start();
+          document.getElementById('pageListen').style.color="red";
         }
 
         function stopRecognition() {
           if (recognition) {
             recognition.stop();
+            document.getElementById('pageListen').style.color="#9DA1A2";
             recognition = null;
           }
           updateRec();
