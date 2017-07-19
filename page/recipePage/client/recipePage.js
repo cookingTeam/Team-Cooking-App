@@ -45,9 +45,9 @@ Template.recipePage.helpers({
 
 Template.recipePage.onRendered(
   function(){
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
+    // $(document).ready(function(){
+    //     $('[data-toggle="tooltip"]').tooltip();
+    // });
   }
 )
 
