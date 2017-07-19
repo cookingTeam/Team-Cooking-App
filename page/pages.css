@@ -60,7 +60,7 @@ textarea {
       border-radius: 5px;
       width: 70%;
       position: relative;
-      transition: all 5s ease-in-out;
+      transition: all 0.2s ease-in-out;
 }
 
 .popup h2 {
@@ -93,6 +93,8 @@ textarea {
 /*pager*/
 .pagination {
     /*display: inline-block;*/
+    text-align:center;
+    width:100%;
 }
 
 .pagination a {
@@ -104,6 +106,19 @@ textarea {
 
 .pagination a:hover {
     color: #06D85F;
+}
+
+.pagination h2{
+  display: inline;
+  cursor:pointer;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination h3{
+  display: inline;
+  padding: 8px 16px;
+  text-decoration: none;
 }
 
 .clickable-row {
