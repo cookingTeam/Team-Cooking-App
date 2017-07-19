@@ -154,7 +154,6 @@ input[type=text], select, textarea {
     resize: vertical;
 }
 .login{
-  padding-right: 15px;
   font-size: 17px;
 }
 .glyphicon-bullhorn{

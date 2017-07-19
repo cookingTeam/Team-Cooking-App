@@ -60,3 +60,8 @@ Template.home.events({
   },
 
 })
+
+Template.home.onCreated(function(){
+  responsiveVoice.speak("Welcome. My name is Cookie, and I am here as your sous chef. When you open a recipe you can ask me for guidance.", "US English Female", {pitch:1.2});
+
+})

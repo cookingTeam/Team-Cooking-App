@@ -26,7 +26,7 @@ Template.slide.onCreated(function(){
                   console.log("record stopped");
                   recognition_engine.stop();
                 }
-                if(final_result.includes('Alexa')){
+                if(final_result.includes('cookie')){
                   // recognition_engine.stop();
                   console.log("Alexa is here");
                   // This is our accessToken to our group's account
@@ -40,6 +40,7 @@ Template.slide.onCreated(function(){
                   //creating speech recognition functions
                   var recognition;
                   function startRecognition() {
+                    recognition_engine.stop();
                     recognition = new webkitSpeechRecognition();
                     recognition.onstart = function(event) {
                       // updateRec();
@@ -57,6 +58,7 @@ Template.slide.onCreated(function(){
                     };
                     recognition.lang = "en-US";
                     recognition.start();
+
                     document.getElementById('pageListen').style.color="red";
 
                   }
