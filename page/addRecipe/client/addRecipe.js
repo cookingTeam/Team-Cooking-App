@@ -1,8 +1,8 @@
 Template.askforrecipe.events({
   'click #add'(elt,instance){
-    var dishName = instance.$('#dishName').val();
+    var dishName = instance.$('#dishName');
     var ingredients = new Array();
-    for (i=1; i<Session.get('textboxNum'); i++){
+    for (i=0; i<Session.get('textboxNum'); i++){
       var ing = {
         amount:instance.$('#amt'+i),
         unit:instance.$("unit"+i),
@@ -11,7 +11,7 @@ Template.askforrecipe.events({
       ingredients.push(ing);
     }
     var steps = new Array();
-    for (i=1; i<Session.get('textareaNum'); i++){
+    for (i=0; i<Session.get('textareaNum'); i++){
       steps.push(instance.$("#step"+i));
     }
     var dish = {
