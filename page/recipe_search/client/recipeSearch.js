@@ -117,13 +117,14 @@ Template.recipeSearch.events({
   'click #backwards': function(elt, instance){
     offset = parseInt(offset,10);
     pageNumber = instance.state.get("pageNumber");
-    instance.state.set("pageNumber", pageNumber-1);
-    if(offset>=0){
+    if(offset>0){
       offset -= 10;
     }
     else{
       alert("You are at the begining!")
+      return;
     }
+    instance.state.set("pageNumber", pageNumber-1);
     getQuery(instance);
   },
 
