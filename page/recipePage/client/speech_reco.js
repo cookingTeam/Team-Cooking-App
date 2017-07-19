@@ -103,7 +103,7 @@ Template.slide.onCreated(function(){
                           var current_step_instruction = Session.get("step").step;
                             console.log("current step: "+current_step.number);
                             console.log(current_step_instruction);
-                            responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
+                            responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
                             //i++, write function nextStep(recipe.steps[i]) and call it here
                         }
                         if (data.result.action=='show_instruction'){
@@ -111,14 +111,14 @@ Template.slide.onCreated(function(){
                           $("#popup_button").click();
                           var current_step = Session.get("step");
                           var current_step_instruction = Session.get("step").step;
-                          responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
+                          responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
 
                         }
                         if (data.result.action=='repeat'){
                           console.log('repeat');
                           var current_step = Session.get("step");
                           var current_step_instruction = Session.get("step").step;
-                          responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
+                          responsiveVoice.speak("step"+ current_step.number + current_step_instruction,  "US English Female", {pitch:1.2});
 
                         }
                         console.log(data);
