@@ -1,17 +1,28 @@
 Template.askforrecipe.events({
   'click #add'(elt,instance){
-    const dishName = instance.$('#dishName').val();
-    const steps = instance.$('#steps').val();
-
+    var dishName = instance.$('#dishName').val();
+    var ingredients = new Array();
+    for (i=1; i<Session.get('textboxNum'); i++){
+      var ing = {
+        amount:instance.$('#amt'+i),
+        unit:instance.$("unit"+i),
+        name:instance.$("ingredient"+i)
+      }
+      ingredients.push(ing);
+    }
+    var steps = new Array();
+    for (i=1; i<Session.get('textareaNum'); i++){
+      steps.push(instance.$("#step"+i));
+    }
     var dish = {
       dishName:dishName,
+      ingredients:ingredients,
       steps:steps,
       owner:Meteor.userId()
     };
-    Meteor.call('dish.insert',dish);
+    console.log(dish);
+    Meteor.call('dish.insert', dish);
 
-    instance.$('#dishName').val("");
-    instance.$('#steps').val("");
   },
 
   'click #addIngredient': function(){
@@ -20,7 +31,8 @@ Template.askforrecipe.events({
       var amt = document.createElement("input");
       var unit = document.createElement("input");
       var input = document.createElement("input");
-      
+      var del = document.createElement("span");
+
       amt.type="text";
       amt.id="amt"+ Session.get('textboxNum');
       amt.placeholder="amt";
@@ -35,9 +47,13 @@ Template.askforrecipe.events({
       input.id= "ingredient"+Session.get('textboxNum');
       input.placeholder= "Ingredient "+Session.get('textboxNum');
 
+      del.setAttribute('class', 'glyphicon glyphicon-remove');
+      del.setAttribute('id', "removeIng"+Session.get('textboxNum'));
+
       container.appendChild(amt);
       container.appendChild(unit);
       container.appendChild(input);
+      container.appendChild(del);
       container.appendChild(document.createElement("br"));
   },
 
@@ -46,13 +62,26 @@ Template.askforrecipe.events({
       var container = document.getElementById("stepcontainer");
       // container.appendChild(document.createTextNode("Ingredient "+Session.get('textboxNum')));
       var input = document.createElement("textarea");
+      var del = document.createElement("span");
       input.type = "text";
       input.id= "step"+Session.get('textareaNum');
       input.placeholder= "Step "+Session.get('textareaNum');
+
+      del.setAttribute('class', 'glyphicon glyphicon-remove');
+      del.setAttribute('id', "removeStep"+Session.get('textboxNum'));
+
       container.appendChild(input);
+      container.appendChild(del);
       container.appendChild(document.createElement("br"));
+
+  },
+
+  'click .glyphicon-remove': function(){
+      console.log(this);
+
   }
 })
+
 Template.askforrecipe.onCreated(
   function(){
     Session.set('textboxNum', 3);
