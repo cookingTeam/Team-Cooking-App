@@ -44,12 +44,12 @@
 
 <template name="askProfile">
     <div class="container">
-        Full Name<input type="text" id="name" name="name" placeholder="Your full name..">
-        Age<input type="text" id="age" name="age" placeholder="Your age">
+        Full Name<input type="text" id="name_profile" name="name" placeholder="Your full name..">
+        Age<input type="text" id="age_profile" name="age" placeholder="Your age">
         Your Diet Restrictions
-        <textarea id="restriction" name="restriction" placeholder="Write something.." style="height:200px"></textarea>
+        <textarea id="restriction_profile" name="restriction" placeholder="Write something.." style="height:200px"></textarea>
         Preferred Cuisine
-        <select id="cuisine" name="cuisine">
+        <select id="cuisine_profile" name="cuisine">
         <option value="American">American</option>
         <option value="Italian">Italian</option>
         <option value="Chinese">Chinese</option>
@@ -84,7 +84,7 @@
       <td class="clickable-row">{{saved.recipe.title}}</td>
       <td>{{saved.recipe.dishTypes.[0]}}</td>
       <td>{{saved.recipe.healthScore}}</td>
-      <td><span class="glyphicon glyphicon-remove-circle"></span></td>
+      <td><span class="glyphicon glyphicon-remove-circle" style="cursor: pointer;"></span></td>
     </tr>
 
 </template>
