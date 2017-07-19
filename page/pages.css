@@ -3,16 +3,16 @@
   margin: auto;
 }
 .searchbar {
-  width: 90%;
+  /*width: 90%;*/
   border: 1px solid grey;
 }
 .glyphicon-play-circle {
   font-size: 50px;
 }
 .glyphicon-search {
-  padding: 11px;
-  width: 8%;
-  padding-bottom: 15px;
+  padding: 2px;
+  /*width: 8%;*/
+  /*padding-bottom: 15px;*/
 }
 .mainpage {
   width: 60%;
@@ -65,7 +65,7 @@ textarea {
       border-radius: 5px;
       width: 95%;
       position: relative;
-      transition: all 5s ease-in-out;
+      transition: all 0.2s ease-in-out;
 }
 
 .popup h2 {
@@ -98,6 +98,8 @@ textarea {
 /*pager*/
 .pagination {
     /*display: inline-block;*/
+    text-align:center;
+    width:100%;
 }
 
 .pagination a {
@@ -111,6 +113,65 @@ textarea {
     color: #06D85F;
 }
 
+.pagination h2{
+  display: inline;
+  cursor:pointer;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination h3{
+  display: inline;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
 .clickable-row {
   cursor: pointer;
 }
+
+/*profile page*/
+.container {
+    width:100%;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+.glyphicon{
+    font-size: 20px;
+}
+.glyphicon-search{
+    font-size:15px;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+.login{
+  padding-right: 15px;
+  font-size: 17px;
+}
+.glyphicon-bullhorn{
+  font-size: 10px;
+}
+/*.startCooking {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}*/

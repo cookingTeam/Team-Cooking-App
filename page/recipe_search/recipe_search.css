@@ -1,0 +1,31 @@
+.searchbar_recipeSearch{
+                padding:8px 15px;
+                /*background:rgba(50, 50, 50, 0.2);*/
+                border:0.7px solid #aeb4bf;
+                height: 42px;
+                width: 70%;
+                margin-left: 10px;
+
+}
+.search_recipeSearch{
+                position:relative;
+                padding:6px 15px;
+                left:-6px;
+                border:2px solid #6a707a;
+                /*background-color:#207cca;
+                color:#fafafa;*/
+                background-color:#fafafa;
+                color:black;
+                height: 42px;
+}
+.search_recipeSearch:hover  {
+                background-color:#6a707a;
+                color:#fafafa;
+}
+.advancedSearch_recipeSearch {
+                top:8px;
+                color:#52565e;
+}
+.advancedSearch_recipeSearch:hover{
+                color:#a6aab2;
+}

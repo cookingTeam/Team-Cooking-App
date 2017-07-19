@@ -16,18 +16,25 @@
 
             </div>
             <div class="col-md-5 col-md-offset-1">
-              <center><h1>Start Cooking</h1><span class="glyphicon glyphicon-play-circle" style="cursor: pointer" id="popup_button"></span></center>
-              <br><h2>{{recipe.title}}</h2>
+              <h2>{{recipe.title}}</h2>
               <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-              You need {{recipe.readyInMinutes}} minutes to cook
-              <button class="btn btn-sm btn-warning" id="ask">Info Query?</button><hr>
+              You need {{recipe.readyInMinutes}} minutes to cook <br>
+              {{#if isliked}}
+              <span class="glyphicon glyphicon-heart save" aria-hidden="true"></span>
+              {{else}}
+              <span class="glyphicon glyphicon-heart-empty save" style="cursor:pointer" id="like"></span>
+              {{/if}}
+              Love it and save for later  <br>
+
+              <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Alexa, Pause, Then go through by saying 'next step'" id="popup_button"><span class="glyphicon glyphicon-bullhorn"></span> Start Cooking</button>
+
+              <button class="btn btn-warning" data-toggle="tooltip" title="Ask the app things like 'is this recipe vegetarian?'" id="ask"><span class="glyphicon glyphicon-bullhorn"></span> Recipe Info</button><hr>
 
               <ol>
               {{#each step in recipe.analyzedInstructions.[0].steps}}
                  <li>{{step.step}}</li><hr>
               {{/each}}
             </ol>
-            <button type="btn" name="detail" id="popup_button">More Details</button>
             </div>
           </div>
       </div>
@@ -42,7 +49,8 @@
 
 <template name="slide">
   <div name="showslide">
-      <div name="ingredients" class="col-xs-5">
+
+      <div name="ingredients" class="col-xs-6">
           <h3>Ingredients:
           {{#unless thisStep.ingredients.[0]}}
                <h5>N/A</h5>

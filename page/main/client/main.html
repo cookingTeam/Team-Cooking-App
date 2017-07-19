@@ -3,12 +3,15 @@
       <div class="w3-main w3-content w3-padding center mainpage" style="max-width:1200px;margin-top:100px">
           <input type="text" name="search" placeholder="Find Food..." class="searchbar">
           <span class="glyphicon glyphicon-search"></span><br><br>
-          <button class="btn">Advanced</button>
+          <button class="btn" id="advanceSearch">Advanced</button>
+          {{#if adSearch}}
+            <input type="text" placeholder="advance search">
+          {{/if}}
       </div>
     </body>
 </template>
 
-<template name="hello">
+<!-- <template name="hello">
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
 </template>
@@ -21,4 +24,4 @@
     <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
     <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
   </ul>
-</template>
+</template> -->

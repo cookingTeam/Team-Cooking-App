@@ -20,15 +20,13 @@ Template.slide.onCreated(function(){
               if (result.isFinal) {
                 final_result = result[0].transcript;
                 // console.log(final_result);
-                // console.log('SPEECH RECOGNITION : final transcript = ' + final_result+ "  type: "+(typeof interim_result) , e);
+                console.log('SPEECH RECOGNITION : final transcript = ' + final_result, e);
                 // trigger a command matching the final utterance here
-              } else {
-                interim_result += result[0].transcript;
-                if(result[0].transcript.includes('stop')){
+                if(final_result.includes('stop')){
                   console.log("record stopped");
                   recognition_engine.stop();
                 }
-                if(result[0].transcript.includes('Alexa')){
+                if(final_result.includes('Alexa')){
                   // recognition_engine.stop();
                   console.log("Alexa is here");
                   // This is our accessToken to our group's account
@@ -59,12 +57,16 @@ Template.slide.onCreated(function(){
                     };
                     recognition.lang = "en-US";
                     recognition.start();
+                    document.getElementById('pageListen').style.color="red";
+
                   }
 
                   function stopRecognition() {
                     if (recognition) {
                       recognition.stop();
+                      recognition_engine.start();
                       recognition = null;
+                      document.getElementById('pageListen').style.color="#9DA1A2";
                     }
                     // updateRec();
                   }
@@ -105,8 +107,13 @@ Template.slide.onCreated(function(){
                             responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
                             //i++, write function nextStep(recipe.steps[i]) and call it here
                         }
-                        if (data.result.action=='show_instructions'){
-                          $(".glyphicon.glyphicon-play-circle").click();
+                        if (data.result.action=='show_instruction'){
+                          console.log("show_instruction");
+                          $("#popup_button").click();
+                          var current_step = Session.get("step");
+                          var current_step_instruction = Session.get("step").step;
+                          responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "UK English Male");
+
                         }
                         if (data.result.action=='repeat'){
                           console.log('repeat');
@@ -118,9 +125,12 @@ Template.slide.onCreated(function(){
                         console.log(data);
                       },
                     });
-                    recognition_engine.start();
+                    switchRecognition();
                   }
                 }
+              } else {
+                interim_result = result[0].transcript;
+                console.log(interim_result);
               }
             }
           };
