@@ -18,41 +18,46 @@
 		</style>
 	</head>
 		<!-- Sidebar (hidden by default) -->
-		<nav class="w3-sidebar w3-bar-block w3-card-2 w3-top w3-large w3-animate-left" style="display:none;z-index:2;width:20%" id="mySidebar">
-		  <a href="javascript:void(0)" onclick="w3_close()"
-		  class="w3-bar-item w3-button">Close Menu</a>
-			<a href= {{pathFor 'home'}} onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
-			<!-- <script>
-				Template.layout.events({
-					"click #home": function(elt, instance){
-						Router.go("recipeSearch", {}, {query: ""});
-					}
-				})
-			</script> -->
-			<a href="/about" onclick="w3_close()" class="w3-bar-item w3-button">About</a>
+		<div id="mySidenav" class="sidenav">
+		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<a href="/" class="link" onclick="closeNav()"><span class="glyphicon glyphicon-home"></span> Home</a>
+			<a href="/about" class="link" onclick="closeNav()"><span class="glyphicon glyphicon-tag"></span> About</a>
       <!-- <a href="/recipeSearch" onclick="w3_close()" class="w3-bar-item w3-button">Search</a> -->
-			<a href="/profile" onclick="w3_close()" class="w3-bar-item w3-button">Profile</a>
-			<a href="/addRecipe" onclick="w3_close()" class="w3-bar-item w3-button">+Recipe</a>
-		</nav>
-
-		<!-- Top menu -->
-		<div class="w3-top">
-		  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-		    <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
-		    <div class="w3-right w3-padding-16 login">{{> loginButtons align="right"}}</div>
-		    <div class="w3-center w3-padding-16 center"> <span class="glyphicon glyphicon-record" id="pageListen"></span><a href="{{pathFor 'home'}}"> CookingApp </a> </div>
-		  </div>
+			<a href="/profile" class="link" onclick="closeNav()"><span class="glyphicon glyphicon-user"></span> Profile</a>
+			<a href="/addRecipe" class="link" onclick="closeNav()"><span class="glyphicon glyphicon-plus"></span> Recipe</a>
 		</div>
 
-    {{> yield}}
+		<!-- Top menu -->
+		<div id="main">
+		  <!-- <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+		    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+		    <div class="w3-right w3-padding-16">{{> loginButtons}}</div>
+		    <div class="w3-center w3-padding-16 center"> <a href="{{pathFor 'recipeSearch'}}"> CookingApp </a> </div>
+		  </div> -->
+
+  		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+			<a style="float:right">{{> loginButtons}}</a>
+			{{> yield}}
+		</div>
+
+    <!-- {{> yield}} -->
 		<script>
 		// Script to open and close sidebar
-		function w3_open() {
-		    document.getElementById("mySidebar").style.display = "block";
+		// function w3_open() {
+		//     document.getElementById("mySidebar").style.display = "block";
+		// }
+		//
+		// function w3_close() {
+		//     document.getElementById("mySidebar").style.display = "none";
+		// }
+		function openNav() {
+    	document.getElementById("mySidenav").style.width = "250px";
+    	document.getElementById("main").style.marginLeft = "250px";
 		}
 
-		function w3_close() {
-		    document.getElementById("mySidebar").style.display = "none";
+		function closeNav() {
+    	document.getElementById("mySidenav").style.width = "0";
+    	document.getElementById("main").style.marginLeft= "0";
 		}
 		</script>
   </template>

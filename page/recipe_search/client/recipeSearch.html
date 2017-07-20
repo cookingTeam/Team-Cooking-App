@@ -1,6 +1,6 @@
 <template name="recipeSearch">
   <body>
-  <div class='w3-main w3-content' style="margin-top:100px">
+  <div class='center' style="margin-top:100px;text-align:center">
       <input id="recipe_name" class="searchbar_recipeSearch">
       <button class='search_recipeSearch'>Search</button>
       <span class='advancedSearch_recipeSearch glyphicon glyphicon-filter' style="cursor:pointer;"></span><br>
@@ -56,15 +56,20 @@
 
  </div>
 
-  <div class="w3-main w3-content w3-padding">
-    <table class="bg-warning table table-bordered table-striped">
+  <div class="center" style="text-align:center">
+
+      {{#each r in recipes}}
+      {{> res r=r}}
+      {{/each}}
+    
+    <!-- <table class="bg-warning table table-bordered table-striped">
       <tbody>
         {{#each r in recipes}}
         {{> res r=r}}
         {{/each}}
       </tbody>
 
-    </table>
+    </table> -->
     {{#if recipes}}
       <br>
     {{/if}}
@@ -88,10 +93,14 @@
 
 
 <template name="res">
+  <div class="card">
+    <img src="https://spoonacular.com/recipeImages/{{r.imageUrls}}" width="300" height="280">
+    <h4>{{r.title}}</h4>
+  </div>
 
-  <tr class='clickable-row '>
+  <!-- <tr class='clickable-row '>
    <td><img src="https://spoonacular.com/recipeImages/{{r.imageUrls}}" width="100"></td>
    <td><b>{{r.title}}:</b> Ready in: {{r.readyInMinutes}} minutes</td>
- </tr>
+ </tr> -->
 
 </template>

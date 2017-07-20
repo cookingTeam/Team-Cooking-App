@@ -24,7 +24,7 @@ Template.recipeSearch.onRendered(function(){
     offset = parseInt(offset,10);
     state.set("pageNumber", offset/10);
     Template.instance().$("#recipe_name").val(Router.current().params.query.query);
-    var api_query = "instructionsRequired=true&limitLicense=false&number=10&"+"offset="+offset+"&query="+recipe_name;
+    var api_query = "instructionsRequired=true&limitLicense=false&number=9&"+"offset="+offset+"&query="+recipe_name;
     console.log("apiQ:: "+api_query);
     //+"&diet="+diet+"&cuisine"
     if(diet){
@@ -64,7 +64,7 @@ Template.recipeSearch.events({
       const diet = instance.$('#dietSelect').val();
       const cuisine = instance.$('#cuisineSelect').val();
       const intolerances = instance.$('#intolerances').val();
-      var api_query = "instructionsRequired=true&limitLicense=false&number=10&offset=0&query="+recipe_name;
+      var api_query = "instructionsRequired=true&limitLicense=false&number=9&offset=0&query="+recipe_name;
       //+"&diet="+diet+"&cuisine"
       if(diet){
         api_query+="&diet="+diet;
@@ -129,7 +129,7 @@ Template.recipeSearch.events({
   },
 
   'click #forwards': function(elt, instance){
-    offset = parseInt(offset,10);
+    offset = parseInt(offset,9);
     pageNumber = instance.state.get("pageNumber");
     instance.state.set("pageNumber", pageNumber+1);
     offset+=10;
@@ -145,7 +145,7 @@ function getQuery(instance){
   cuisine = Router.current().params.query.cuisine;
   intolerances = Router.current().params.query.intolerances;
   recipe_name = Router.current().params.query.query;
-  var api_query = "instructionsRequired=true&limitLicense=false&number=10&"+"offset="+offset+"&query="+recipe_name;
+  var api_query = "instructionsRequired=true&limitLicense=false&number=9&"+"offset="+offset+"&query="+recipe_name;
   //+"&diet="+diet+"&cuisine"
   if(diet){
     api_query+="&diet="+diet;
@@ -181,7 +181,7 @@ function getQuery(instance){
 
 
 Template.res.events({
-      "click .clickable-row": function(event,instance){
+      "click .card": function(event,instance){
           console.log(this.r.id);
           var href = "/recipePage/"+this.r.id;
           console.log(href);
@@ -202,7 +202,7 @@ Template.recipeSearch.helpers({
 
   pageNumber: function(){
     const instance = Template.instance();
-    pageNumber = parseInt(instance.state.get("pageNumber"),10);
+    pageNumber = parseInt(instance.state.get("pageNumber"),9);
     return pageNumber+1;
   }
 })
