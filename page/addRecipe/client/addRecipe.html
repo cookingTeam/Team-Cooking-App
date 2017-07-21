@@ -15,9 +15,9 @@
       <tr><th>Name</th><th>Steps</th></tr>
     </thead>
     <tbody>
-        {{#each r in recipeData}}
+        {{#each recipe in recipeData}}
         <tr>
-            {{> recipeRow recipe = r}}
+            {{> recipeRow recipe = recipe}}
         </tr>
         {{/each}}
     </tbody>
@@ -27,7 +27,7 @@
 <template name="recipeRow">
   <td><em><strong>{{recipe.dishName}}</strong></em></td><td><br>{{recipe.steps}}
   {{#if isOwner}}
-  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   {{/if}}
   </td>
 </template>
@@ -35,17 +35,28 @@
 <template name="askforrecipe">
   <input type="text" placeholder="Dish Name" id="dishName"><br><br>
   <div id="container">
-    <input type="text" placeholder="amt" id="amt1" size="3"><input type="text" placeholder="unit" id="unit1" size="5"><input type="text" placeholder="Ingredient 1"><span id="removeIng1" class="glyphicon glyphicon-remove"></span><br>
-    <input type="text" placeholder="amt" id="amt2" size="3"><input type="text" placeholder="unit" id="unit2" size="5"><input type="text" placeholder="Ingredient 2"><span id="removeIng2" class="glyphicon glyphicon-remove"></span><br>
-    <input type="text" placeholder="amt" id="amt3" size="3"><input type="text" placeholder="unit" id="unit3" size="5"><input type="text" placeholder="Ingredient 3"><span id="removeIng3" class="glyphicon glyphicon-remove"></span><br>
+    <input type="text" placeholder="amt" id="amt1" size="3"><input type="text" placeholder="unit" id="unit1" size="5"><input type="text" id="ing1" placeholder="Ingredient 1"><span id="removeIng1" class="glyphicon glyphicon-remove"></span><br>
+    <input type="text" placeholder="amt" id="amt2" size="3"><input type="text" placeholder="unit" id="unit2" size="5"><input type="text" id="ing2" placeholder="Ingredient 2"><span id="removeIng2" class="glyphicon glyphicon-remove"></span><br>
+    <input type="text" placeholder="amt" id="amt3" size="3"><input type="text" placeholder="unit" id="unit3" size="5"><input type="text" id="ing3" placeholder="Ingredient 3"><span id="removeIng3" class="glyphicon glyphicon-remove"></span><br>
   </div>
-  <button id="addIngredient" class="btn btn-sm">+Ingredient</button><br><br>
+  <button id="addIngredient" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button> <button id="delIngredient" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus plus-minus"></span> Ingredient</button><br><br>
 
   <div id="stepcontainer">
     <textarea id="step1" placeholder="Step 1"></textarea><span class="glyphicon glyphicon-remove"></span><br>
     <textarea id="step2" placeholder="Step 2"></textarea><span class="glyphicon glyphicon-remove"></span><br>
     <textarea id="step3" placeholder="Step 3"></textarea><span class="glyphicon glyphicon-remove"></span><br>
   </div>
-  <button id="addStep" class="btn btn-sm">+Step</button><br><br>
-    <button class="btn btn-small btn-primary" id="add">Add My Recipe</button>
+  <button id="addStep" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus plus-minus"></span> Step</button> <button id="delStep" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus plus-minus"></span> Step</button><br><br>
+  Check all that apply!<br>
+  <div class=attributes>
+      <input type="checkbox" class='attributes' id="vegetarian"> Vegetarian <br>
+      <input type="checkbox" class='attributes' id="vegan"> Vegan<br>
+      <input type="checkbox" class='attributes' id="gluten"> Gluten Free<br>
+      <input type="checkbox" class='attributes' id="dairy"> Dairy Free<br>
+      <input type="checkbox" class='attributes' id="healthy"> Healthy<br>
+      <input type="checkbox" class='attributes' id="cheap"> Inexpensive<br>
+      <input type="checkbox" class='attributes' id="keto"> Ketogenic<br>
+  </div>
+
+  <button class="btn btn-small btn-primary" id="add">Add My Recipe</button>
 </template>
