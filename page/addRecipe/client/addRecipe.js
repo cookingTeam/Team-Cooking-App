@@ -29,11 +29,11 @@ Template.askforrecipe.events({
     var attributes = {
       vegetarian: instance.$('#vegetarian')[0].checked,
       vegan: instance.$('#vegan')[0].checked,
-      glutenFree: instance.$('#gluten').checked,
-      dairyFree: instance.$('#dairyFree').checked,
-      veryHealthy: instance.$('#veryHealthy').checked,
-      cheap: instance.$('#cheap').checked,
-      ketogenic: instance.$('#ketogenic').checked
+      glutenFree: instance.$('#gluten')[0].checked,
+      dairyFree: instance.$('#dairyFree')[0].checked,
+      veryHealthy: instance.$('#veryHealthy')[0].checked,
+      cheap: instance.$('#cheap')[0].checked,
+      ketogenic: instance.$('#ketogenic')[0].checked
     }
     console.log()
     var dish = {
@@ -49,26 +49,17 @@ Template.askforrecipe.events({
       console.log(response);
     });
 
-
   },
 
-  'click #addIngredient': function(){
+  'click .addIng': function(elt, instance){
+      console.dir(elt);
+      var idOfButton = elt.currentTarget.id;
+      console.dir(idOfButton);
       Session.set('textboxNum', Session.get('textboxNum')+1);
-      var container = document.getElementById("container");
-      var amt = document.createElement("input");
-      var unit = document.createElement("input");
+      var container = document.getElementById("container"+idOfButton);
+      // var amt = document.createElement("input");
+      // var unit = document.createElement("input");
       var input = document.createElement("input");
-      // var del = document.createElement("span");
-
-      amt.type="text";
-      amt.id="amt"+ Session.get('textboxNum');
-      amt.placeholder="amt";
-      amt.size="3";
-
-      unit.type="text";
-      unit.id="unit"+Session.get('textboxNum');
-      unit.placeholder="unit"
-      unit.size="5"
 
       input.type = "text";
       input.id= "ing"+Session.get('textboxNum');
@@ -77,29 +68,34 @@ Template.askforrecipe.events({
       // del.setAttribute('class', 'glyphicon glyphicon-remove');
       // del.setAttribute('id', "removeIng"+Session.get('textboxNum'));
 
-      container.appendChild(amt);
-      container.appendChild(unit);
+      // container.appendChild(amt);
+      // container.appendChild(unit);
+      console.dir(input);
+      console.dir(container);
       container.appendChild(input);
       // container.appendChild(del);
       container.appendChild(document.createElement("br"));
   },
-
-  'click #addStep': function(){
-      Session.set('textareaNum', Session.get('textareaNum')+1);
-      var container = document.getElementById("stepcontainer");
-      // container.appendChild(document.createTextNode("Ingredient "+Session.get('textboxNum')));
+  'click #addStep': function(elt,instance){
+    Session.set('textareaNum', Session.get('textareaNum')+1);
+    console.dir(instance.$('#addRecipeTable'));
+      var table = instance.$("#addRecipeTable");
+      console.dir(instance.$('#addRecipeTable > tbody:last-child'));
       var input = document.createElement("textarea");
-      // var del = document.createElement("span");
-      input.type = "text";
-      input.id= "step"+Session.get('textareaNum');
-      input.placeholder= "Step "+Session.get('textareaNum');
-      //
-      // del.setAttribute('class', 'glyphicon glyphicon-remove');
-      // del.setAttribute('id', "removeStep"+Session.get('textboxNum'));
+      var stepId = "step"+Session.get('textareaNum');
+      // input.type = "text";
+      // input.id= "step"+Session.get('textareaNum');
+      // input.placeholder= "Step "+Session.get('textareaNum');
 
-      container.appendChild(input);
+      //container.appendChild(input);
       // container.appendChild(del);
-      container.appendChild(document.createElement("br"));
+      //container.appendChild(document.createElement("br"));
+      instance.$('#addRecipeTable > tbody:last-child').append('<tr><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><input type="text" id="ing"'+Session.get('textboxNum')+'</div><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></td></tr>');
+
+
+      // var container = document.getElementById("stepcontainer");
+      // // container.appendChild(document.createTextNode("Ingredient "+Session.get('textboxNum')));
+
 
   },
 
@@ -110,10 +106,15 @@ Template.askforrecipe.events({
   }
 })
 
+Template.askforrecipe.helpers({
+  stepId: "step"+Session.get('textareaNum')
+
+})
+
 Template.askforrecipe.onCreated(
   function(){
     Session.set('textboxNum', 3);
-    Session.set('textareaNum', 3);
+    Session.set('textareaNum', 1);
   }
 )
 

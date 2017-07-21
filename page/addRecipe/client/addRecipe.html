@@ -34,19 +34,28 @@
 
 <template name="askforrecipe">
   <input type="text" placeholder="Dish Name" id="dishName"><br><br>
-  <div id="container">
-    <input type="text" placeholder="amt" id="amt1" size="3"><input type="text" placeholder="unit" id="unit1" size="5"><input type="text" id="ing1" placeholder="Ingredient 1"><span id="removeIng1" class="glyphicon glyphicon-remove"></span><br>
-    <input type="text" placeholder="amt" id="amt2" size="3"><input type="text" placeholder="unit" id="unit2" size="5"><input type="text" id="ing2" placeholder="Ingredient 2"><span id="removeIng2" class="glyphicon glyphicon-remove"></span><br>
-    <input type="text" placeholder="amt" id="amt3" size="3"><input type="text" placeholder="unit" id="unit3" size="5"><input type="text" id="ing3" placeholder="Ingredient 3"><span id="removeIng3" class="glyphicon glyphicon-remove"></span><br>
-  </div>
-  <button id="addIngredient" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button> <button id="delIngredient" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus plus-minus"></span> Ingredient</button><br><br>
-
-  <div id="stepcontainer">
-    <textarea id="step1" placeholder="Step 1"></textarea><span class="glyphicon glyphicon-remove"></span><br>
-    <textarea id="step2" placeholder="Step 2"></textarea><span class="glyphicon glyphicon-remove"></span><br>
-    <textarea id="step3" placeholder="Step 3"></textarea><span class="glyphicon glyphicon-remove"></span><br>
-  </div>
+  <table class="table table-bordered" id="addRecipeTable">
+    <thead>
+      <tr><th>Steps</th><th>Ingredients</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="cell1"><div id="stepcontainer">
+          <textarea id="step1" placeholder="Step 1"></textarea><br>
+        </div></td>
+        <td><div id="container">
+          <input type="text" id="1ing1" placeholder="Ingredient 1"><br>
+          <input type="text" id="1ing2" placeholder="Ingredient 2"><br>
+          <input type="text" id="1ing3" placeholder="Ingredient 3"><br>
+        </div><button class="addIng btn btn-sm btn-info"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button> <button id="delIngredient" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus plus-minus"></span> Ingredient</button><br><br></td>
+      </tr>
+    </tbody>
+  </table>
   <button id="addStep" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus plus-minus"></span> Step</button> <button id="delStep" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus plus-minus"></span> Step</button><br><br>
+
+
+
+
   Check all that apply!<br>
   <div class=attributes>
       <input type="checkbox" class='attributes' id="vegetarian"> Vegetarian <br>
@@ -59,4 +68,8 @@
   </div>
 
   <button class="btn btn-small btn-primary" id="add">Add My Recipe</button>
+</template>
+
+<template name="addRecipeRow">
+
 </template>
