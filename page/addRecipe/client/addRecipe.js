@@ -16,15 +16,25 @@ Template.askforrecipe.events({
     for (i=1; i<=Session.get('textareaNum'); i++){
       steps.push(instance.$("#step"+i).val());
     };
+    // var attributes = {
+    //     vegetarian:document.getElementById('vegetarian').value(),
+    //     vegan:document.getElementById('vegan').value(),
+    //     glutenFree:document.getElementById('gluten').value(),
+    //     dairyFree:document.getElementById('dairy').value(),
+    //     veryHealthy:document.getElementById('healthy').value(),
+    //     cheap:document.getElementById('cheap').value(),
+    //     ketogenic:document.getElementById('keto').value()
+    // };
+    console.dir(instance.$('#vegetarian'))
     var attributes = {
-        vegetarian:document.getElementById('vegetarian').value(),
-        vegan:document.getElementById('vegan').value(),
-        glutenFree:document.getElementById('gluten').value(),
-        dairyFree:document.getElementById('dairy').value(),
-        veryHealthy:document.getElementById('healthy').value(),
-        cheap:document.getElementById('cheap').value(),
-        ketogenic:document.getElementById('keto').value()
-    };
+      vegetarian: instance.$('#vegetarian')[0].checked,
+      vegan: instance.$('#vegan')[0].checked,
+      glutenFree: instance.$('#gluten').checked,
+      dairyFree: instance.$('#dairyFree').checked,
+      veryHealthy: instance.$('#veryHealthy').checked,
+      cheap: instance.$('#cheap').checked,
+      ketogenic: instance.$('#ketogenic').checked
+    }
     console.log()
     var dish = {
       dishName:dishName,
