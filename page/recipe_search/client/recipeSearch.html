@@ -61,7 +61,7 @@
       {{#each r in recipes}}
       {{> res r=r}}
       {{/each}}
-    
+
     <!-- <table class="bg-warning table table-bordered table-striped">
       <tbody>
         {{#each r in recipes}}
@@ -77,9 +77,9 @@
     <div class="pagination">
       <span name="number">
         <h2 id="firstResultPage">&laquo;</h2>
-        <h2 id="backwards">&lsaquo;</h2>
+        <h2 id="backwards"><span class="glyphicon glyphicon-menu-left"></span></h2>
         <h3>Page {{pageNumber}}</h3>
-        <h2 id="forwards">&rsaquo;</h2>
+        <h2 id="forwards"><span class="glyphicon glyphicon-menu-right"></span></h2>
         <!-- Jump to pages -->
       </span>
     </div>
@@ -94,8 +94,9 @@
 
 <template name="res">
   <div class="card">
-    <img src="https://spoonacular.com/recipeImages/{{r.imageUrls}}" width="300" height="280">
-    <h4>{{r.title}}</h4>
+    <img src="https://spoonacular.com/recipeImages/{{r.imageUrls}}" width="250" height="250">
+    <h5><strong>{{r.title}}</strong></h5>
+    <h7>{{r.readyInMinutes}} minutes</h7>
   </div>
 
   <!-- <tr class='clickable-row '>
