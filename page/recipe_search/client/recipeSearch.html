@@ -61,7 +61,7 @@
       {{#each r in recipes}}
       {{> res r=r}}
       {{/each}}
-    
+
     <!-- <table class="bg-warning table table-bordered table-striped">
       <tbody>
         {{#each r in recipes}}
@@ -76,13 +76,21 @@
 
     <div class="pagination">
       <span name="number">
-        <h2 id="firstResultPage">&laquo;</h2>
-        <h2 id="backwards">&lsaquo;</h2>
+        <h2 id="firstResultPage" class='pageNav'>&laquo;</h2>
+        <h2 id="backwards" class='pageNav'>&lsaquo;</h2>
         <h3>Page {{pageNumber}}</h3>
-        <h2 id="forwards">&rsaquo;</h2>
+        <h2 id="forwards" class='pageNav'>&rsaquo;</h2>
         <!-- Jump to pages -->
       </span>
     </div>
+
+    <script>
+      function topFunction() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+      }
+    </script>
+
 
   </div>
 </body>

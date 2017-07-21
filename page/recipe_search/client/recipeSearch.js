@@ -135,9 +135,19 @@ Template.recipeSearch.events({
     offset+=10;
     getQuery(instance);
 
+  },
+
+  'click .pageNav': function(elt, instance){
+    topFunction();
   }
 
 })
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
 
 function getQuery(instance){
   console.log(offset);
