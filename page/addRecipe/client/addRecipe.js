@@ -1,9 +1,28 @@
 Meteor.subscribe('myrecipe');
 
+var imagePath = '';
 Template.askforrecipe.events({
+
+  "change .file-upload-input": function(event, template){
+     var func = this;
+     console.dir(event.currentTarget);
+     var file = event.currentTarget.files[0];
+     console.log(file.name);
+     fileName = file.name;
+     var reader = new FileReader();
+     reader.onload = function(fileLoadEvent) {
+
+        Meteor.call('file-upload', fileName, reader.result);
+     };
+     reader.readAsBinaryString(file);
+     imagePath = 'images/'+fileName;
+    //  template.$('#testImage').attr("src", 'images/'+fileName);
+    //  console.dir(template.$('#testImage').attr('src'));
+  },
+
+
   'click #add'(elt,instance){
     var dishName = instance.$('#dishName').val();
-
     var ingredients = new Array();
     for (i=1; i<=Session.get('textboxNum'); i++){
       var ing = {
@@ -17,15 +36,7 @@ Template.askforrecipe.events({
     for (i=1; i<=Session.get('textareaNum'); i++){
       steps.push(instance.$("#step"+i).val());
     };
-    // var attributes = {
-    //     vegetarian:document.getElementById('vegetarian').value(),
-    //     vegan:document.getElementById('vegan').value(),
-    //     glutenFree:document.getElementById('gluten').value(),
-    //     dairyFree:document.getElementById('dairy').value(),
-    //     veryHealthy:document.getElementById('healthy').value(),
-    //     cheap:document.getElementById('cheap').value(),
-    //     ketogenic:document.getElementById('keto').value()
-    // };
+
     console.dir(instance.$('#vegetarian'))
     var attributes = {
       vegetarian: instance.$('#vegetarian')[0].checked,
@@ -36,12 +47,13 @@ Template.askforrecipe.events({
       cheap: instance.$('#cheap')[0].checked,
       ketogenic: instance.$('#keto')[0].checked
     }
-    console.log()
+
     var dish = {
       dishName:dishName,
       ingredients:ingredients,
       steps:steps,
       attributes:attributes,
+      img_src: imagePath,
       owner:Meteor.userId()
     };
     console.dir(dish);
