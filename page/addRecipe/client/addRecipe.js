@@ -3,6 +3,7 @@ Meteor.subscribe('myrecipe');
 Template.askforrecipe.events({
   'click #add'(elt,instance){
     var dishName = instance.$('#dishName').val();
+
     var ingredients = new Array();
     for (i=1; i<=Session.get('textboxNum'); i++){
       var ing = {
@@ -30,10 +31,10 @@ Template.askforrecipe.events({
       vegetarian: instance.$('#vegetarian')[0].checked,
       vegan: instance.$('#vegan')[0].checked,
       glutenFree: instance.$('#gluten')[0].checked,
-      dairyFree: instance.$('#dairyFree')[0].checked,
-      veryHealthy: instance.$('#veryHealthy')[0].checked,
+      dairyFree: instance.$('#dairy')[0].checked,
+      veryHealthy: instance.$('#healthy')[0].checked,
       cheap: instance.$('#cheap')[0].checked,
-      ketogenic: instance.$('#ketogenic')[0].checked
+      ketogenic: instance.$('#keto')[0].checked
     }
     console.log()
     var dish = {
@@ -83,6 +84,7 @@ Template.askforrecipe.events({
       console.dir(instance.$('#addRecipeTable > tbody:last-child'));
       var input = document.createElement("textarea");
       var stepId = "step"+Session.get('textareaNum');
+      Session.set('textboxNum', Session.get('textboxNum')+1);
       // input.type = "text";
       // input.id= "step"+Session.get('textareaNum');
       // input.placeholder= "Step "+Session.get('textareaNum');
@@ -90,17 +92,13 @@ Template.askforrecipe.events({
       //container.appendChild(input);
       // container.appendChild(del);
       //container.appendChild(document.createElement("br"));
-      instance.$('#addRecipeTable > tbody:last-child').append('<tr><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><input type="text" id="ing"'+Session.get('textboxNum')+'</div><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></td></tr>');
-
-
-      // var container = document.getElementById("stepcontainer");
-      // // container.appendChild(document.createTextNode("Ingredient "+Session.get('textboxNum')));
-
-
+      instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><input type="text" placeholder="Ingredient '+Session.get('textboxNum')+'" id="ing"'+Session.get('textboxNum')+'</div><br><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></td></tr>');
   },
 
-  'click .glyphicon-remove': function(event, instance){
-      console.dir(event.target);
+  'click #delStep': function(event, instance){
+      var tableRowId = "tableRow"+Session.get('textareaNum');
+      $('#tableRow'+Session.get('textareaNum')).remove();
+      Session.set('textareaNum', Session.get('textareaNum')-1);
 
 
   }
