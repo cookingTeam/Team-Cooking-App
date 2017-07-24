@@ -26,34 +26,33 @@ Template.askforrecipe.events({
     var ingredients = new Array();
     for (i=1; i<=Session.get('textboxNum'); i++){
       var ing = {
-        amount:instance.$('#amt'+i).val(),
-        unit:instance.$("#unit"+i).val(),
-        name:instance.$("#ing"+i).val()
+        // amount:instance.$('#amt'+i).val(),
+        // unit:instance.$("#unit"+i).val(),
+        originalString:instance.$("#ing"+i).val()
       }
       ingredients.push(ing);
     }
     var steps = new Array();
     for (i=1; i<=Session.get('textareaNum'); i++){
-      steps.push(instance.$("#step"+i).val());
+
+      eachStep = {step:instance.$("#step"+i).val(),
+                  }
+      steps.push(eachStep);
     };
 
-    console.dir(instance.$('#vegetarian'))
-    var attributes = {
+
+    var dish = {
       vegetarian: instance.$('#vegetarian')[0].checked,
       vegan: instance.$('#vegan')[0].checked,
       glutenFree: instance.$('#gluten')[0].checked,
       dairyFree: instance.$('#dairy')[0].checked,
       veryHealthy: instance.$('#healthy')[0].checked,
       cheap: instance.$('#cheap')[0].checked,
-      ketogenic: instance.$('#keto')[0].checked
-    }
-
-    var dish = {
-      dishName:dishName,
-      ingredients:ingredients,
-      steps:steps,
-      attributes:attributes,
-      img_src: imagePath,
+      ketogenic: instance.$('#keto')[0].checked,
+      title:dishName,
+      extendedIngredients:ingredients,
+      analyzedInstructions:[steps],
+      image: imagePath,
       owner:Meteor.userId()
     };
     console.dir(dish);
@@ -70,24 +69,19 @@ Template.askforrecipe.events({
       console.dir(idOfButton);
       Session.set('textboxNum', Session.get('textboxNum')+1);
       var container = document.getElementById("container"+idOfButton);
-      // var amt = document.createElement("input");
-      // var unit = document.createElement("input");
+
       var input = document.createElement("input");
 
       input.type = "text";
       input.id= "ing"+Session.get('textboxNum');
       input.placeholder= "Ingredient "+Session.get('textboxNum');
 
-      // del.setAttribute('class', 'glyphicon glyphicon-remove');
-      // del.setAttribute('id', "removeIng"+Session.get('textboxNum'));
-
-      // container.appendChild(amt);
-      // container.appendChild(unit);
       console.dir(input);
       console.dir(container);
-      container.appendChild(input);
+      container.insertBefore(input, document.getElementById(Session.get('textareaNum')));
       // container.appendChild(del);
-      container.appendChild(document.createElement("br"));
+      container.insertBefore(document.createElement("br"), document.getElementById(Session.get('textareaNum')));
+
   },
   'click #addStep': function(elt,instance){
     Session.set('textareaNum', Session.get('textareaNum')+1);
@@ -107,13 +101,13 @@ Template.askforrecipe.events({
       instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><input type="text" placeholder="Ingredient '+Session.get('textboxNum')+'" id="ing"'+Session.get('textboxNum')+'</div><br><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></td></tr>');
   },
 
-  'click #delStep': function(event, instance){
-      var tableRowId = "tableRow"+Session.get('textareaNum');
-      $('#tableRow'+Session.get('textareaNum')).remove();
-      Session.set('textareaNum', Session.get('textareaNum')-1);
-
-
-  }
+  // 'click #delStep': function(event, instance){
+  //     var tableRowId = "tableRow"+Session.get('textareaNum');
+  //     $('#tableRow'+Session.get('textareaNum')).remove();
+  //     Session.set('textareaNum', Session.get('textareaNum')-1);
+  //
+  //
+  // }
 })
 
 Template.askforrecipe.helpers({
@@ -144,5 +138,10 @@ Template.recipeRow.helpers({
 Template.recipeRow.events({
   'click span'(elt,instance){
     Meteor.call('myrecipe.remove', this.recipe);
+  },
+  'click td': function(elt, instance){
+    ownRecipeId = this.recipe._id
+    console.dir(this.recipe._id);
+    Router.go('/ownRecipePage/'+ownRecipeId);
   }
 })

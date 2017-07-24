@@ -1,0 +1,93 @@
+<template name="ownRecipePage">
+      <div class="w3-main w3-content w3-padding center recipePage" style="max-width:1200px;margin-top:100px">
+          <!-- {{> recipeheader}} <br> -->
+          <div class="row">
+            <div class="col-md-6">
+              <img src='public/images/rivertrip.jpg' style="width:100%"><hr>
+              <h3>Ingredients</h3>
+              <ul>
+                  {{#each ingredient in recipe.extendedIngredients}}
+                    <li>
+                      {{ingredient.originalString}}
+                    </li>
+                  {{/each}}
+              </ul>
+              <hr>
+
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+              <h2>{{recipe.title}}</h2>
+              <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+              You need {{recipe.readyInMinutes}} minutes to cook <br>
+              <!-- {{#if isliked}}
+              <span class="glyphicon glyphicon-heart save" aria-hidden="true"></span>
+              {{else}}
+              <span class="glyphicon glyphicon-heart-empty save" style="cursor:pointer" id="like"></span>
+              {{/if}} -->
+              Love it and save for later  <br>
+
+              <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Alexa, Pause, Then go through by saying 'next step'" id="popup_button"><span class="glyphicon glyphicon-bullhorn"></span> Start Cooking</button>
+
+              <button class="btn btn-warning" data-toggle="tooltip" title="Ask the app things like 'is this recipe vegetarian?'" id="ask"><span class="glyphicon glyphicon-bullhorn"></span> Recipe Info</button><hr>
+
+              <ol>
+              {{#each step in recipe.analyzedInstructions.[0].steps}}
+                 <li>{{step.step}}</li><hr>
+              {{/each}}
+            </ol>
+            </div>
+          </div>
+      </div>
+
+      <div id="popup1" class="overlay">
+		      <div class="popup">
+            <a class="close" id="popup_close">&times;</a>
+			       {{> ownSlide}}
+		      </div>
+	   </div>
+</template>
+
+<template name="ownSlide">
+  <div name="showslide">
+
+      <div name="ingredients" class="col-xs-6">
+          <h3>Ingredients:
+          {{#unless thisStep.ingredients.[0]}}
+               <h5>N/A</h5>
+          {{else}}
+              <ul>
+                {{#each ing in thisStep.ingredients}}
+                  <li> {{ing.name}}</li>
+                {{/each}}
+              </ul>
+          {{/unless}}</h3>
+      </div>
+      <div name="instruction" class="col-xs-7">
+          <h3>Step {{thisStep.number}}:<br>
+            {{thisStep.step}}<br></h3>
+      </div>
+      <div name="equip" class="col-xs-12">
+          <h4>Equipment: </h4>
+          {{#unless thisStep.equipment.[0]}}
+               <h5>N/A</h5>
+
+            {{else}}
+              <ul>
+                {{#each eq in thisStep.equipment}}
+                  {{eq.name}},
+                {{/each}}
+              </ul>
+          {{/unless}}
+      </div>
+  </div>
+  <div class="pagination">
+    <span name="number">
+      <a href="#">&laquo;</a>
+      {{#each s in page}}
+        <a href="#" name="number_{{s.number}}">{{s.number}}</a>
+      {{/each}}
+      <a href="#">&raquo;</a>
+    </span>
+  </div>
+
+</template>
