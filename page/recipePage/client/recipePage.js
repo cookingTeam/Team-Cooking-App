@@ -1,13 +1,11 @@
 
 Template.recipePage.onCreated(
   function(){
-    // dict = new ReactiveDict();
-    // dict.setDefault({
-    //     d: {}
-    //   });
+
     this.saveR = new ReactiveVar();
     Session.set("dict", {})
     const saveR = this.saveR;
+    //saveR means whether this user has stored this recipe..
     // console.log(Session.get("dict"));
     // console.log(this)
     Meteor.apply("getInstruction",[this.data], {returnStubValue:true},
@@ -42,15 +40,6 @@ Template.recipePage.helpers({
     return Template.instance().saveR.get();
   }
 })
-
-Template.recipePage.onRendered(
-  function(){
-    // $(document).ready(function(){
-    //     $('[data-toggle="tooltip"]').tooltip();
-    // });
-  }
-)
-
 
 
 Template.recipePage.events({

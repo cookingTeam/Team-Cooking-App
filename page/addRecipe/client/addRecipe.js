@@ -1,47 +1,59 @@
 Meteor.subscribe('myrecipe');
 
+var imagePath = '';
 Template.askforrecipe.events({
+
+  "change .file-upload-input": function(event, template){
+     var func = this;
+     console.dir(event.currentTarget);
+     var file = event.currentTarget.files[0];
+     console.log(file.name);
+     fileName = file.name;
+     var reader = new FileReader();
+     reader.onload = function(fileLoadEvent) {
+
+        Meteor.call('file-upload', fileName, reader.result);
+     };
+     reader.readAsBinaryString(file);
+     imagePath = 'images/'+fileName;
+    //  template.$('#testImage').attr("src", 'images/'+fileName);
+    //  console.dir(template.$('#testImage').attr('src'));
+  },
+
+
   'click #add'(elt,instance){
     var dishName = instance.$('#dishName').val();
-
     var ingredients = new Array();
     for (i=1; i<=Session.get('textboxNum'); i++){
-      var ing = {
-        amount:instance.$('#amt'+i).val(),
-        unit:instance.$("#unit"+i).val(),
-        name:instance.$("#ing"+i).val()
+      console.dir(instance.$('#ing'+i).val());
+       ing = {
+        // amount:instance.$('#amt'+i).val(),
+        // unit:instance.$("#unit"+i).val(),
+        originalString: instance.$('#ing'+i).val(),
       }
       ingredients.push(ing);
     }
     var steps = new Array();
     for (i=1; i<=Session.get('textareaNum'); i++){
-      steps.push(instance.$("#step"+i).val());
+
+      eachStep = {step: instance.$("#step"+i).val(),
+                  }
+      steps.push(eachStep);
     };
-    // var attributes = {
-    //     vegetarian:document.getElementById('vegetarian').value(),
-    //     vegan:document.getElementById('vegan').value(),
-    //     glutenFree:document.getElementById('gluten').value(),
-    //     dairyFree:document.getElementById('dairy').value(),
-    //     veryHealthy:document.getElementById('healthy').value(),
-    //     cheap:document.getElementById('cheap').value(),
-    //     ketogenic:document.getElementById('keto').value()
-    // };
-    console.dir(instance.$('#vegetarian'))
-    var attributes = {
+
+
+    var dish = {
       vegetarian: instance.$('#vegetarian')[0].checked,
       vegan: instance.$('#vegan')[0].checked,
       glutenFree: instance.$('#gluten')[0].checked,
       dairyFree: instance.$('#dairy')[0].checked,
       veryHealthy: instance.$('#healthy')[0].checked,
       cheap: instance.$('#cheap')[0].checked,
-      ketogenic: instance.$('#keto')[0].checked
-    }
-    console.log()
-    var dish = {
-      dishName:dishName,
-      ingredients:ingredients,
-      steps:steps,
-      attributes:attributes,
+      ketogenic: instance.$('#keto')[0].checked,
+      title:dishName,
+      extendedIngredients:ingredients,
+      analyzedInstructions:[{'steps': steps}],
+      image: imagePath,
       owner:Meteor.userId()
     };
     console.dir(dish);
@@ -58,24 +70,20 @@ Template.askforrecipe.events({
       console.dir(idOfButton);
       Session.set('textboxNum', Session.get('textboxNum')+1);
       var container = document.getElementById("container"+idOfButton);
-      // var amt = document.createElement("input");
-      // var unit = document.createElement("input");
+
       var input = document.createElement("input");
+      console.dir(document.getElementById(Session.get('textareaNum')));
 
       input.type = "text";
       input.id= "ing"+Session.get('textboxNum');
       input.placeholder= "Ingredient "+Session.get('textboxNum');
 
-      // del.setAttribute('class', 'glyphicon glyphicon-remove');
-      // del.setAttribute('id', "removeIng"+Session.get('textboxNum'));
-
-      // container.appendChild(amt);
-      // container.appendChild(unit);
       console.dir(input);
       console.dir(container);
-      container.appendChild(input);
+      container.insertBefore(input, document.getElementById(Session.get('textareaNum')));
       // container.appendChild(del);
-      container.appendChild(document.createElement("br"));
+      container.insertBefore(document.createElement("br"), document.getElementById(Session.get('textareaNum')));
+
   },
   'click .delIng': function(elt,instance){
 
@@ -96,14 +104,16 @@ Template.askforrecipe.events({
       //container.appendChild(input);
       // container.appendChild(del);
       //container.appendChild(document.createElement("br"));
-      instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button><button id="delIngredient'+Session.get('textareaNum')+'" class="btn btn-sm btn-danger delIng"><span class="glyphicon glyphicon-minus plus-minus"></span> Ingredient</button><div id="container'+Session.get('textareaNum')+'""><input type="text" placeholder="Ingredient '+Session.get('textboxNum')+'" id="ing"'+Session.get('textboxNum')+'</div><br></td></tr>');
+      instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><input type="text" placeholder="Ingredient '+Session.get('textboxNum')+'" id="ing'+Session.get('textboxNum')+'"><br><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></div></td></tr>');
   },
 
-  'click #delStep': function(event, instance){
-      var tableRowId = "tableRow"+Session.get('textareaNum');
-      $('#tableRow'+Session.get('textareaNum')).remove();
-      Session.set('textareaNum', Session.get('textareaNum')-1);
-  }
+  // 'click #delStep': function(event, instance){
+  //     var tableRowId = "tableRow"+Session.get('textareaNum');
+  //     $('#tableRow'+Session.get('textareaNum')).remove();
+  //     Session.set('textareaNum', Session.get('textareaNum')-1);
+  //
+  //
+  // }
 })
 
 Template.askforrecipe.helpers({
@@ -134,5 +144,10 @@ Template.recipeRow.helpers({
 Template.recipeRow.events({
   'click span'(elt,instance){
     Meteor.call('myrecipe.remove', this.recipe);
+  },
+  'click td': function(elt, instance){
+    ownRecipeId = this.recipe._id
+    console.dir(this.recipe._id);
+    Router.go('/ownRecipePage/'+ownRecipeId);
   }
 })

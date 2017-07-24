@@ -3,6 +3,7 @@
       <div class="w3-main w3-content w3-padding addrecipepage" style="max-width:1200px;margin-top:100px">
           <h1>Add Recipes to Profile</h1>
           {{> askforrecipe}}
+
           <hr>
           {{> showRecipe}}
       </div>
@@ -25,7 +26,7 @@
 </template>
 
 <template name="recipeRow">
-  <td><em><strong>{{recipe.dishName}}</strong></em></td><td><br>{{recipe.steps}}
+  <td style="cursor:pointer"><em><strong>{{recipe.title}}</strong></em></td><td><br>{{recipe.steps}}
   {{#if isOwner}}
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   {{/if}}
@@ -34,6 +35,11 @@
 
 <template name="askforrecipe">
   <input type="text" placeholder="Dish Name" id="dishName"><br><br>
+  <span class="btn btn-file"><h5>Upload an image for this dish</h5>
+      <input class="file-upload-input" type="file">
+  </span>
+
+
   <table class="table table-bordered" id="addRecipeTable">
     <thead>
       <tr><th>Steps</th><th>Ingredients</th></tr>
@@ -43,13 +49,12 @@
         <td id="cell1"><div id="stepcontainer">
           <textarea id="step1" placeholder="Step 1"></textarea><br>
         </div></td>
-        <td>
-          <button class="addIng btn btn-sm btn-info"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button> <button id="delIngredient" class="btn btn-sm btn-danger delIng"><span class="glyphicon glyphicon-minus plus-minus"></span> Ingredient</button><br><br>
-          <div id="container">
-              <input type="text" id="1ing1" placeholder="Ingredient 1"><br>
-              <input type="text" id="1ing2" placeholder="Ingredient 2"><br>
-              <input type="text" id="1ing3" placeholder="Ingredient 3"><br>
-          </div></td>
+        <td><div id="container1">
+          <input type="text" id="ing1" placeholder="Ingredient 1"><br>
+          <input type="text" id="ing2" placeholder="Ingredient 2"><br>
+          <input type="text" id="ing3" placeholder="Ingredient 3"><br>
+          <button class="addIng btn btn-sm btn-info" id="1"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button> <button id="delIngredient" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus plus-minus"></span> Ingredient</button><br><br></div>
+        </td>
       </tr>
     </tbody>
   </table>
