@@ -2,7 +2,7 @@
       <div class="w3-main w3-content w3-padding center recipePage" style="max-width:1200px;margin-top:100px">
           <!-- {{> recipeheader}} <br> -->
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <img src={{recipe.image}} style="width:100%"><hr>
               <h3>Ingredients</h3>
               <ul>
@@ -15,7 +15,7 @@
               <hr>
 
             </div>
-            <div class="col-md-5 col-md-offset-1">
+            <div class="col-md-6 col-md-offset-1">
               <h2>{{recipe.title}}</h2>
               <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
               You need {{recipe.readyInMinutes}} minutes to cook <br>
@@ -26,7 +26,7 @@
               {{/if}}
               Love it and save for later  <br>
 
-              <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Cookie, Wait for her icon to turn red, Then go through by saying 'next step'" id="popup_button"><span class="glyphicon glyphicon-bullhorn"></span> Start Cooking</button>
+              <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Cookie, Wait for her icon to turn red, Then go through by saying 'next step'" id="popup_button"><img src="/images/microphone1600.png" width="5%" style="padding-bottom: 5px;"> Start Cooking</button><hr>
               <ol>
               {{#each step in recipe.analyzedInstructions.[0].steps}}
                  <li>{{step.step}}</li><hr>
