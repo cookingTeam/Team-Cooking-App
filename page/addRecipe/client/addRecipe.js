@@ -35,12 +35,16 @@ Template.askforrecipe.events({
     }
     var steps = new Array();
     for (i=1; i<=Session.get('textareaNum'); i++){
-          var stepIngredient = $("#container"+i+" input");
-          console.dir(stepIngredient);
-          stepIngredient.each(function(index, elt){
-            console.log(elt);
+          var stepIng = new Array();
+          var stepIngInput = $("#container"+i+" input");
+          console.dir(stepIngInput);
+          stepIngInput.each(function(index, elt){
+            console.log($(elt).val());
+            if($(elt).val()){
+              stepIng.push({name: $(elt).val()});
+            }
           })
-          eachStep = {step: instance.$("#step"+i).val(), }
+          eachStep = {step: instance.$("#step"+i).val(), ingredients:stepIng}
           steps.push(eachStep);
     };
 
@@ -87,9 +91,9 @@ Template.askforrecipe.events({
 
       console.dir(input);
       console.dir(container);
-      container.insertBefore(input, document.getElementById(Session.get('textareaNum')));
+      container.insertBefore(input, document.getElementById(elt.currentTarget.id));
       container.insertBefore(del, input);
-      container.insertBefore(br, document.getElementById(Session.get('textareaNum')));
+      container.insertBefore(br, document.getElementById(elt.currentTarget.id));
 
   },
   'click .glyphicon-remove': function(elt,instance){
