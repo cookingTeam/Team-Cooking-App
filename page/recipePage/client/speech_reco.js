@@ -82,7 +82,7 @@ Template.slide.onCreated(function(){
                   } else {
                     startRecognition();
                   }
-<<<<<<< HEAD
+// <<<<<<< HEAD
                 }
                 //this just prints the utterance in the textbar
                 function setInput(text) {
@@ -132,26 +132,26 @@ Template.slide.onCreated(function(){
                           responsiveVoice.speak("There is no previous step. Would you like me to repeat the current step?",  "US English Female", {pitch:1.2});
                         } else {
                           current_step.number=current_step.number-1;
-=======
-                  // function updateRec() {
-                  //   $("#rec").text(recognition ? "Stop" : "Speak");
-                  // }
-                  function action(text) {
-                    $.ajax({
-                      type: "POST",
-                      url: baseUrl + "query?v=20150910",
-                      contentType: "application/json; charset=utf-8",
-                      dataType: "json",
-                      headers: {
-                        "Authorization": "Bearer " + accessToken
-                      },
-                      data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
-                      success: function(data) {
-                        if (data.result.action=='next_step'){
-
-                          var current_step = Session.get("step");
-                          current_step.number = current_step.number + 1;
->>>>>>> MollyLayout
+// =======
+//                   // function updateRec() {
+//                   //   $("#rec").text(recognition ? "Stop" : "Speak");
+//                   // }
+//                   function action(text) {
+//                     $.ajax({
+//                       type: "POST",
+//                       url: baseUrl + "query?v=20150910",
+//                       contentType: "application/json; charset=utf-8",
+//                       dataType: "json",
+//                       headers: {
+//                         "Authorization": "Bearer " + accessToken
+//                       },
+//                       data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
+//                       success: function(data) {
+//                         if (data.result.action=='next_step'){
+//
+//                           var current_step = Session.get("step");
+//                           current_step.number = current_step.number + 1;
+// >>>>>>> MollyLayout
                           Session.set("step", current_step);
                           $("span[name=number] a[name=number_" + Session.get("step").number + "]").click();
                           var current_step_instruction = Session.get("step").step;

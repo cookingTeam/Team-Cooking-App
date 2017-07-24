@@ -148,7 +148,7 @@ textarea {
     display: inline-block;
     border-bottom: 1px dotted black;
   }
-/*input[type=text], select, textarea {
+input[type=text], select, textarea {
     width: 80%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -157,7 +157,7 @@ textarea {
     margin-top: 6px;
     margin-bottom: 16px;
     resize: vertical;
-}*/
+}
 
 .login{
   font-size: 17px;
