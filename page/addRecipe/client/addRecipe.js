@@ -77,6 +77,10 @@ Template.askforrecipe.events({
       // container.appendChild(del);
       container.appendChild(document.createElement("br"));
   },
+  'click .delIng': function(elt,instance){
+
+  },
+
   'click #addStep': function(elt,instance){
     Session.set('textareaNum', Session.get('textareaNum')+1);
     console.dir(instance.$('#addRecipeTable'));
@@ -92,15 +96,13 @@ Template.askforrecipe.events({
       //container.appendChild(input);
       // container.appendChild(del);
       //container.appendChild(document.createElement("br"));
-      instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><input type="text" placeholder="Ingredient '+Session.get('textboxNum')+'" id="ing"'+Session.get('textboxNum')+'</div><br><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></td></tr>');
+      instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button><button id="delIngredient'+Session.get('textareaNum')+'" class="btn btn-sm btn-danger delIng"><span class="glyphicon glyphicon-minus plus-minus"></span> Ingredient</button><div id="container'+Session.get('textareaNum')+'""><input type="text" placeholder="Ingredient '+Session.get('textboxNum')+'" id="ing"'+Session.get('textboxNum')+'</div><br></td></tr>');
   },
 
   'click #delStep': function(event, instance){
       var tableRowId = "tableRow"+Session.get('textareaNum');
       $('#tableRow'+Session.get('textareaNum')).remove();
       Session.set('textareaNum', Session.get('textareaNum')-1);
-
-
   }
 })
 
