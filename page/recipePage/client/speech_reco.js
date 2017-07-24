@@ -96,6 +96,7 @@ Template.slide.onCreated(function(){
                       data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
                       success: function(data) {
                         if (data.result.action=='next_step'){
+
                           var current_step = Session.get("step");
                           current_step.number = current_step.number + 1;
                           Session.set("step", current_step);

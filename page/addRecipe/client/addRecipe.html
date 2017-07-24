@@ -1,7 +1,9 @@
 <template name="addRecipe">
     <body>
-      <div class="w3-main w3-content w3-padding center addrecipepage" style="max-width:1200px;margin-top:100px">
+      <div class="w3-main w3-content w3-padding addrecipepage" style="max-width:1200px;margin-top:100px">
+          <h1>Add Recipes to Profile</h1>
           {{> askforrecipe}}
+
           <hr>
           {{> showRecipe}}
       </div>
@@ -9,39 +11,72 @@
 </template>
 
 <template name="showRecipe">
-  <ul>
-    {{#each r in recipeData}}
-    <li>
-    {{> recipeRow recipe = r}}
-    </li>
-    {{/each}}
-  </ul>
+  <table class="table">
+    <thead>
+      <tr><th>Name</th><th>Steps</th></tr>
+    </thead>
+    <tbody>
+        {{#each recipe in recipeData}}
+        <tr>
+            {{> recipeRow recipe = recipe}}
+        </tr>
+        {{/each}}
+    </tbody>
+  </table>
 </template>
 
 <template name="recipeRow">
-  <em><strong>{{recipe.dishName}}</strong></em><br>{{recipe.steps}}
+  <td style="cursor:pointer"><em><strong>{{recipe.title}}</strong></em></td><td><br>{{recipe.steps}}
   {{#if isOwner}}
-  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   {{/if}}
+  </td>
 </template>
 
 <template name="askforrecipe">
   <input type="text" placeholder="Dish Name" id="dishName"><br><br>
-  Ingredient <input type="text"><br>
-  Ingredient <input type="text"><br>
-  Ingredient <input type="text"><br>
+  <span class="btn btn-file"><h5>Upload an image for this dish</h5>
+      <input class="file-upload-input" type="file">
+  </span>
 
-  <div id="container">
-  </div>
 
-  <button id="addIngredient" class="btn btn-sm">+</button>
-  <div id="stepcontainer">
-  </div>
-      <textarea placeholder="Step 1" rows="3" cols="90"></textarea><br>
-      <textarea placeholder="Step 2" rows="3" cols="90"></textarea><br>
-      <textarea placeholder="Step 3" rows="3" cols="90"></textarea><br>
-      <textarea placeholder="Recipe Details" rows="3" cols="90" id="recipe"></textarea><br><br>
+  <table class="table table-bordered" id="addRecipeTable">
+    <thead>
+      <tr><th>Steps</th><th>Ingredients</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="cell1"><div id="stepcontainer">
+          <textarea id="step1" placeholder="Step 1"></textarea><br>
+        </div></td>
+        <td><div id="container1">
+          <input type="text" id="ing1" placeholder="Ingredient 1"><br>
+          <input type="text" id="ing2" placeholder="Ingredient 2"><br>
+          <input type="text" id="ing3" placeholder="Ingredient 3"><br>
+          <button class="addIng btn btn-sm btn-info" id="1"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button> <button id="delIngredient" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus plus-minus"></span> Ingredient</button><br><br></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button id="addStep" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus plus-minus"></span> Step</button> <button id="delStep" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus plus-minus"></span> Step</button><br><br>
 
-    <button id="addStep" class="btn btn-sm">+</button>
-    <button class="btn btn-small btn-primary" id="add">Add My Recipe</button>
+
+
+
+  Check all that apply!<br>
+  <div class=attributes>
+      <input type="checkbox" class='attributes' id="vegetarian"> Vegetarian <br>
+      <input type="checkbox" class='attributes' id="vegan"> Vegan<br>
+      <input type="checkbox" class='attributes' id="gluten"> Gluten Free<br>
+      <input type="checkbox" class='attributes' id="dairy"> Dairy Free<br>
+      <input type="checkbox" class='attributes' id="healthy"> Healthy<br>
+      <input type="checkbox" class='attributes' id="cheap"> Inexpensive<br>
+      <input type="checkbox" class='attributes' id="keto"> Ketogenic<br>
+  </div><br>
+  <p data-toggle="tooltip" title="Would you like to make this recipe public?">Publish? <input type="checkbox" id="public" ></p>
+  <button class="btn btn-small btn-primary" id="add">Add My Recipe</button>
+</template>
+
+<template name="addRecipeRow">
+
 </template>
