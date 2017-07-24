@@ -38,6 +38,13 @@
             </div>
           </div>
       </div>
+      <div class="jumbotron">
+        {{> showshare}}
+      </div>
+      <div class="enter">
+        {{> entershare}}
+      </div>
+      <center><button class="btn enter">Share your work</button></center>
 
       <div id="popup1" class="overlay">
 		      <div class="popup">
@@ -90,4 +97,20 @@
     </span>
   </div>
 
+</template>
+<!-- share your work templates -->
+
+<template name="showshare">
+  {{#each s in shareData}}
+    {{> item}}
+  {{/each}}
+</template>
+
+<template name="item">
+  {{s.think}}
+</template>
+
+<template name="entershare">
+  <input type="text" id="think">
+  <button class="btn" >Enter</button>
 </template>

@@ -9,3 +9,7 @@ Meteor.publish('like', function(){
 Meteor.publish('content', function(){
   return Content.find();
 })
+
+Meteor.publish('share',function(){
+  return Share.find();
+})
