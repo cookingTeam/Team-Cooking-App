@@ -1,5 +1,5 @@
 Meteor.publish('myrecipe',function(){
-  return MyRecipe.find();
+  return Myrecipe.find();
 })
 
 Meteor.publish('like', function(){

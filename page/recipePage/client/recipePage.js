@@ -1,13 +1,11 @@
 
 Template.recipePage.onCreated(
   function(){
-    // dict = new ReactiveDict();
-    // dict.setDefault({
-    //     d: {}
-    //   });
+
     this.saveR = new ReactiveVar();
     Session.set("dict", {})
     const saveR = this.saveR;
+    //saveR means whether this user has stored this recipe..
     // console.log(Session.get("dict"));
     // console.log(this)
     Meteor.apply("getInstruction",[this.data], {returnStubValue:true},
@@ -43,15 +41,6 @@ Template.recipePage.helpers({
   }
 })
 
-Template.recipePage.onRendered(
-  function(){
-    // $(document).ready(function(){
-    //     $('[data-toggle="tooltip"]').tooltip();
-    // });
-  }
-)
-
-
 
 Template.recipePage.events({
   'click #like'(event,instance){
@@ -70,7 +59,7 @@ Template.recipePage.events({
   "click #popup_button": function(){
     $("#popup1").css("visibility", "visible");
     $("#popup1").css("opacity", 1);
-    console.log("loglog: "+Session.get("dict").analyzedInstructions[0].steps[0]);
+    // console.log("loglog: "+Session.get("dict").analyzedInstructions[0].steps[0]);
     Session.set("step", Session.get("dict").analyzedInstructions[0].steps[0]);
   },
 })

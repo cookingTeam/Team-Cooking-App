@@ -6,6 +6,9 @@
   /*width: 90%;*/
   border: 1px solid grey;
 }
+.glyphicon-play-circle {
+  font-size: 50px;
+}
 .glyphicon-search {
   padding: 2px;
   /*width: 8%;*/
@@ -26,6 +29,7 @@
 }
 .addrecipepage{
   width:60%;
+
 }
 
 .recipePage{
@@ -56,9 +60,10 @@ textarea {
 .popup {
       margin: 100px auto;
       padding: 20px;
+      padding-bottom: 50px;
       background: #fff;
       border-radius: 5px;
-      width: 70%;
+      width: 95%;
       position: relative;
       transition: all 0.2s ease-in-out;
 }
@@ -143,8 +148,8 @@ textarea {
     display: inline-block;
     border-bottom: 1px dotted black;
   }
-input[type=text], select, textarea {
-    width: 85%;
+/*input[type=text], select, textarea {
+    width: 80%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -152,7 +157,8 @@ input[type=text], select, textarea {
     margin-top: 6px;
     margin-bottom: 16px;
     resize: vertical;
-}
+}*/
+
 .login{
   font-size: 17px;
 }
@@ -169,3 +175,6 @@ input[type=text], select, textarea {
     display: inline-block;
     font-size: 16px;
 }*/
+.plus-minus{
+  font-size: 10px;
+}
