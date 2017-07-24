@@ -26,11 +26,11 @@ Template.slide.onCreated(function(){
                 interim_result = result[0].transcript;
                 console.log(interim_result);
               }
-              if(final_result.includes('stop')){
+              if(interim_result.includes('stop')){
                 console.log("record stopped");
                 recognition_engine.stop();
               }
-              if(final_result.includes('cookie')){
+              if(interim_result.includes('cookie')){
                 // recognition_engine.stop();
                 console.log("Alexa is here");
                 // This is our accessToken to our group's account
@@ -126,6 +126,79 @@ Template.slide.onCreated(function(){
                         var current_step_instruction = Session.get("step").step;
                         responsiveVoice.speak("step"+ current_step.number + current_step_instruction,  "US English Female", {pitch:1.2});
 
+                      }
+                      if (data.result.action=='get_info'){
+                          var attribute = data.result.parameters.Attributes;
+                          var recipe = Session.get("dict")
+                          if (attribute=='vegetarian'){
+                            console.log(recipe.vegetarian);
+                            if (recipe.vegetarian){
+                              responsiveVoice.speak("yes, it is" + attribute,  "US English Female", {pitch:1.2});
+                            } else {
+                              responsiveVoice.speak("no, it is not" + attribute,  "US English Female", {pitch:1.2});
+                            }
+                          } else if (attribute=='vegan'){
+                            console.log(recipe.vegan);
+                            if (recipe.vegan){
+                              responsiveVoice.speak("yes, it is" + attribute,  "US English Female", {pitch:1.2});
+                            } else {
+                              responsiveVoice.speak("no, it is not" + attribute,  "US English Female", {pitch:1.2});
+                            }
+                          } else if (attribute=='gluten'){
+                            console.log(recipe.glutenFree);
+                            if (recipe.glutenFree){
+                              responsiveVoice.speak("yes, it is gluten-free",  "US English Female", {pitch:1.2});
+                            } else {
+                              responsiveVoice.speak("no, it is not gluten free",  "US English Female", {pitch:1.2});
+                            }
+                          } else if (attribute=='dairyFree'){
+                            console.log(recipe.dairyFree);
+                            if (recipe.dairyFree){
+                              responsiveVoice.speak("yes, it is dairy free",  "US English Female", {pitch:1.2});
+                            } else {
+                              responsiveVoice.speak("no, it is not dairy free",  "US English Female", {pitch:1.2});
+                            }
+                          } else if (attribute=='veryHealthy'){
+                            console.log(recipe.veryHealthy);
+                            if (recipe.veryHealthy){
+                              responsiveVoice.speak("yes, it is healthy",  "US English Female", {pitch:1.2});
+                            } else {
+                              responsiveVoice.speak("no, it is not very healthy",  "US English Female", {pitch:1.2});
+                            }
+                          } else if (attribute=='veryPopular'){
+                            console.log(recipe.veryPopular);
+                            if (recipe.veryPopular){
+                              responsiveVoice.speak("yes, it is popular",  "US English Female", {pitch:1.2});
+                            } else {
+                              responsiveVoice.speak("no, it is not very popular",  "US English Female", {pitch:1.2});
+                            }
+                          } else if (attribute=='cheap'){
+                            console.log(recipe.cheap);
+                            if (recipe.cheap){
+                              responsiveVoice.speak("yes, it is" + attribute,  "US English Female", {pitch:1.2});
+                            } else {
+                              responsiveVoice.speak("no, it is not" + attribute,  "US English Female", {pitch:1.2});
+                            }
+                          } else if (attribute=='sustainable'){
+                            console.log(recipe.sustainable);
+                            if (recipe.sustainable){
+                              responsiveVoice.speak("yes, it is" + attribute,  "US English Female", {pitch:1.2});
+                            } else {
+                              responsiveVoice.speak("no, it is not" + attribute,  "US English Female", {pitch:1.2});
+                            }
+                          } else if (attribute=='ketogenic'){
+                            console.log(recipe.ketogenic);
+                            if (recipe.ketogenic){
+                              responsiveVoice.speak("yes, it is" + attribute,  "US English Female", {pitch:1.2});
+                            } else {
+                              responsiveVoice.speak("no, it is not" + attribute,  "US English Female", {pitch:1.2});
+                            }
+                          } else {
+                            responsiveVoice.speak("I cannot help you with that. Try reading the recipe",  "US English Female", {pitch:1.2});
+                          }
+                      }
+                      else {
+                        responsiveVoice.speak("I certainly don't know",  "US English Female", {pitch:1.2});
                       }
                       console.log(data);
                     },
