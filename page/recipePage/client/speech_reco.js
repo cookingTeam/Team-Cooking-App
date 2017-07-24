@@ -127,9 +127,25 @@ Template.slide.onCreated(function(){
                         responsiveVoice.speak("step"+ current_step.number + current_step_instruction,  "US English Female", {pitch:1.2});
 
                       }
+                      if (data.result.action=='prev_step'){
+                        var current_step = Session.get("step");
+                        if (current_step.number==1){
+                          responsiveVoice.speak("There is no previous step. Would you like me to repeat the current step?",  "US English Female", {pitch:1.2});
+                        } else {
+                          current_step.number=current_step.number-1;
+                          Session.set("step", current_step);
+                          $("span[name=number] a[name=number_" + Session.get("step").number + "]").click();
+                          var current_step_instruction = Session.get("step").step;
+                            console.log("current step: "+current_step.number);
+                            console.log(current_step_instruction);
+                            responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
+                            //i++, write function nextStep(recipe.steps[i]) and call it here
+                        }
+                      }
                       if (data.result.action=='get_info'){
                           var attribute = data.result.parameters.Attributes;
                           var recipe = Session.get("dict")
+                          console.dir(Session.get('dict'));
                           if (attribute=='vegetarian'){
                             console.log(recipe.vegetarian);
                             if (recipe.vegetarian){
@@ -197,9 +213,7 @@ Template.slide.onCreated(function(){
                             responsiveVoice.speak("I cannot help you with that. Try reading the recipe",  "US English Female", {pitch:1.2});
                           }
                       }
-                      else {
-                        responsiveVoice.speak("I certainly don't know",  "US English Female", {pitch:1.2});
-                      }
+
                       console.log(data);
                     },
                   });
