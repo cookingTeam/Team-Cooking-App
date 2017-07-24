@@ -25,17 +25,18 @@ Template.askforrecipe.events({
     var dishName = instance.$('#dishName').val();
     var ingredients = new Array();
     for (i=1; i<=Session.get('textboxNum'); i++){
-      var ing = {
+      console.dir(instance.$('#ing'+i).val());
+       ing = {
         // amount:instance.$('#amt'+i).val(),
         // unit:instance.$("#unit"+i).val(),
-        originalString:instance.$("#ing"+i).val()
+        originalString: instance.$('#ing'+i).val(),
       }
       ingredients.push(ing);
     }
     var steps = new Array();
     for (i=1; i<=Session.get('textareaNum'); i++){
 
-      eachStep = {step:instance.$("#step"+i).val(),
+      eachStep = {step: instance.$("#step"+i).val(),
                   }
       steps.push(eachStep);
     };
@@ -51,7 +52,7 @@ Template.askforrecipe.events({
       ketogenic: instance.$('#keto')[0].checked,
       title:dishName,
       extendedIngredients:ingredients,
-      analyzedInstructions:[steps],
+      analyzedInstructions:[{'steps': steps}],
       image: imagePath,
       owner:Meteor.userId()
     };
@@ -98,7 +99,7 @@ Template.askforrecipe.events({
       //container.appendChild(input);
       // container.appendChild(del);
       //container.appendChild(document.createElement("br"));
-      instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><input type="text" placeholder="Ingredient '+Session.get('textboxNum')+'" id="ing"'+Session.get('textboxNum')+'</div><br><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></td></tr>');
+      instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><input type="text" placeholder="Ingredient '+Session.get('textboxNum')+'" id="ing'+Session.get('textboxNum')+'"></div><br><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></td></tr>');
   },
 
   // 'click #delStep': function(event, instance){
