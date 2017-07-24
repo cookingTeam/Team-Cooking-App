@@ -118,15 +118,18 @@ Template.slide.onCreated(function(){
                         var current_step = Session.get("step");
                         var current_step_instruction = Session.get("step").step;
                         responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
-
                       }
                       if (data.result.action=='repeat'){
                         console.log('repeat');
                         var current_step = Session.get("step");
                         var current_step_instruction = Session.get("step").step;
                         responsiveVoice.speak("step"+ current_step.number + current_step_instruction,  "US English Female", {pitch:1.2});
-
                       }
+                      if (data.result.action=='show_ingredients'){
+                        console.log("show_ingredients");
+                      
+                      }
+
                       if (data.result.action=='get_info'){
                           var attribute = data.result.parameters.Attributes;
                           var recipe = Session.get("dict")
