@@ -26,12 +26,14 @@ Template.askforrecipe.events({
     var ingredients = new Array();
     for (i=1; i<=Session.get('textboxNum'); i++){
       console.dir(instance.$('#ing'+i).val());
-       ing = {
-        // amount:instance.$('#amt'+i).val(),
-        // unit:instance.$("#unit"+i).val(),
-        originalString: instance.$('#ing'+i).val(),
+
+         if(instance.$('#ing'+i).val()){
+            ing = {
+            originalString: instance.$('#ing'+i).val(),
+            }
+            ingredients.push(ing);
       }
-      ingredients.push(ing);
+
     }
     var steps = new Array();
     for (i=1; i<=Session.get('textareaNum'); i++){
