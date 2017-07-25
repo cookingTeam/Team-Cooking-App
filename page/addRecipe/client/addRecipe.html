@@ -13,7 +13,7 @@
 <template name="showRecipe">
   <table class="table">
     <thead>
-      <tr><th>Name</th><th>Steps</th></tr>
+      <tr><th>Name</th><th>Description</th></tr>
     </thead>
     <tbody>
         {{#each recipe in recipeData}}
@@ -26,7 +26,7 @@
 </template>
 
 <template name="recipeRow">
-  <td style="cursor:pointer"><em><strong>{{recipe.title}}</strong></em></td><td><br>{{recipe.steps}}
+  <td style="cursor:pointer">{{recipe.image}}<em><strong>{{recipe.title}}</strong></em></td><td>{{recipe.description}}
   {{#if isOwner}}
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   {{/if}}
@@ -35,6 +35,7 @@
 
 <template name="askforrecipe">
   <input type="text" placeholder="Dish Name" id="dishName"><br><br>
+  <textarea id="recipeDescription" placeholder="Write a Brief Description Here:"></textarea>
   <span class="btn btn-file"><h5>Upload an image for this dish</h5>
       <input class="file-upload-input" type="file">
   </span>
@@ -50,18 +51,15 @@
           <textarea id="step1" placeholder="Step 1"></textarea><br>
         </div></td>
         <td><div id="container1">
-          <input type="text" id="ing1" placeholder="Ingredient 1"><br>
-          <input type="text" id="ing2" placeholder="Ingredient 2"><br>
-          <input type="text" id="ing3" placeholder="Ingredient 3"><br>
-          <button class="addIng btn btn-sm btn-info" id="1"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button> <button id="delIngredient" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus plus-minus"></span> Ingredient</button><br><br></div>
-        </td>
+          <span class="glyphicon glyphicon-remove" id="delIng1"></span><input type="text" id="ing1" placeholder="Ingredient"><br id="br1">
+          <span class="glyphicon glyphicon-remove" id="delIng2"></span><input type="text" id="ing2" placeholder="Ingredient"><br id='br2'>
+          <span class="glyphicon glyphicon-remove" id="delIng3"></span><input type="text" id="ing3" placeholder="Ingredient"><br id='br3'>
+          <button class="addIng btn btn-sm btn-info" id="1"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button>
+        </div></td>
       </tr>
     </tbody>
   </table>
   <button id="addStep" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus plus-minus"></span> Step</button> <button id="delStep" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus plus-minus"></span> Step</button><br><br>
-
-
-
 
   Check all that apply!<br>
   <div class=attributes>
@@ -75,8 +73,4 @@
   </div><br>
   <p data-toggle="tooltip" title="Would you like to make this recipe public?">Publish? <input type="checkbox" id="public" ></p>
   <button class="btn btn-small btn-primary" id="add">Add My Recipe</button>
-</template>
-
-<template name="addRecipeRow">
-
 </template>

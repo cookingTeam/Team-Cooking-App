@@ -23,24 +23,33 @@ Template.askforrecipe.events({
 
   'click #add'(elt,instance){
     var dishName = instance.$('#dishName').val();
+    var recipeDescription = instance.$('#recipeDescription').val();
     var ingredients = new Array();
     for (i=1; i<=Session.get('textboxNum'); i++){
       console.dir(instance.$('#ing'+i).val());
-       ing = {
-        // amount:instance.$('#amt'+i).val(),
-        // unit:instance.$("#unit"+i).val(),
-        originalString: instance.$('#ing'+i).val(),
+
+         if(instance.$('#ing'+i).val()){
+            ing = {
+            originalString: instance.$('#ing'+i).val(),
+            }
+            ingredients.push(ing);
       }
-      ingredients.push(ing);
+
     }
     var steps = new Array();
     for (i=1; i<=Session.get('textareaNum'); i++){
-
-      eachStep = {step: instance.$("#step"+i).val(),
-                  }
-      steps.push(eachStep);
+          var stepIng = new Array();
+          var stepIngInput = $("#container"+i+" input");
+          console.dir(stepIngInput);
+          stepIngInput.each(function(index, elt){
+            console.log($(elt).val());
+            if($(elt).val()){
+              stepIng.push({name: $(elt).val()});
+            }
+          })
+          eachStep = {step: instance.$("#step"+i).val(), ingredients:stepIng, number: i}
+          steps.push(eachStep);
     };
-
 
     var dish = {
       vegetarian: instance.$('#vegetarian')[0].checked,
@@ -51,6 +60,7 @@ Template.askforrecipe.events({
       cheap: instance.$('#cheap')[0].checked,
       ketogenic: instance.$('#keto')[0].checked,
       title:dishName,
+      description: recipeDescription,
       extendedIngredients:ingredients,
       analyzedInstructions:[{'steps': steps}],
       image: imagePath,
@@ -70,21 +80,38 @@ Template.askforrecipe.events({
       console.dir(idOfButton);
       Session.set('textboxNum', Session.get('textboxNum')+1);
       var container = document.getElementById("container"+idOfButton);
-
+      var del = document.createElement("span")
       var input = document.createElement("input");
-      console.dir(document.getElementById(Session.get('textareaNum')));
+      var br = document.createElement("br")
+
+      del.setAttribute('class', 'glyphicon glyphicon-remove');
+      del.setAttribute('id', "delIng"+Session.get('textboxNum'));
 
       input.type = "text";
       input.id= "ing"+Session.get('textboxNum');
-      input.placeholder= "Ingredient "+Session.get('textboxNum');
+      input.placeholder= "Ingredient ";
+
+      br.setAttribute('id', "br"+Session.get('textboxNum'));
 
       console.dir(input);
       console.dir(container);
-      container.insertBefore(input, document.getElementById(Session.get('textareaNum')));
-      // container.appendChild(del);
-      container.insertBefore(document.createElement("br"), document.getElementById(Session.get('textareaNum')));
+      container.insertBefore(input, document.getElementById(elt.currentTarget.id));
+      container.insertBefore(del, input);
+      container.insertBefore(br, document.getElementById(elt.currentTarget.id));
 
   },
+  'click .glyphicon-remove': function(elt,instance){
+      var id = elt.currentTarget.id;
+      var num = id.substring(6);
+      console.dir(elt.currentTarget.parentElement.id);
+      var container = document.getElementById(elt.currentTarget.parentElement.id);
+      container.removeChild(document.getElementById('ing'+num));
+      container.removeChild(document.getElementById('delIng'+num));
+
+      container.removeChild(document.getElementById('br'+num));
+
+  },
+
   'click #addStep': function(elt,instance){
     Session.set('textareaNum', Session.get('textareaNum')+1);
     console.dir(instance.$('#addRecipeTable'));
@@ -100,16 +127,16 @@ Template.askforrecipe.events({
       //container.appendChild(input);
       // container.appendChild(del);
       //container.appendChild(document.createElement("br"));
-      instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><input type="text" placeholder="Ingredient '+Session.get('textboxNum')+'" id="ing'+Session.get('textboxNum')+'"><br><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></div></td></tr>');
+      instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><span class="glyphicon glyphicon-remove" id="delIng'+Session.get('textboxNum')+'"></span><input type="text" placeholder="Ingredient" id="ing'+Session.get('textboxNum')+'"><br><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></div></td></tr>');
   },
 
-  // 'click #delStep': function(event, instance){
-  //     var tableRowId = "tableRow"+Session.get('textareaNum');
-  //     $('#tableRow'+Session.get('textareaNum')).remove();
-  //     Session.set('textareaNum', Session.get('textareaNum')-1);
-  //
-  //
-  // }
+  'click #delStep': function(event, instance){
+      var tableRowId = "tableRow"+Session.get('textareaNum');
+      $('#tableRow'+Session.get('textareaNum')).remove();
+      Session.set('textareaNum', Session.get('textareaNum')-1);
+
+
+  }
 })
 
 Template.askforrecipe.helpers({
