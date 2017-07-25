@@ -13,10 +13,10 @@ Template.profile.helpers({
 
 Template.askProfile.events({
     'click #submit'(elt,instance){
-        const name = instance.$('#name').val();
-        const age = instance.$('#age').val();
-        const restriction = instance.$('#restriction').val();
-        const cuisine = instance.$('#cuisine').val();
+        const name = instance.$('#name_profile').val();
+        const age = instance.$('#age_profile').val();
+        const restriction = instance.$('#restriction_profile').val();
+        const cuisine = instance.$('#cuisine_profile').val();
         var info = {
             name:name,
             age:age,
@@ -25,7 +25,6 @@ Template.askProfile.events({
             id:Meteor.userId()
         }
         Meteor.call('info.insert',info);
-        console.log(Content.findOne());
     }
 })
 
@@ -37,7 +36,6 @@ Template.showProfile.helpers({
 
 Template.showProfile.events({
     'click #delete'(elt,instance){
-        console.log(Content.findOne({id:Meteor.userId()}));
         Meteor.call('info.remove',Content.findOne({id:Meteor.userId()}));
     }
 })
@@ -64,4 +62,28 @@ Template.savedrow.events({
               window.location.assign(href);//jump to recipe detail page
           }
       }
+})
+
+Template.personalShowRecipe.helpers({
+  recipeData() {return Myrecipe.find()}
+})
+Template.personalShowRecipe.onCreated(function(){
+  Meteor.subscribe('myrecipe');
+})
+
+Template.personalRecipeRow.helpers({
+  isOwner() {
+    console.dir(this);
+    return this.recipe.owner == Meteor.userId()}
+})
+
+Template.personalRecipeRow.events({
+  'click span'(elt,instance){
+    Meteor.call('myrecipe.remove', this.recipe);
+  },
+  'click td': function(elt, instance){
+    ownRecipeId = this.recipe._id
+    console.dir(this.recipe._id);
+    Router.go('/ownRecipePage/'+ownRecipeId);
+  }
 })

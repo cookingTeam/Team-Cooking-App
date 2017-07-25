@@ -2,18 +2,22 @@
     <body>
       <div class="w3-main w3-content w3-padding addrecipepage" style="max-width:1200px;margin-top:100px">
           <h1>Add Recipes to Profile</h1>
-          {{> askforrecipe}}
+          {{#if currentUser}}
+              {{> askforrecipe}}
+              <hr>
+              {{> showRecipe}}
+          {{else}}
+              You need to be logged in to write recipes.
+          {{/if}}
 
-          <hr>
-          {{> showRecipe}}
       </div>
     </body>
 </template>
 
 <template name="showRecipe">
-  <table class="table">
+  <table class="table table-hover">
     <thead>
-      <tr><th>Name</th><th>Steps</th></tr>
+      <tr><th>Dish</th><th>Description</th><th></th></tr>
     </thead>
     <tbody>
         {{#each recipe in recipeData}}
@@ -26,9 +30,11 @@
 </template>
 
 <template name="recipeRow">
-  <td style="cursor:pointer"><em><strong>{{recipe.title}}</strong></em></td><td><br>{{recipe.steps}}
+  <td style="cursor:pointer">{{recipe.title}}</td>
+  <td>{{recipe.description}}</td>
+  <td>
   {{#if isOwner}}
-      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
   {{/if}}
   </td>
 </template>
@@ -36,6 +42,7 @@
 <template name="askforrecipe">
   <div class='imageUpload'>
     <input type="text" placeholder="Dish Name" id="dishName"><br><br>
+    <textarea id="recipeDescription" placeholder="Add Brief Description Of Your Recipe"></textarea>
     <span class="btn btn-file"><h5>Upload an image for this dish</h5>
         <input class="file-upload-input" type="file">
     </span>
@@ -74,8 +81,4 @@
   </div><br>
   <p data-toggle="tooltip" title="Would you like to make this recipe public?">Publish? <input type="checkbox" id="public" ></p>
   <button class="btn btn-small btn-primary" id="add">Add My Recipe</button>
-</template>
-
-<template name="addRecipeRow">
-
 </template>

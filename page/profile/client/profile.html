@@ -15,6 +15,8 @@
         <hr>
         {{> showSave}}
         <hr>
+        <h3>Your Recipes</h3>
+        {{> personalShowRecipe}}
         <!-- <div name="favoritedRecipes">
           <h3>Favorited</h3>
             <table class="table">
@@ -33,7 +35,7 @@
   <div name="personInfo">
     <h3>Personal Information</h3>
       <ul>
-        <li>Name: {{content.name}}</li>
+        <li>Username: {{content.name}}</li>
         <li>Age: {{content.age}}</li>
         <li>Diet Restrictions: {{content.restriction}}</li>
         <li>Preferred Cuisine: {{content.cuisine}}</li>
@@ -44,11 +46,11 @@
 
 <template name="askProfile">
     <div class="container">
-        Full Name<input type="text" id="name_profile" name="name" placeholder="Your full name.."><br>
-        Age<input type="text" id="age_profile" name="age" placeholder="Your age"><br>
+        Full Name<br><input type="text" id="name_profile" name="name" placeholder="Your full name.."><br>
+        Age<br><input type="text" id="age_profile" name="age" placeholder="Your age"><br>
         Your Diet Restrictions <br>
         <textarea id="restriction_profile" name="restriction" placeholder="Write something.." style="height:200px"></textarea><br>
-        Preferred Cuisine
+        Preferred Cuisine<br>
         <select id="cuisine_profile" name="cuisine">
         <option value="American">American</option>
         <option value="Italian">Italian</option>
@@ -57,7 +59,7 @@
         <option value="Thai">Thai</option>
         </select>
         <br><br>
-        <button type="btn" id="submit">Submit</button>
+        <button class="btn" id="submit">Submit</button>
     </div>
 </template>
 
@@ -66,7 +68,7 @@
     {{#if currentUser}}
     <table class="table table-hover">
         <thead>
-            <th>Dish</th><th>Dish Type</th><th>Health Score</th>
+            <tr><th>Dish</th><th>Dish Type</th><th></th></tr>
         </thead>
         <tbody>
           {{#each s in savedRecipe}}
@@ -83,8 +85,36 @@
     <tr>
       <td class="clickable-row">{{saved.recipe.title}}</td>
       <td>{{saved.recipe.dishTypes.[0]}}</td>
-      <td>{{saved.recipe.healthScore}}</td>
+      <!-- <td>{{saved.recipe.healthScore}}</td> -->
       <td><span class="glyphicon glyphicon-remove-circle" style="cursor: pointer;"></span></td>
     </tr>
+</template>
 
+<template name="personalShowRecipe">
+  {{#if currentUser}}
+  <table class="table table-hover">
+    <thead>
+      <tr><th>Dish</th><th>Description</th><th></th></tr>
+    </thead>
+    <tbody>
+        {{#each recipe in recipeData}}
+
+            {{> personalRecipeRow recipe = recipe}}
+
+        {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  You need an account to write recipes
+  {{/if}}
+</template>
+
+<template name="personalRecipeRow">
+  {{#if isOwner}}
+  <tr>
+      <td style="cursor:pointer">{{recipe.title}}</td>
+      <td>{{recipe.description}}</td>
+      <td><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td>
+  </tr>
+  {{/if}}
 </template>

@@ -1,3 +1,5 @@
+
+
 <template name="recipePage">
       <div class="w3-main w3-content w3-padding center recipePage" style="max-width:1200px;margin-top:100px">
           <!-- {{> recipeheader}} <br> -->
@@ -27,23 +29,26 @@
               Love it and save for later  <br>
 
               <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Cookie, Wait for her icon to turn red, Then go through by saying 'next step'" id="popup_button"><img src="/images/microphone1600.png" width="5%" style="padding-bottom: 5px;"> Start Cooking</button><hr>
-              <h3>Steps:</h3><hr>
-              <ul style="list-style: none; padding: 10px;">
-                {{#each step in recipe.analyzedInstructions.[0].steps}}
-                   <li>{{step.step}}</li><hr>
-                {{/each}}
-              </ul>
+              <ol>
+              {{#each step in recipe.analyzedInstructions.[0].steps}}
+                 <li>{{step.step}}</li><hr>
+              {{/each}}
+            </ol>
             </div>
           </div>
       </div>
-      <div class="jumbotron">
+      <hr>
+      <div class="horizontal-scroll">
         {{> showshare}}
       </div>
-      <div class="enter">
-        {{> entershare}}
-      </div>
-      <center><button class="btn enter">Share your work</button></center>
-
+      <hr>
+      <div id="popup2" class="overlay-share">
+		      <div class="popup-share">
+            <a class="close" id="share_close">&times;</a> <br>
+			       {{> entershare}}
+		      </div>
+	    </div>
+      <center><button class="btn enter" id="share">Share your work</button></center>
       <div id="popup1" class="overlay">
 		      <div class="popup">
             <a class="close" id="popup_close">&times;</a>
@@ -98,7 +103,7 @@
 </template>
 <!-- share your work templates -->
 
-<template name="showshare">
+<!-- <template name="showshare">
   {{#each s in shareData}}
     {{> item}}
   {{/each}}
@@ -110,5 +115,29 @@
 
 <template name="entershare">
   <input type="text" id="think">
+  <button class="btn" >Enter</button>
+</template> -->
+
+<template name="showshare">
+  {{#each s in shareData}}
+    {{> item s=s}}
+  {{/each}}
+</template>
+
+<template name="item">
+  <div class="card-2">
+    <img src="https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-shadow-fill-circle-512.png" class="profile"> {{s.username}}--{{s.rate}}/5<hr>
+    {{s.think}} <br>
+  </div>
+</template>
+
+<template name="entershare">
+  <input type="text" id="think" placeholder="Share your experience here..."><br>
+  Rate this recipe <span class="glyphicon glyphicon-thumbs-up"></span> :
+  <input type="radio" name="rate" value="1" style="cursor:pointer;"> <h5 style="cursor:default; display:inline;">1</h5>
+  <input type="radio" name="rate" value="2" style="cursor:pointer;"> <h5 style="cursor:default; display:inline;">2</h5>
+  <input type="radio" name="rate" value="3" style="cursor:pointer;"> <h5 style="cursor:default; display:inline;">3</h5>
+  <input type="radio" name="rate" value="4" style="cursor:pointer;"> <h5 style="cursor:default; display:inline;">4</h5>
+  <input type="radio" name="rate" value="5" style="cursor:pointer;"> <h5 style="cursor:default; display:inline;">5</h5><br>
   <button class="btn" >Enter</button>
 </template>
