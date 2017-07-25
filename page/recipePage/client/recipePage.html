@@ -35,6 +35,13 @@
             </div>
           </div>
       </div>
+      <div class="jumbotron">
+        {{> showshare}}
+      </div>
+      <div class="enter">
+        {{> entershare}}
+      </div>
+      <center><button class="btn enter">Share your work</button></center>
 
       <div id="popup1" class="overlay">
 		      <div class="popup">
@@ -59,7 +66,7 @@
               </ul>
           {{/unless}}</h3>
       </div>
-      <div name="instruction" class="col-xs-7">
+      <div name="instruction" class="col-xs-6">
           <h3>Step {{thisStep.number}}:<br>
             {{thisStep.step}}<br></h3>
       </div>
@@ -87,4 +94,20 @@
     </span>
   </div>
 
+</template>
+<!-- share your work templates -->
+
+<template name="showshare">
+  {{#each s in shareData}}
+    {{> item}}
+  {{/each}}
+</template>
+
+<template name="item">
+  {{s.think}}
+</template>
+
+<template name="entershare">
+  <input type="text" id="think">
+  <button class="btn" >Enter</button>
 </template>

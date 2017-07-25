@@ -1,7 +1,7 @@
 <template name="recipeSearch">
   <body>
-  <div class='w3-main w3-content w3-center' style="margin-top:100px">
-      <input type="text" id="recipe_name" class="searchbar_recipeSearch ">
+  <div class='center' style="margin-top:100px;text-align:center">
+      <input id="recipe_name" class="searchbar_recipeSearch">
       <button class='search_recipeSearch'>Search</button>
       <span class='advancedSearch_recipeSearch glyphicon glyphicon-filter' style="cursor:pointer;"></span><br>
   </div>
@@ -56,28 +56,40 @@
 
  </div>
 
-  <div class="w3-main w3-content w3-padding">
-    <table class="bg-warning table table-bordered table-striped">
+  <div class="center" style="text-align:center">
+
+      {{#each r in recipes}}
+      {{> res r=r}}
+      {{/each}}
+
+    <!-- <table class="bg-warning table table-bordered table-striped">
       <tbody>
         {{#each r in recipes}}
         {{> res r=r}}
         {{/each}}
       </tbody>
 
-    </table>
+    </table> -->
     {{#if recipes}}
       <br>
     {{/if}}
 
     <div class="pagination">
       <span name="number">
-        <h2 id="firstResultPage">&laquo;</h2>
-        <h2 id="backwards">&lsaquo;</h2>
+        <h2 id="firstResultPage" class='pageNav'>&laquo;</h2>
+        <h2 id="backwards" class='pageNav'><span class="glyphicon glyphicon-menu-left"></span></h2>
         <h3>Page {{pageNumber}}</h3>
-        <h2 id="forwards">&rsaquo;</h2>
-        <!-- Jump to pages -->
+        <h2 id="forwards" class='pageNav'><span class="glyphicon glyphicon-menu-right"></span></h2>
       </span>
     </div>
+
+    <script>
+      function topFunction() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+      }
+    </script>
+
 
   </div>
 </body>
@@ -88,10 +100,15 @@
 
 
 <template name="res">
+  <div class="card" style="cursor:pointer;">
+    <img src="https://spoonacular.com/recipeImages/{{r.imageUrls}}" width="250" height="250">
+    <h5><strong>{{r.title}}</strong></h5>
+    <h7>{{r.readyInMinutes}} minutes</h7>
+  </div>
 
-  <tr class='clickable-row '>
+  <!-- <tr class='clickable-row '>
    <td><img src="https://spoonacular.com/recipeImages/{{r.imageUrls}}" width="100"></td>
    <td><b>{{r.title}}:</b> Ready in: {{r.readyInMinutes}} minutes</td>
- </tr>
+ </tr> -->
 
 </template>

@@ -15,7 +15,7 @@ Template.home.events({
       const diet = instance.$('#dietSelect').val();
       const cuisine = instance.$('#cuisineSelect').val();
       const intolerances = instance.$('#intolerances').val();
-      var api_query = "instructionsRequired=true&limitLicense=false&number=10&offset=0&query="+recipe_name;
+      var api_query = "instructionsRequired=true&limitLicense=false&number=9&offset=0&query="+recipe_name;
       //+"&diet="+diet+"&cuisine"
       if(diet){
         api_query+="&diet="+diet;

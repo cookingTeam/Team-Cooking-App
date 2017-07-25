@@ -53,7 +53,7 @@ Template.recipePage.events({
       }
       Meteor.call('save.insert',save);
       instance.saveR.set(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}));
-      console.log(Like.find().fetch());
+      alert('You have saved this recipe and you can check it in your profile page');
   },
 
   "click #popup_button": function(){
@@ -69,17 +69,4 @@ Template.recipePage.events({
     $("#popup1").css("visibility","hidden");
     $('#popup1').css("opacity",0);
   }
-
 })
-
-
-
-
-//Any other function:
-//vegan advanced search
-//search according to profile
-//possible modification
-
-//special diet
-//to let the app read out the steps
-//go through steps
