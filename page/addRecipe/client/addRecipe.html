@@ -3,7 +3,6 @@
       <div class="w3-main w3-content w3-padding addrecipepage" style="max-width:1200px;margin-top:100px">
           <h1>Add Recipes to Profile</h1>
           {{> askforrecipe}}
-
           <hr>
           {{> showRecipe}}
       </div>
@@ -27,7 +26,7 @@
 
 <template name="recipeRow">
   <td style="cursor:pointer">{{recipe.title}}</td>
-  <td>{{recipe.description}}</td><td></td>
+  <td>{{recipe.description}}</td>
   <td>
   {{#if isOwner}}
       <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
@@ -36,20 +35,11 @@
 </template>
 
 <template name="askforrecipe">
-<<<<<<< HEAD
-  <div class='imageUpload'>
-    <input type="text" placeholder="Dish Name" id="dishName"><br><br>
-    <span class="btn btn-file"><h5>Upload an image for this dish</h5>
-        <input class="file-upload-input" type="file">
-    </span>
-  </div>
-=======
   <input type="text" placeholder="Dish Name" id="dishName"><br><br>
   <textarea id="recipeDescription" placeholder="Write a Brief Description Here:"></textarea>
   <span class="btn btn-file"><h5>Upload an image for this dish</h5>
       <input class="file-upload-input" type="file">
   </span>
->>>>>>> MollyLayout
 
 
   <table class="table table-bordered" id="addRecipeTable">
