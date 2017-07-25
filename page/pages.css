@@ -23,9 +23,9 @@ button.enter {
   z-index: 1;
 }
 .horizontal-scroll {
-  margin: 0 auto;
+  margin: 5px;
   width: 90%;
-  height: 450px;
+  height: 320px;
   overflow-x: scroll;
   overflow-y: scroll;
   display: -webkit-box;
@@ -36,7 +36,7 @@ button.enter {
   height: 410px;
   margin: 15px;
   border-radius: 5px;
-  background-color: snow;
+  background-color: #f7f4f4;
   padding: 20px;
 }
 .enter {
@@ -177,12 +177,15 @@ textarea {
 }
 
 .popup-share {
-      margin: 500px auto;
-      padding: 20px;
-      padding-bottom: 50px;
-      background: gray;
+  margin: 500px auto;
+      padding: 30px;
+      padding-bottom: 80px;
+      background: #ebf9a0;
       border-radius: 5px;
       width: 80%;
+      height: 45%;
+      bottom: 130px;
+      overflow: auto;
       position: relative;
       transition: all 0.5s ease-in-out;
 }
@@ -370,4 +373,21 @@ input.searchbar_recipeSearch:hover {
     width:100%;
     max-width:600px;
     max-height: 600px;
+}
+#shareWorkImage{
+    width:100%;
+    max-width:350px;
+    max-height: 400px;
+}
+
+.card-2 .close {
+      position: relative;
+      z-index: 1;
+      top: 5px;
+      right: 10px;
+      transition: all 200ms;
+      font-size: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #333;
 }
