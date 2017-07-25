@@ -1,6 +1,9 @@
+Template.entershare.onCreated(function(){
+  Meteor.subscribe('content');
+})
 Template.showshare.helpers({
   shareData(){
-    return Share.find({id:Session.get('dict').id}).fetch();
+    return Share.find({id:Session.get('dict').id},{sort:{time:-1}}).fetch();
   }
 
 })
@@ -12,10 +15,18 @@ Template.showshare.onCreated(function(){
 Template.entershare.events({
   'click button'(elt,instance){
     const think = instance.$('#think').val();
+    const number = document.querySelector("input[name=rate]:checked").value;
+    const rate = parseInt(number);
     var thought = {
       think:think,
-      id:Session.get('dict').id
+      rate:rate,
+      id:Session.get('dict').id,
+      username:Content.findOne({id:Meteor.userId()}).name,
+      time:new Date()
     }
     Meteor.call('thought.insert',thought);
+    instance.$('#think').val("");
+    $("#popup2").css("visibility","hidden");
+    $('#popup2').css("opacity",0);
   }
 })

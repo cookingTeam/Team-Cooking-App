@@ -55,6 +55,15 @@ Template.recipePage.events({
       instance.saveR.set(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}));
       alert('You have saved this recipe and you can check it in your profile page');
   },
+  'click #share':function(){
+    $('#popup2').css('visibility','visible');
+    $('#popup2').css('opacity',1);
+  },
+
+  "click #share_close":function(){
+    $("#popup2").css("visibility","hidden");
+    $('#popup2').css("opacity",0);
+  },
 
   "click #popup_button": function(){
     $("#popup1").css("visibility", "visible");
@@ -62,6 +71,12 @@ Template.recipePage.events({
     // console.log("loglog: "+Session.get("dict").analyzedInstructions[0].steps[0]);
     Session.set("step", Session.get("dict").analyzedInstructions[0].steps[0]);
   },
+
+  "click #popup_close":function(){
+    $("#popup1").css("visibility","hidden");
+    $('#popup1').css("opacity",0);
+  },
+
   'click #ask': function(){
         // This is our accessToken to our group's account
         var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
@@ -208,11 +223,4 @@ Template.recipePage.events({
         }
   }
 
-})
-
-Template.recipePage.events({
-  "click #popup_close":function(){
-    $("#popup1").css("visibility","hidden");
-    $('#popup1').css("opacity",0);
-  }
 })
