@@ -34,11 +34,12 @@
 </template>
 
 <template name="askforrecipe">
-  <input type="text" placeholder="Dish Name" id="dishName"><br><br>
-  <textarea id="recipeDescription" placeholder="Write a Brief Description Here:"></textarea>
-  <span class="btn btn-file"><h5>Upload an image for this dish</h5>
-      <input class="file-upload-input" type="file">
-  </span>
+  <div class='imageUpload'>
+    <input type="text" placeholder="Dish Name" id="dishName"><br><br>
+    <span class="btn btn-file"><h5>Upload an image for this dish</h5>
+        <input class="file-upload-input" type="file">
+    </span>
+  </div>
 
 
   <table class="table table-bordered" id="addRecipeTable">

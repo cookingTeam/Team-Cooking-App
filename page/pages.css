@@ -256,7 +256,7 @@ textarea {
     border-bottom: 1px dotted black;
   }
 input[type=text], select, textarea {
-    width: 100%;
+    width: 80%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -265,6 +265,7 @@ input[type=text], select, textarea {
     margin-bottom: 16px;
     resize: vertical;
 }
+
 input.searchbar_recipeSearch {
     width: 70%;
     box-sizing: border-box;
@@ -283,9 +284,15 @@ input.searchbar_recipeSearch {
 input.searchbar_recipeSearch:hover {
     width: 80%;
 }
+
+
 .login{
-  padding-right: 15px;
   font-size: 17px;
+}
+#login-dropdown-list {
+    position: absolute;
+    top: -1px;
+    left: -200px;
 }
 .glyphicon-bullhorn{
   font-size: 10px;
@@ -357,4 +364,10 @@ input.searchbar_recipeSearch:hover {
 }
 .plus-minus{
   font-size: 10px;
+}
+
+#ownRecipeImage{
+    width:100%;
+    max-width:600px;
+    max-height: 600px;
 }
