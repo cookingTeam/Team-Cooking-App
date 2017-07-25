@@ -24,7 +24,7 @@
 			<a href="/about" class="link" onclick="closeNav()">About</a>
       <!-- <a href="/recipeSearch" onclick="w3_close()" class="w3-bar-item w3-button">Search</a> -->
 			<a href="/profile" class="link" onclick="closeNav()">Profile</a>
-			<a href="/addRecipe" class="link" onclick="closeNav()">Recipe</a>
+			<a href="/addRecipe" class="link" onclick="closeNav()">+Recipe</a>
 		</div>
 
 		<!-- Top menu -->
@@ -36,8 +36,8 @@
 		  </div> -->
 			<div id="topnav">
 				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-				<div style="margin:0 auto; width:18%;"><a href="{{pathFor 'home'}}" style="font-size:40px; text-align:center;"> <span class="glyphicon glyphicon-record" id="pageListen" style="font-size:27px;"></span> Cookie </a></div>
-				<div style="float:right">{{> loginButtons}}</div>
+				<div style="margin:0 auto;  padding-left:100px;"><a href="{{pathFor 'home'}}" style="font-size:40px; text-align:center;"> <span class="glyphicon glyphicon-record" id="pageListen" style="font-size:27px;"></span> Cookie </a></div>
+				<div style="float:right; ">{{> loginButtons}}</div>
 				<!-- style="float:right" <div class="w3-center w3-padding-16 "> <span class="glyphicon glyphicon-record" id="pageListen"></span><a href="{{pathFor 'home'}}"> Cookie </a> </div> -->
 			</div>
 			{{> yield}}
