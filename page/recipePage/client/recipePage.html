@@ -2,7 +2,7 @@
       <div class="w3-main w3-content w3-padding center recipePage" style="max-width:1200px;margin-top:100px">
           <!-- {{> recipeheader}} <br> -->
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
               <img src={{recipe.image}} style="width:100%"><hr>
               <h3>Ingredients</h3>
               <ul>
@@ -12,7 +12,6 @@
                     </li>
                   {{/each}}
               </ul>
-              <hr>
 
             </div>
             <div class="col-md-6 col-md-offset-1">
@@ -26,23 +25,30 @@
               {{/if}}
               Love it and save for later  <br>
 
-              <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Cookie, Wait for her icon to turn red, Then go through by saying 'next step'" id="popup_button"><img src="/images/microphone1600.png" width="5%" style="padding-bottom: 5px;"> Start Cooking</button><hr>
-              <h3>Steps:</h3><hr>
-              <ul style="list-style: none; padding: 10px;">
-                {{#each step in recipe.analyzedInstructions.[0].steps}}
-                   <li>{{step.step}}</li><hr>
-                {{/each}}
-              </ul>
+              <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Alexa, Pause, Then go through by saying 'next step'" id="popup_button"><span class="glyphicon glyphicon-bullhorn"></span> Start Cooking</button>
+
+              <button class="btn btn-warning" data-toggle="tooltip" title="Ask the app things like 'is this recipe vegetarian?'" id="ask"><span class="glyphicon glyphicon-bullhorn"></span> Recipe Info</button><hr>
+
+              <ol>
+              {{#each step in recipe.analyzedInstructions.[0].steps}}
+                 <li>{{step.step}}</li><br>
+              {{/each}}
+            </ol>
             </div>
           </div>
       </div>
-      <div class="jumbotron">
+      <hr>
+      <div class="horizontal-scroll">
         {{> showshare}}
       </div>
-      <div class="enter">
-        {{> entershare}}
-      </div>
-      <center><button class="btn enter">Share your work</button></center>
+      <hr>
+      <div id="popup2" class="overlay-share">
+		      <div class="popup-share">
+            <a class="close" id="share_close">&times;</a> <br>
+			       {{> entershare}}
+		      </div>
+	   </div>
+      <center><button class="btn enter" id="share">Share your work</button></center>
 
       <div id="popup1" class="overlay">
 		      <div class="popup">
@@ -100,15 +106,24 @@
 
 <template name="showshare">
   {{#each s in shareData}}
-    {{> item}}
+    {{> item s=s}}
   {{/each}}
 </template>
 
 <template name="item">
-  {{s.think}}
+  <div class="card-2">
+    <img src="https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-shadow-fill-circle-512.png" class="profile"> {{s.username}}--{{s.rate}}/5<hr>
+    {{s.think}} <br>
+  </div>
 </template>
 
 <template name="entershare">
-  <input type="text" id="think">
+  <input type="text" id="think" placeholder="Share your experience here..."><br>
+  Rate this recipe <span class="glyphicon glyphicon-thumbs-up"></span> :
+  <input type="radio" name="rate" value="1"> 1
+  <input type="radio" name="rate" value="2"> 2
+  <input type="radio" name="rate" value="3"> 3
+  <input type="radio" name="rate" value="4"> 4
+  <input type="radio" name="rate" value="5"> 5 <br>
   <button class="btn" >Enter</button>
 </template>
