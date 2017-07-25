@@ -6,8 +6,6 @@ Template.recipePage.onCreated(
     Session.set("dict", {})
     const saveR = this.saveR;
     //saveR means whether this user has stored this recipe..
-    // console.log(Session.get("dict"));
-    // console.log(this)
     Meteor.apply("getInstruction",[this.data], {returnStubValue:true},
           function(error,result){
             // console.dir(['getInstruction',error,result]);
@@ -16,16 +14,11 @@ Template.recipePage.onCreated(
             }
             // console.log(result);
             r = JSON.parse(result);
-            // console.log("r[0].steps[0].step: "+r[0].steps[0].step);
-            //console.log(dict);
-              // console.log("r  "+r[0]);
             Session.set("dict",r[0]);
             saveR.set(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}).fetch());
             console.log(Session.get('dict'));
             console.log(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}).fetch());
-            //return r[0];
             }
-          //.steps[0].step
     );
   }
 )
