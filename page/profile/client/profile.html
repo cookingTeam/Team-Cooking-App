@@ -16,7 +16,7 @@
         {{> showSave}}
         <hr>
         <h3>Your Recipes</h3>
-        {{> showRecipe}}
+        {{> personalShowRecipe}}
         <!-- <div name="favoritedRecipes">
           <h3>Favorited</h3>
             <table class="table">
@@ -88,4 +88,33 @@
       <!-- <td>{{saved.recipe.healthScore}}</td> -->
       <td><span class="glyphicon glyphicon-remove-circle" style="cursor: pointer;"></span></td>
     </tr>
+</template>
+
+<template name="personalShowRecipe">
+  {{#if currentUser}}
+  <table class="table table-hover">
+    <thead>
+      <tr><th>Dish</th><th>Description</th><th></th></tr>
+    </thead>
+    <tbody>
+        {{#each recipe in recipeData}}
+
+            {{> personalRecipeRow recipe = recipe}}
+
+        {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  You need an account to write recipes
+  {{/if}}
+</template>
+
+<template name="personalRecipeRow">
+  {{#if isOwner}}
+  <tr>
+      <td style="cursor:pointer">{{recipe.title}}</td>
+      <td>{{recipe.description}}</td>
+      <td><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td>
+  </tr>
+  {{/if}}
 </template>
