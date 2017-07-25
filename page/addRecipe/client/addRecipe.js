@@ -46,7 +46,7 @@ Template.askforrecipe.events({
               stepIng.push({name: $(elt).val()});
             }
           })
-          eachStep = {step: instance.$("#step"+i).val(), ingredients:stepIng}
+          eachStep = {step: instance.$("#step"+i).val(), ingredients:stepIng, number: i}
           steps.push(eachStep);
     };
 
