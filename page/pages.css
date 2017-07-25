@@ -15,7 +15,7 @@ img.profile {
   width: 100%;
   z-index: 1;
   padding: 16px;
-  /*transition: margin-left 1s;*/
+  display:inline-flex;
 }
 button.enter {
   position: fixed;

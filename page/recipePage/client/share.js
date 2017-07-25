@@ -13,7 +13,6 @@ Template.showshare.onCreated(function(){
 })
 
 Template.entershare.events({
-
   'click button'(elt,instance){
     const think = instance.$('#think').val();
     const number = document.querySelector("input[name=rate]:checked").value;
@@ -25,14 +24,9 @@ Template.entershare.events({
       username:Content.findOne({id:Meteor.userId()}).name,
       time:new Date()
     }
-    console.dir(thought);
     Meteor.call('thought.insert',thought);
-<<<<<<< HEAD
     instance.$('#think').val("");
     $("#popup2").css("visibility","hidden");
     $('#popup2').css("opacity",0);
-=======
-    console.log(Share.find().fetch());
->>>>>>> master
   }
 })
