@@ -15,6 +15,8 @@
         <hr>
         {{> showSave}}
         <hr>
+        <h3>Your Recipes</h3>
+        {{> showRecipe}}
         <!-- <div name="favoritedRecipes">
           <h3>Favorited</h3>
             <table class="table">
@@ -66,7 +68,7 @@
     {{#if currentUser}}
     <table class="table table-hover">
         <thead>
-            <th>Dish</th><th>Dish Type</th><th>Health Score</th>
+            <tr><th>Dish</th><th>Dish Type</th><th></th></tr>
         </thead>
         <tbody>
           {{#each s in savedRecipe}}
@@ -83,8 +85,7 @@
     <tr>
       <td class="clickable-row">{{saved.recipe.title}}</td>
       <td>{{saved.recipe.dishTypes.[0]}}</td>
-      <td>{{saved.recipe.healthScore}}</td>
+      <!-- <td>{{saved.recipe.healthScore}}</td> -->
       <td><span class="glyphicon glyphicon-remove-circle" style="cursor: pointer;"></span></td>
     </tr>
-
 </template>

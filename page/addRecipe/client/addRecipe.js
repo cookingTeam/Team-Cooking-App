@@ -25,6 +25,7 @@ Template.askforrecipe.events({
 
   'click #add'(elt,instance){
     var dishName = instance.$('#dishName').val();
+    var recipeDescription = instance.$('#recipeDescription').val();
     var ingredients = new Array();
     for (i=1; i<=Session.get('textboxNum'); i++){
       console.dir(instance.$('#ing'+i).val());
@@ -61,6 +62,7 @@ Template.askforrecipe.events({
       cheap: instance.$('#cheap')[0].checked,
       ketogenic: instance.$('#keto')[0].checked,
       title:dishName,
+      description: recipeDescription,
       extendedIngredients:ingredients,
       analyzedInstructions:[{'steps': steps}],
       image: imagePath,
