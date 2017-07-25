@@ -27,11 +27,12 @@
               Love it and save for later  <br>
 
               <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Cookie, Wait for her icon to turn red, Then go through by saying 'next step'" id="popup_button"><img src="/images/microphone1600.png" width="5%" style="padding-bottom: 5px;"> Start Cooking</button><hr>
-              <ol>
-              {{#each step in recipe.analyzedInstructions.[0].steps}}
-                 <li>{{step.step}}</li><hr>
-              {{/each}}
-            </ol>
+              <h3>Steps:</h3><hr>
+              <ul style="list-style: none; padding: 10px;">
+                {{#each step in recipe.analyzedInstructions.[0].steps}}
+                   <li>{{step.step}}</li><hr>
+                {{/each}}
+              </ul>
             </div>
           </div>
       </div>

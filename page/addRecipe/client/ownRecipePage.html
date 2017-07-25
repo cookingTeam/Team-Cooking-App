@@ -29,12 +29,12 @@
               <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Alexa, Pause, Then go through by saying 'next step'" id="popup_button"><span class="glyphicon glyphicon-bullhorn"></span> Start Cooking</button>
 
               <button class="btn btn-warning" data-toggle="tooltip" title="Ask the app things like 'is this recipe vegetarian?'" id="ask"><span class="glyphicon glyphicon-bullhorn"></span> Recipe Info</button><hr>
-
-              <ol>
+              <h3>Steps:</h3><hr>
+              <ul style="list-style: none; padding: 0;">
               {{#each step in recipe.analyzedInstructions.[0].steps}}
                  <li>{{step.step}}</li><hr>
               {{/each}}
-            </ol>
+            </ul>
             </div>
           </div>
       </div>

@@ -16,6 +16,8 @@ Template.askforrecipe.events({
      };
      reader.readAsBinaryString(file);
      imagePath = 'images/'+fileName;
+     template.$('.imageUpload > span').append("<img id='ownRecipeImage' src='/"+imagePath+"'>");
+
     //  template.$('#testImage').attr("src", 'images/'+fileName);
     //  console.dir(template.$('#testImage').attr('src'));
   },
