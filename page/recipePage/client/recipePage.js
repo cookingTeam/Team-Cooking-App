@@ -17,7 +17,7 @@ Template.recipePage.onCreated(
             Session.set("dict",r[0]);
             saveR.set(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}).fetch());
             console.log(Session.get('dict'));
-            console.log(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}).fetch());
+            // console.log(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}).fetch());
             }
     );
   }
