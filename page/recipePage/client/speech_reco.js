@@ -120,6 +120,12 @@ Template.slide.onCreated(function(){
                         var current_step_instruction = Session.get("step").step;
                         responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
                       }
+                      if (data.result.action=='show_ingredients'){
+                        console.log("show_ingredient");
+                        var ingre = Session.get("ingredient_in_each_step");
+                        console.log(ingred);
+                        // responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
+                      }
                       if (data.result.action=='repeat'){
                         console.log('repeat');
                         var current_step = Session.get("step");

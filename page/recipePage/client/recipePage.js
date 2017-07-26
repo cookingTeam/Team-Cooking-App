@@ -185,6 +185,18 @@ Template.recipePage.events({
                     var current_step_instruction = Session.get("step").step;
                     responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
                   }
+                  if (data.result.action=='show_ingredients'){
+                    console.log("show_ingredient");
+                    var ingre = Session.get("ingredient_in_each_step");
+                    var leng = ingre.length;
+                    for(var i=0; i<leng; i++){
+                      console.log(ingre[i]);
+                      var num = i+1;
+                      responsiveVoice.speak("Ingredient"+ num + "is" +ingre[i], "US English Female", {pitch:1.2});
+                    }
+                    // console.log(Session.get("ingredient_in_each_step"));
+
+                  }
                   if (data.result.action=='repeat'){
                     console.log('repeat');
                     var current_step = Session.get("step");
