@@ -16,7 +16,7 @@
         {{> showSave}}
         <hr>
         <h3>Your Recipes</h3>
-        {{> showRecipe}}
+        {{> personalShowRecipe}}
         <!-- <div name="favoritedRecipes">
           <h3>Favorited</h3>
             <table class="table">
@@ -44,61 +44,8 @@
   </div>
 </template>
 
-<template name="askProfile">
-    <div class="container">
-        Full Name<br><input type="text" id="name_profile" name="name" placeholder="Your full name.."><br>
-        Age<br><input type="text" id="age_profile" name="age" placeholder="Your age"><br>
-        Your Diet Restrictions <br>
-        <textarea id="restriction_profile" name="restriction" placeholder="Write something.." style="height:200px"></textarea><br>
-        Preferred Cuisine<br>
-        <select id="cuisine_profile" name="cuisine">
-        <option value="American">American</option>
-        <option value="Italian">Italian</option>
-        <option value="Chinese">Chinese</option>
-        <option value="French">French</option>
-        <option value="Thai">Thai</option>
-        </select>
-        <br><br>
-        <button class="btn" id="submit">Submit</button>
-    </div>
-</template>
-
-<template name="showSave">
-  <h3>Saved</h3>
-    {{#if currentUser}}
-    <table class="bg-warning table table-bordered table-striped">
-        <thead>
-            <tr><th>Image</th><th>Dish</th><th>Dish Type</th><th></th></tr>
-        </thead>
-        <tbody>
-          {{#each s in savedRecipe}}
-            {{> savedrow saved=s}}
-          {{/each}}
-        </tbody>
-    </table>
-    {{else}}
-    You need an account to save recipes
-    {{/if}}
-</template>
-
-<template name="savedrow">
-
-  <tr class='clickable-row'>
-   <td><img src={{saved.recipe.image}} width="100" style="max-height: 100px"></td>
-   <td><b>{{saved.recipe.title}}:</b> Ready in: {{saved.recipe.readyInMinutes}} minutes</td>
-   <td>{{saved.recipe.dishTypes.[0]}}</td>
-   <td><span class="glyphicon glyphicon-remove-circle" style="cursor: pointer;"></span></td>
-  </tr>
-</template>
-
-    <!-- <tr>
-      <td class="clickable-row">{{saved.recipe.title}}</td>
-      <td>{{saved.recipe.dishTypes.[0]}}</td>
-      <td><span class="glyphicon glyphicon-remove-circle" style="cursor: pointer;"></span></td>
-    </tr> -->
-
 <template name="personalShowRecipe">
-  {{#if currentUser}}
+    {{#if currentUser}}
   <table class="table table-hover">
     <thead>
       <tr><th>Dish</th><th>Description</th><th></th></tr>
@@ -124,4 +71,50 @@
       <td><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td>
   </tr>
   {{/if}}
+</template>
+
+<template name="askProfile">
+    <div class="container">
+        Full Name<br><input type="text" id="name_profile" name="name" placeholder="Your full name.."><br>
+        Age<br><input type="text" id="age_profile" name="age" placeholder="Your age"><br>
+        Your Diet Restrictions <br>
+        <textarea id="restriction_profile" name="restriction" placeholder="Write something.." style="height:200px"></textarea><br>
+        Preferred Cuisine<br>
+        <select id="cuisine_profile" name="cuisine">
+        <option value="American">American</option>
+        <option value="Italian">Italian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="French">French</option>
+        <option value="Thai">Thai</option>
+        </select>
+        <br><br>
+        <button class="btn" id="submit">Submit</button>
+    </div>
+</template>
+
+<template name="showSave">
+  <h3>Saved</h3>
+    {{#if currentUser}}
+    <table class="table table-hover">
+        <thead>
+            <tr><th>Dish</th><th>Dish Type</th><th></th></tr>
+        </thead>
+        <tbody>
+          {{#each s in savedRecipe}}
+            {{> savedrow saved=s}}
+          {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    You need an account to save recipes
+    {{/if}}
+</template>
+
+<template name="savedrow">
+    <tr>
+      <td class="clickable-row">{{saved.recipe.title}}</td>
+      <td>{{saved.recipe.dishTypes.[0]}}</td>
+      <!-- <td>{{saved.recipe.healthScore}}</td> -->
+      <td><span class="glyphicon glyphicon-remove-circle" style="cursor: pointer;"></span></td>
+    </tr>
 </template>
