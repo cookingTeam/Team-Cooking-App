@@ -11,7 +11,7 @@ Template.slide.onCreated(function(){
 })
 
 Template.slide.onCreated(function(){
-  Session.set("ingredient_in_each_step", Session.get("step").ingredients);
+  Session.set("ingredient_in_each_step", {});
 })
 
 
@@ -59,6 +59,7 @@ Template.slide.helpers({
       //   console.log(Session.get("dict").extendedIngredients[i].name);
       }
     }
+    Session.set("ingredient_in_each_step", ingred_array);
     return ingred_array;
   },
 
