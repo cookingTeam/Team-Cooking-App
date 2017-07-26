@@ -20,9 +20,9 @@
 
 <template name="showRecipe">
   <table class="table table-hover ">
-    <!-- <thead>
-      <tr><th></th><th>Dish</th><th>Description</th><th></th></tr>
-    </thead> -->
+    <thead>
+      <tr><th></th><th>Dish</th><th>Creator</th></tr>
+    </thead>
     <tbody>
         {{#each recipe in recipeData}}
             {{> recipeRow recipe = recipe}}
