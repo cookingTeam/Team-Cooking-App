@@ -97,7 +97,8 @@ img {
 }
 
 .recipePage{
-  width:100%;
+  width:90%;
+  margin:auto;
 }
 
 textarea {
