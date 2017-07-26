@@ -53,13 +53,6 @@ Template.home.events({
     else if(elt.which==13&&elt.currentTarget.id=="intolerances"){
       instance.$('#filterSearch').click();
     }
-    // if(elt.currentTarget.id=="homeSearch"){
-    //   recipe_name = instance.$('#home_input').val();
-    //   console.log(recipe_name);
-    // }
-    // else{
-    //   recipe_name = instance.$('#recipe_name').val();
-    // }
 
     else if(elt.currentTarget.id=="home_input"){
       autoFillQuery = instance.$('#home_input').val();
