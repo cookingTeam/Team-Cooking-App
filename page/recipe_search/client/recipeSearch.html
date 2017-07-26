@@ -1,9 +1,14 @@
 <template name="recipeSearch">
   <body>
-  <div class='center' style="margin-top:100px;text-align:center">
+  <div class='center searchPage' style="margin-top:100px;text-align:center">
       <input id="recipe_name" class="searchbar_recipeSearch">
       <button class='search_recipeSearch'>Search</button>
       <span class='advancedSearch_recipeSearch glyphicon glyphicon-filter' style="cursor:pointer;"></span><br>
+      <ul class='autoFill'>
+        {{#each result in autoFillList}}
+          {{> oneAutoFillSearchPage result=result}}
+        {{/each}}
+      </ul>
   </div>
 
   <div id="popup2" class="overlay">
@@ -111,4 +116,8 @@
    <td><b>{{r.title}}:</b> Ready in: {{r.readyInMinutes}} minutes</td>
  </tr> -->
 
+</template>
+
+<template name='oneAutoFillSearchPage'>
+  <li>{{result.title}}</li>
 </template>

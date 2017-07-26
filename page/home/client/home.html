@@ -7,11 +7,17 @@
     <p>
     Talk to Cookie while cooking your recipes to navigate through steps and ingredients.
     </p>
-
-        <input type="text" placeholder="Search..." id='home_input' class="searchbar">
+    <div class="searchForm">
+        <input type="text" placeholder="Search for recipe names" id='home_input' class="searchbar">
+        <ul class='autoFill'>
+          {{#each result in autoFillList}}
+            {{> oneAutoFill result=result}}
+          {{/each}}
+        </ul>
         <button class='search btn btn-md btn-primary' id='homeSearch'>Search</button>
         <button class='advanceSearch btn btn-md btn-success'>Advance Search</button><br>
 
+      </div>
   </div>
 
   <div id="popup2" class="overlay">
@@ -69,3 +75,8 @@
 
  </div>
  </template>
+
+
+<template name='oneAutoFill'>
+  <li>{{result.title}}</li>
+</template>
