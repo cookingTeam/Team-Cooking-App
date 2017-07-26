@@ -74,7 +74,9 @@ Template.askforrecipe.events({
           console.log(err);
           console.log(response);
         });
-
+        instance.$('input').val('');
+        instance.$('textarea').val('');
+        instance.$('.attributes').attr('checked', false)
 
   },
 
