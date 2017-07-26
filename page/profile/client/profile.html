@@ -3,6 +3,11 @@
     <div class="center">
         <h1>Profile</h1>
         {{#if currentUser}}
+        <!-- <select>
+            {{# each pic in icons}}
+                <img src={{pic}}>
+            {{/each}}
+        </select> -->
             <img src="https://cdn1.iconfinder.com/data/icons/profession-avatar-solid-1/48/43-512.png" class="w3-card-4" style="width:16%"><br><br>
             {{#if hasProfile}}
               {{> showProfile}}

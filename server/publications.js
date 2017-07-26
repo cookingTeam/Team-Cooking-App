@@ -13,3 +13,7 @@ Meteor.publish('content', function(){
 Meteor.publish('share',function(){
   return Share.find();
 })
+
+Meteor.publish('icons', function(){
+  return Icons.find();
+})

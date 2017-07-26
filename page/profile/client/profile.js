@@ -7,6 +7,9 @@ Template.profile.onCreated(function(){
 Template.profile.helpers({
     hasProfile: function(){
         return Content.findOne({id:Meteor.userId()});
+    },
+    icons: function(){
+        return Icons.find();
     }
 })
 
@@ -63,7 +66,6 @@ Template.savedrow.events({
           }
       }
 })
-
 Template.personalShowRecipe.helpers({
   recipeData() {return Myrecipe.find()}
 })
