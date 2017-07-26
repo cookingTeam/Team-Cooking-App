@@ -2,8 +2,8 @@
       <div class="w3-main w3-content w3-padding center recipePage" style="max-width:1200px;margin-top:100px">
           <!-- {{> recipeheader}} <br> -->
           <div class="row">
-            <div class="col-sm-4">
-              <img src="/{{recipe.image}}" style="width:70%"><hr>
+            <div class="col-sm-5">
+              <img src="/{{recipe.image}}" style="width:50%"><hr>
               <h3>Ingredients</h3>
               <ul>
                   {{#each ingredient in recipe.extendedIngredients}}
@@ -24,15 +24,15 @@
               {{else}}
               <span class="glyphicon glyphicon-heart-empty save" style="cursor:pointer" id="like"></span>
               {{/if}} -->
-              Love it and save for later  <br>
+              <!-- Love it and save for later  <br> -->
 
-              <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Alexa, Pause, Then go through by saying 'next step'" id="popup_button"><span class="glyphicon glyphicon-bullhorn"></span> Start Cooking</button>
-
-              <button class="btn btn-warning" data-toggle="tooltip" title="Ask the app things like 'is this recipe vegetarian?'" id="ask"><span class="glyphicon glyphicon-bullhorn"></span> Recipe Info</button><hr>
+              <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Cookie, Wait for her icon to turn red, Then go through by saying 'next step'" id="popup_button"><img src="/images/microphone1600.png" width="5%" style="padding-bottom: 5px;"> Start Cooking</button><hr>
+              <!-- <button class="btn btn-warning" data-toggle="tooltip" title="Ask the app things like 'is this recipe vegetarian?'" id="ask"><span class="glyphicon glyphicon-bullhorn"></span> Recipe Info</button><hr> -->
               <h3>Steps:</h3><hr>
               <ul style="list-style: none; padding: 0;">
               {{#each step in recipe.analyzedInstructions.[0].steps}}
-                 <li style="font-size:20px;">{{step.step}}</li><hr>
+                 <li style="font-size:20px;">{{step.step}}</li>
+                 <hr>
               {{/each}}
             </ul>
             </div>
