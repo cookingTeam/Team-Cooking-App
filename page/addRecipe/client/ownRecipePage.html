@@ -2,12 +2,12 @@
       <div class="w3-main w3-content w3-padding center recipePage" style="max-width:1200px;margin-top:100px">
           <!-- {{> recipeheader}} <br> -->
           <div class="row">
-            <div class="col-md-6">
-              <img src="/{{recipe.image}}" style="width:100%"><hr>
+            <div class="col-sm-4">
+              <img src="/{{recipe.image}}" style="width:70%"><hr>
               <h3>Ingredients</h3>
               <ul>
                   {{#each ingredient in recipe.extendedIngredients}}
-                    <li>
+                    <li style="font-size:20px;">
                       {{ingredient.originalString}}
                     </li>
                   {{/each}}
@@ -15,7 +15,7 @@
               <hr>
 
             </div>
-            <div class="col-md-5 col-md-offset-1">
+            <div class="col-sm-5 col-sm-offset-1">
               <h2>{{recipe.title}}</h2>
               <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
               You need {{recipe.readyInMinutes}} minutes to cook <br>
@@ -32,7 +32,7 @@
               <h3>Steps:</h3><hr>
               <ul style="list-style: none; padding: 0;">
               {{#each step in recipe.analyzedInstructions.[0].steps}}
-                 <li>{{step.step}}</li><hr>
+                 <li style="font-size:20px;">{{step.step}}</li><hr>
               {{/each}}
             </ul>
             </div>
