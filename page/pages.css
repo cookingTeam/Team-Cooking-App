@@ -2,7 +2,7 @@
 .center {
   margin: 0 auto;
   width: 80%;
-  margin-top:100px;
+  margin-top:65px;
 }
 img.profile {
   margin: 0 auto;
@@ -18,14 +18,16 @@ img.profile {
   display:inline-flex;
 }
 button.enter {
-  position: fixed;
-  bottom: 0;
-  z-index: 1;
+    position: fixed;
+    bottom: 5px;
+    z-index: 1;
+    background-color: rgba(255, 232, 83, 0.75);
+
 }
 .horizontal-scroll {
-  margin: 0 auto;
+  margin: 5px;
   width: 90%;
-  height: 450px;
+  height: 320px;
   overflow-x: scroll;
   overflow-y: scroll;
   display: -webkit-box;
@@ -36,7 +38,7 @@ button.enter {
   height: 410px;
   margin: 15px;
   border-radius: 5px;
-  background-color: snow;
+  background-color: #f7f4f4;
   padding: 20px;
 }
 .enter {
@@ -177,12 +179,15 @@ textarea {
 }
 
 .popup-share {
-      margin: 500px auto;
-      padding: 20px;
-      padding-bottom: 50px;
-      background: gray;
+  margin: 500px auto;
+      padding: 30px;
+      padding-bottom: 80px;
+      background: #ebf9a0;
       border-radius: 5px;
       width: 80%;
+      height: 45%;
+      bottom: 130px;
+      overflow: auto;
       position: relative;
       transition: all 0.5s ease-in-out;
 }
@@ -370,4 +375,79 @@ input.searchbar_recipeSearch:hover {
     width:100%;
     max-width:600px;
     max-height: 600px;
+}
+#shareWorkImage{
+    width:100%;
+    max-width:350px;
+    max-height: 400px;
+}
+
+.card-2 .close {
+      position: relative;
+      z-index: 1;
+      top: 5px;
+      right: 10px;
+      transition: all 200ms;
+      font-size: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #333;
+}
+
+#home_input:focus + .autoFill {
+  display: block}
+
+#home_input{
+  display: block
+}
+
+#recipe_name:focus ~ .autoFill {
+  display:block
+}
+
+
+.searchForm .autoFill {
+    display: none;
+    position: relative;
+    top: -17px;
+    left: 0px;
+    right: 0px;
+    width: 80%;
+    z-index: 10;
+    padding: 0;
+    margin: 0;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #cbcfe2 #c8cee7 #c4c7d7;
+    border-radius: 3px;
+}
+
+.searchPage .autoFill{
+  display: none;
+  position: relative;
+  top: -1px;
+  left: 8%;
+  right: 0px;
+  width: 80%;
+  z-index: 10;
+  padding: 0;
+  margin: 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #cbcfe2 #c8cee7 #c4c7d7;
+  border-radius: 3px;
+}
+
+.autoFill li {
+  display: block;
+  cursor: pointer;
+  text-align: left;
+
+}
+
+.autoFill:active{
+  display: block;
+}
+.autoFill li:hover{
+  background-color: #dce3ef;
 }

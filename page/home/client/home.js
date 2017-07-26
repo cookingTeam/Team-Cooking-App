@@ -1,3 +1,17 @@
+Template.home.onCreated(
+  function() {
+    Session.set("autoFillResults", []);
+  }
+)
+
+Template.home.helpers({
+  autoFillList: function(){
+    return Session.get("autoFillResults");
+  }
+})
+
+
+
 Template.home.events({
   "click .search": function(elt, instance){
       console.dir("diet::: "+instance.$('#dietSelect').val());
@@ -46,6 +60,40 @@ Template.home.events({
     // else{
     //   recipe_name = instance.$('#recipe_name').val();
     // }
+
+    else if(elt.currentTarget.id=="home_input"){
+      autoFillQuery = instance.$('#home_input').val();
+      Meteor.apply("getAutoFill",[autoFillQuery], {returnStubValue:true},
+            function(error,result){
+              // console.dir(['getInstruction',error,result]);
+              if (error) {
+                console.log("Error!!"+JSON.stringify(error)); return;
+              }
+              // console.log(result);
+              r = JSON.parse(result);
+              Session.set("autoFillResults",r);
+              console.log(Session.get('autoFillResults'));
+              // console.log(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}).fetch());
+              }
+      );
+
+    }
+    else if(elt.currentTarget.id=="filterSearch"){
+      autoFillQuery = instance.$('#filterSearch').val();
+      Meteor.apply("getAutoFill",[autoFillQuery], {returnStubValue:true},
+            function(error,result){
+              // console.dir(['getInstruction',error,result]);
+              if (error) {
+                console.log("Error!!"+JSON.stringify(error)); return;
+              }
+              // console.log(result);
+              r = JSON.parse(result);
+              Session.set("autoFillResults",r);
+              console.log(Session.get('autoFillResults'));
+              // console.log(Like.find({owner:Meteor.userId(),recipe:Session.get('dict')}).fetch());
+              }
+      );
+    }
   },
 
   'click .advanceSearch': function(elt, instance){
@@ -59,6 +107,15 @@ Template.home.events({
     instance.$('#popup2').css("opacity",0);
   },
 
+})
+
+Template.oneAutoFill.events({
+  'click li': function(elt, instance){
+    console.log("clicked");
+    console.dir(elt)
+    console.dir($('#home_input'));
+    $("#home_input").val(this.result.title);
+  }
 })
 
 Template.home.onCreated(function(){
