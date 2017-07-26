@@ -5,7 +5,7 @@
           <!-- {{> recipeheader}} <br> -->
           <div class="row">
             <div class="col-md-5">
-              <img src={{recipe.image}} style="width:70%; margin:auto; display:block;"><hr>
+              <img src={{recipe.image}} style="max-width:70%; max-height:340px; margin:auto; display:block;"><hr>
               <h3>Ingredients</h3>
               <ul>
                   {{#each ingredient in recipe.extendedIngredients}}
