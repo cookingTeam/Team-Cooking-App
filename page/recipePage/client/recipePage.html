@@ -37,6 +37,7 @@
             </div>
           </div>
       </div>
+      <hr>
         {{> showshare}}
       <hr>
       <div id="popup2" class="overlay-share">
@@ -45,7 +46,7 @@
 			       {{> entershare}}
 		      </div>
 	    </div>
-      <center><button class="btn enter" id="share">Share your Comments!</button></center>
+      <center><button class="btn enter" id="share">Share your Comments</button></center>
       <div id="popup1" class="overlay">
 		      <div class="popup">
             <a class="close" id="popup_close">&times;</a>
@@ -103,15 +104,11 @@
 <template name="showshare">
 
   {{#if shareData}}
-    <div class=" w3-main w3-content center recipePage" style="max-width:1200px;margin-top:10px; border-radius: 10px;
-    background-color: rgba(249, 251, 240, 0.44);">
-      <h3>People made it!</h3>
       <div class="horizontal-scroll">
         {{#each s in shareData}}
           {{> item s=s}}
         {{/each}}
       </div>
-    </div>
   {{/if}}
 
 </template>

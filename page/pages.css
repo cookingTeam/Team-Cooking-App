@@ -22,20 +22,18 @@ button.enter {
     bottom: 5px;
     z-index: 1;
     background-color: rgba(255, 232, 83, 0.75);
-
 }
 .horizontal-scroll {
-  margin: 5px;
+  margin: auto;
   width: 90%;
-  height: 320px;
+  height: 420px;
   overflow-x: scroll;
   overflow-y: scroll;
   display: -webkit-box;
-
 }
 .card-2 {
   width: 300px;
-  height: 410px;
+  height: 380px;
   margin: 15px;
   border-radius: 5px;
   background-color: #f7f4f4;
@@ -450,4 +448,48 @@ input.searchbar_recipeSearch:hover {
 }
 .autoFill li:hover{
   background-color: #dce3ef;
+}
+/*footer*/
+.fa {
+  padding: 10px;
+  font-size: 40px;
+  width: 35px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
 }
