@@ -1,4 +1,6 @@
 
+originalProfile = {};
+
 Template.profile.onCreated(function(){
   Meteor.subscribe('content');
 })
@@ -31,6 +33,17 @@ Template.askProfile.events({
     }
 })
 
+Template.askProfile.onRendered(
+  function(){
+    console.dir(originalProfile.name);
+    console.dir($('#name_profile').val())
+    $('#name_profile').val(originalProfile.name);
+    $('#age_profile').val(originalProfile.age);
+    $('#restriction_profile').val(originalProfile.restriction);
+    $('#cuisine_profile').val(originalProfile.cuisine);
+  }
+)
+
 Template.showProfile.helpers({
     content() {
       return Content.findOne({id:Meteor.userId()});
@@ -39,7 +52,9 @@ Template.showProfile.helpers({
 
 Template.showProfile.events({
     'click #delete'(elt,instance){
+        originalProfile = Content.findOne({id:Meteor.userId()});
         Meteor.call('info.remove',Content.findOne({id:Meteor.userId()}));
+
     }
 })
 
