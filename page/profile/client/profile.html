@@ -3,12 +3,6 @@
     <div class="center" style="margin-top: 100px;">
         <h1>Profile</h1>
         {{#if currentUser}}
-        <!-- <select>
-            {{# each pic in icons}}
-                <img src={{pic}}>
-            {{/each}}
-        </select> -->
-            <img src="https://cdn1.iconfinder.com/data/icons/profession-avatar-solid-1/48/43-512.png" class="w3-card-4" style="width:16%"><br><br>
             {{#if hasProfile}}
               {{> showProfile}}
             {{else}}
@@ -30,6 +24,7 @@
 <template name="showProfile">
   <div name="personInfo">
     <h3>Personal Information</h3>
+    <img src={{content.pic}}>
       <ul>
         <li>Username: {{content.name}}</li>
         <li>Age: {{content.age}}</li>
@@ -72,7 +67,21 @@
 
 <template name="askProfile">
     <div class="container">
-        Full Name<br><input type="text" id="name_profile" name="name" placeholder="Your full name.."><br>
+      <select class="image-picker">
+            <option data-img-src="bull.png" data-img-class="first" data-img-alt="Page 1" value="1">  Bull  </option>
+            <option data-img-src="chick.png" data-img-alt="Page 2" value="2">  Chick  </option>
+            <option data-img-src="crab.png" data-img-alt="Page 3" value="3">  Crab  </option>
+            <option data-img-src="fox.png" data-img-alt="Page 4" value="4">  Fox  </option>
+            <option data-img-src="hedgehog.png" data-img-alt="Page 5" value="5">  Hedgehog  </option>
+            <option data-img-src="hippopotamus.png" data-img-alt="Page 6" value="6">  Hippo  </option>
+            <option data-img-src="koala.png" data-img-alt="Page 7" value="7">  Koala  </option>
+            <option data-img-src="lemur.png" data-img-alt="Page 8" value="8">  Lemur  </option>
+            <option data-img-src="pig.png" data-img-alt="Page 9" value="9">  Pig  </option>
+            <option data-img-src="tiger.png" data-img-alt="Page 10" value="10"> Tiger </option>
+            <option data-img-src="whale.png" data-img-alt="Page 11" value="11"> Whale </option>
+            <option data-img-src="zebra.png" data-img-alt="Page 12" data-img-class="last" value="12"> Zebra </option>
+      </select>
+        <br>Full Name<br><input type="text" id="name_profile" name="name" placeholder="Your full name.."><br>
         Age<br><input type="text" id="age_profile" name="age" placeholder="Your age"><br>
         Your Diet Restrictions <br>
         <textarea id="restriction_profile" name="restriction" placeholder="Write something.." style="height:200px"></textarea><br>
