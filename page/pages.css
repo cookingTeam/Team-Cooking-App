@@ -22,7 +22,7 @@ button.enter {
     bottom: 5px;
     z-index: 1;
     background-color: rgba(255, 232, 83, 0.75);
-
+    font-size: 16px;
 }
 .horizontal-scroll {
   margin:auto;
