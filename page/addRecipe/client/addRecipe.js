@@ -4,6 +4,7 @@ var imagePath = '';
 var reader = new FileReader();
 var file = {};
 var fileName = '';
+var uploaded = false;
 Template.askforrecipe.events({
 
   "change .file-upload-input": function(event, template){
@@ -17,16 +18,21 @@ Template.askforrecipe.events({
      };
      reader.readAsDataURL(file);
      imagePath = 'images/'+fileName;
+     uploaded = true;
      //template.$('.imageUpload > span').append("<img id='ownRecipeImage' src='/"+imagePath+"'>");
 
   },
 
 
   'click #add'(elt,instance){
-    reader.onload = function(fileLoadEvent) {
-      Meteor.call('file-upload', fileName, reader.result);
-    };
-    reader.readAsBinaryString(file);
+    console.log(uploaded)
+    if(uploaded){
+      console.log("in if")
+        reader.onload = function(fileLoadEvent) {
+          Meteor.call('file-upload', fileName, reader.result);
+        };
+              reader.readAsBinaryString(file);
+    }
         Meteor.call('file-upload', fileName, reader.result);
         var dishName = instance.$('#dishName').val();
         var recipeDescription = instance.$('#recipeDescription').val();
