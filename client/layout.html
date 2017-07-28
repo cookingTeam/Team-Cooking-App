@@ -10,12 +10,6 @@
 		<style>
 		body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 		.w3-bar-block .w3-bar-item {padding:20px;}
-	  /*body{
-	    background: #C7F1FF;
-	  }
-	  .w3-main {
-	     background: #FDFAF9;
-	  }*/
 		</style>
 	</head>
 		<!-- Sidebar (hidden by default) -->
@@ -32,37 +26,33 @@
 		<div id="main">
 			<div id="topnav">
 				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-				<div style="margin:0 auto;  padding-left:100px;"><a href="{{pathFor 'home'}}" style="font-size:40px; text-align:center;"> <span class="glyphicon glyphicon-record" id="pageListen" style="font-size:27px;"></span> Cookie </a></div>
-				<div style="float:right; ">{{> loginButtons}}</div>
+				<div style="margin:auto;width:18%">
+					<a href="{{pathFor 'home'}}" style="font-size:35px"> <span class="glyphicon glyphicon-record" id="pageListen" style="font-size:27px;"></span> Cookie </a>
+				</div>
+				{{> loginButtons}}
 			</div>
 			{{> yield}}
 		</div>
 		<footer>
 			<hr>
 			Created by Molly,Yuan,Katherine and Weiwei
-			<div style="float:right">
-				<a href="#" class="fa fa-facebook"></a>
-				<a href="#" class="fa fa-twitter"></a>
-				<a href="#" class="fa fa-google"></a>
-				<a href="#" class="fa fa-linkedin"></a>
-				<a href="#" class="fa fa-youtube"></a>
-				<a href="#" class="fa fa-instagram"></a>
-			</div>
+			<div id="social" >{{> social_buttons}}</div>
 		</footer>
 
     <!-- script -->
+
 		<script>
 
 		function openNav() {
     	document.getElementById("mySidenav").style.width = "200px";
     	document.getElementById("main").style.marginLeft = "200px";
-			// document.getElementById("topnav").style.marginLeft = "16px";
+			// document.getElementById("topnav").style.width = "88%";
 		}
 
 		function closeNav() {
     	document.getElementById("mySidenav").style.width = "0";
     	document.getElementById("main").style.marginLeft= "0";
-			// document.getElementById("topnav").style.marginLeft = "0";
+			// document.getElementById("topnav").style.width = "100%";
 		}
 		</script>
   </template>

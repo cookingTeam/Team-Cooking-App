@@ -19,7 +19,6 @@ shell-server@0.2.3            # Server-side component of the `meteor shell` comm
 accounts-password
 twbs:bootstrap
 iron:router
-accounts-ui
 reactive-dict
 http
 session
@@ -27,3 +26,7 @@ semantic:ui
 juliancwirko:postcss
 less
 jquery
+shmck:meteor-social-buttons
+accounts-google
+accounts-facebook
+ian:accounts-ui-bootstrap-3
