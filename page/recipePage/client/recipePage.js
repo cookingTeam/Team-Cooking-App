@@ -91,13 +91,13 @@ Template.recipePage.events({
             interim_result = result[0].transcript;
             console.log(interim_result);
           }
-          if(interim_result.includes('stop')){
+          if(interim_result.includes('stop listening')){
             console.log("record stopped");
             recognition_engine.stop();
           }
-          if(interim_result.includes('hey cookie')){
+          if(interim_result.includes('cookie')){
             // recognition_engine.stop();
-            console.log("Alexa is here");
+            // console.log("Alexa is here");
             // This is our accessToken to our group's account
             var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
             var baseUrl = "https://api.api.ai/v1/";
