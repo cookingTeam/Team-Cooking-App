@@ -1,78 +1,92 @@
 Meteor.subscribe('myrecipe');
 
 var imagePath = '';
+var reader = new FileReader();
+var file = {};
+var fileName = '';
+var uploaded = false;
 Template.askforrecipe.events({
 
   "change .file-upload-input": function(event, template){
-     var func = this;
      console.dir(event.currentTarget);
-     var file = event.currentTarget.files[0];
+     file = event.currentTarget.files[0];
      console.log(file.name);
-     fileName = file.name;
-     var reader = new FileReader();
+     fileName = Meteor.userId()+file.name;
+    //  reader = new FileReader();
      reader.onload = function(fileLoadEvent) {
-
-        Meteor.call('file-upload', fileName, reader.result);
+       $("#ownRecipeImage").attr("src", fileLoadEvent.currentTarget.result);
      };
-     reader.readAsBinaryString(file);
+     reader.readAsDataURL(file);
      imagePath = 'images/'+fileName;
-     template.$('.imageUpload > span').append("<img id='ownRecipeImage' src='/"+imagePath+"'>");
+     uploaded = true;
+     //template.$('.imageUpload > span').append("<img id='ownRecipeImage' src='/"+imagePath+"'>");
 
-    //  template.$('#testImage').attr("src", 'images/'+fileName);
-    //  console.dir(template.$('#testImage').attr('src'));
   },
 
 
   'click #add'(elt,instance){
-    var dishName = instance.$('#dishName').val();
-    var recipeDescription = instance.$('#recipeDescription').val();
-    var ingredients = new Array();
-    for (i=1; i<=Session.get('textboxNum'); i++){
-      console.dir(instance.$('#ing'+i).val());
-
-         if(instance.$('#ing'+i).val()){
-            ing = {
-            originalString: instance.$('#ing'+i).val(),
-            }
-            ingredients.push(ing);
-      }
-
+    console.log(uploaded)
+    if(uploaded){
+      console.log("in if")
+        reader.onload = function(fileLoadEvent) {
+          Meteor.call('file-upload', fileName, reader.result);
+        };
+              reader.readAsBinaryString(file);
     }
-    var steps = new Array();
-    for (i=1; i<=Session.get('textareaNum'); i++){
-          var stepIng = new Array();
-          var stepIngInput = $("#container"+i+" input");
-          console.dir(stepIngInput);
-          stepIngInput.each(function(index, elt){
-            console.log($(elt).val());
-            if($(elt).val()){
-              stepIng.push({name: $(elt).val()});
-            }
-          })
-          eachStep = {step: instance.$("#step"+i).val(), ingredients:stepIng, number: i}
-          steps.push(eachStep);
-    };
-
-    var dish = {
-      vegetarian: instance.$('#vegetarian')[0].checked,
-      vegan: instance.$('#vegan')[0].checked,
-      glutenFree: instance.$('#gluten')[0].checked,
-      dairyFree: instance.$('#dairy')[0].checked,
-      veryHealthy: instance.$('#healthy')[0].checked,
-      cheap: instance.$('#cheap')[0].checked,
-      ketogenic: instance.$('#keto')[0].checked,
-      title:dishName,
-      description: recipeDescription,
-      extendedIngredients:ingredients,
-      analyzedInstructions:[{'steps': steps}],
-      image: imagePath,
-      owner:Meteor.userId()
-    };
-    console.dir(dish);
-    Meteor.call('myrecipe.insert', dish, function(err,response){
-      console.log(err);
-      console.log(response);
-    });
+        Meteor.call('file-upload', fileName, reader.result);
+        var dishName = instance.$('#dishName').val();
+        var recipeDescription = instance.$('#recipeDescription').val();
+        var ingredients = new Array();
+        for (i=1; i<=Session.get('textboxNum'); i++){
+          console.dir(instance.$('#ing'+i).val());
+             if(instance.$('#ing'+i).val()){
+                ing = {
+                originalString: instance.$('#ing'+i).val(),
+                }
+                ingredients.push(ing);
+          }
+        }
+        var steps = new Array();
+        for (i=1; i<=Session.get('textareaNum'); i++){
+              var stepIng = new Array();
+              var stepIngInput = $("#container"+i+" input");
+              console.dir(stepIngInput);
+              stepIngInput.each(function(index, elt){
+                console.log($(elt).val());
+                if($(elt).val()){
+                  stepIng.push({name: $(elt).val()});
+                }
+              })
+              eachStep = {step: instance.$("#step"+i).val(), ingredients:stepIng, number: i}
+              steps.push(eachStep);
+        };
+        var dish = {
+          vegetarian: instance.$('#vegetarian')[0].checked,
+          vegan: instance.$('#vegan')[0].checked,
+          glutenFree: instance.$('#gluten')[0].checked,
+          dairyFree: instance.$('#dairy')[0].checked,
+          veryHealthy: instance.$('#healthy')[0].checked,
+          cheap: instance.$('#cheap')[0].checked,
+          ketogenic: instance.$('#keto')[0].checked,
+          title:dishName,
+          description: recipeDescription,
+          extendedIngredients:ingredients,
+          analyzedInstructions:[{'steps': steps}],
+          image: imagePath,
+          public: instance.$('#public')[0].checked,
+          owner:Meteor.userId()
+        };
+        console.dir(dish);
+        if (dish.public){
+          alert('Your recipe has successfully been published! To see it, go to User Recipes')
+        }
+        Meteor.call('myrecipe.insert', dish, function(err,response){
+          console.log(err);
+          console.log(response);
+        });
+        instance.$('input').val('');
+        instance.$('textarea').val('');
+        instance.$('.attributes').attr('checked', false)
 
   },
 
@@ -152,27 +166,3 @@ Template.askforrecipe.onCreated(
     Session.set('textareaNum', 1);
   }
 )
-
-Template.showRecipe.helpers({
-  recipeData() {return Myrecipe.find()}
-})
-
-Template.showRecipe.onCreated(function(){
-  Meteor.subscribe('myrecipe');
-})
-
-Template.recipeRow.helpers({
-  isOwner() {console.dir(this);
-    return this.recipe.owner == Meteor.userId()}
-})
-
-Template.recipeRow.events({
-  'click span'(elt,instance){
-    Meteor.call('myrecipe.remove', this.recipe);
-  },
-  'click td': function(elt, instance){
-    ownRecipeId = this.recipe._id
-    console.dir(this.recipe._id);
-    Router.go('/ownRecipePage/'+ownRecipeId);
-  }
-})

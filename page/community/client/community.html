@@ -1,0 +1,46 @@
+<template name="community">
+  <body>
+  <div class="center" style="padding-top:20px;">
+
+      <h1>Community Recipes</h1><br>
+      {{> showRecipe}}
+
+</div>
+</body>
+</template>
+<!--
+<template name="res">
+
+  <tr class='clickable-row '>
+   <td><img src="https://spoonacular.com/recipeImages/{{r.imageUrls}}" width="100"></td>
+   <td><b>{{r.title}}:</b> Ready in: {{r.readyInMinutes}} minutes</td>
+ </tr>
+
+</template> -->
+
+<template name="showRecipe">
+  <table class="table table-hover ">
+    <thead>
+      <tr><th></th><th>Dish</th><th>Creator</th></tr>
+    </thead>
+    <tbody>
+        {{#each recipe in recipeData}}
+            {{> recipeRow recipe = recipe}}
+        {{/each}}
+    </tbody>
+  </table>
+</template>
+
+<template name="recipeRow">
+  {{#if recipe.public}}
+      <tr>
+        <td width="10%"><img src={{recipe.image}} width="100"></td>
+        <td style="cursor:pointer"><b>{{recipe.title}}:</b> {{recipe.description}}</td>
+        <td>{{owner.name}}</td>
+      <td width="5%">
+      {{#if isOwner}}
+          <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+      {{/if}}
+      </td></tr>
+  {{/if}}
+</template>

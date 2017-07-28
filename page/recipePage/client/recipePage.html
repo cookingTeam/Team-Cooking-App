@@ -4,12 +4,12 @@
       <div class="w3-main w3-content w3-padding center recipePage" style="max-width:1200px;margin-top:100px">
           <!-- {{> recipeheader}} <br> -->
           <div class="row">
-            <div class="col-md-4">
-              <img src={{recipe.image}} style="width:100%"><hr>
+            <div class="col-md-5">
+              <img src={{recipe.image}} style="width:90%;max-height:600px; margin:auto; display:block;"><hr>
               <h3>Ingredients</h3>
               <ul>
                   {{#each ingredient in recipe.extendedIngredients}}
-                    <li>
+                    <li style="font-size:20px;">
                       {{ingredient.originalString}}
                     </li>
                   {{/each}}
@@ -31,7 +31,7 @@
               <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Talk to Cookie, Wait for her icon to turn red, Then go through by saying 'next step'" id="popup_button"><img src="/images/microphone1600.png" width="5%" style="padding-bottom: 5px;"> Start Cooking</button><hr>
               <ol>
               {{#each step in recipe.analyzedInstructions.[0].steps}}
-                 <li>{{step.step}}</li><hr>
+                 <li style="font-size:20px;">{{step.step}}</li><hr>
               {{/each}}
             </ol>
             </div>
@@ -46,7 +46,7 @@
 			       {{> entershare}}
 		      </div>
 	    </div>
-      <center><button class="btn enter" id="share">Share your Comments</button></center>
+      <center><button class="btn enter" id="share">Share how you made it!</button></center>
       <div id="popup1" class="overlay">
 		      <div class="popup">
             <a class="close" id="popup_close">&times;</a>
@@ -104,6 +104,9 @@
 <template name="showshare">
 
   {{#if shareData}}
+    <div class=" w3-main w3-content center recipePage" style="max-width:1200px;margin-top:10px; border-radius: 10px;
+    background-color: rgba(249, 251, 240, 0.44)">
+      <h3>People made it!</h3>
       <div class="horizontal-scroll">
         {{#each s in shareData}}
           {{> item s=s}}
@@ -115,10 +118,11 @@
 
 <template name="item">
   <div class="card-2">
+    <img src="https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-shadow-fill-circle-512.png" class="profile"> {{s.username}}--{{s.rate}}/5
     {{#if owner}}
       <a class="close" id="comment_delete">&times;</a> <br>
     {{/if}}
-    <img src="https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-shadow-fill-circle-512.png" class="profile"> {{s.username}}--{{s.rate}}/5<hr>
+    <hr>
     {{s.think}} <br>
     {{#if s.image}}
       <img src="/{{s.image}}" id='shareWorkImage'>

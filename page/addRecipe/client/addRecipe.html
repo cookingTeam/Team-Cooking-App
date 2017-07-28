@@ -4,8 +4,8 @@
           <h1>Add Recipes to Profile</h1>
           {{#if currentUser}}
               {{> askforrecipe}}
-              <hr>
-              {{> showRecipe}}
+              <!-- <hr> -->
+              <!-- {{> showRecipe}} -->
           {{else}}
               You need to be logged in to write recipes.
           {{/if}}
@@ -14,30 +14,7 @@
     </body>
 </template>
 
-<template name="showRecipe">
-  <table class="table table-hover">
-    <thead>
-      <tr><th>Dish</th><th>Description</th><th></th></tr>
-    </thead>
-    <tbody>
-        {{#each recipe in recipeData}}
-        <tr>
-            {{> recipeRow recipe = recipe}}
-        </tr>
-        {{/each}}
-    </tbody>
-  </table>
-</template>
 
-<template name="recipeRow">
-  <td style="cursor:pointer">{{recipe.title}}</td>
-  <td>{{recipe.description}}</td>
-  <td>
-  {{#if isOwner}}
-      <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-  {{/if}}
-  </td>
-</template>
 
 <template name="askforrecipe">
   <div class='imageUpload'>
@@ -45,6 +22,7 @@
     <textarea id="recipeDescription" placeholder="Add Brief Description Of Your Recipe"></textarea>
     <span class="btn btn-file"><h5>Upload an image for this dish</h5>
         <input class="file-upload-input" type="file">
+        <img id="ownRecipeImage" style="max-width: 200px;">
     </span>
   </div>
 

@@ -17,6 +17,7 @@
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<a href="/" class="link" onclick="closeNav()">Home</a>
 			<a href="/about" class="link" onclick="closeNav()">About</a>
+			<a href="/community" class="link" onclick="closeNav()">Uploads</a>
       <!-- <a href="/recipeSearch" onclick="w3_close()" class="w3-bar-item w3-button">Search</a> -->
 			<a href="/profile" class="link" onclick="closeNav()">Profile</a>
 			<a href="/addRecipe" class="link" onclick="closeNav()">+Recipe</a>
@@ -27,8 +28,7 @@
 			<div id="topnav">
 				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 				<div style="margin:auto;width:18%">
-					<a href="{{pathFor 'home'}}" style="font-size:35px"> <span class="glyphicon glyphicon-record" id="pageListen" style="font-size:27px;"></span> Cookie </a>
-				</div>
+					<button class="btn btn-circle" id="pageListen" style="padding-bottom: 13px; padding-top: 8px; margin-top: -15px; border-radius: 50%; padding-left: 10px; padding-right: 8px;"><img src="/images/microphone1600.png" width="30px"></button><a href="{{pathFor 'home'}}" style="font-size:35px; text-align:center;"> Cookie </a>
 				{{> loginButtons}}
 			</div>
 			{{> yield}}

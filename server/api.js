@@ -23,10 +23,12 @@ Meteor.methods({
     },
 
     'getAutoFill': function(query){
-      console.log(query);
+      console.log("query=="+query);
       const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query='+query;
       console.log(url);
       const result = Meteor.http.call("get", url, {headers:{'X-Mashape-Key': "wwws95RenimshozMKudsHrQbarSCp1eWc80jsnt3Z3FnrU6XXb", 'Accept': "application/json"}});
+
+      console.dir(result)
       return result.content;
     }
   })

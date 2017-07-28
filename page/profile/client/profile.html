@@ -1,8 +1,7 @@
 <template name="profile">
   <body>
-    <div class="center" style="padding-top:100px;">
+    <div class="center" style="margin-top: 100px;">
         <h1>Profile</h1>
-        <img src="https://cdn1.iconfinder.com/data/icons/profession-avatar-solid-1/48/43-512.png" class="w3-card-4" style="width:16%"><br><br>
         {{#if currentUser}}
             {{#if hasProfile}}
               {{> showProfile}}
@@ -17,16 +16,7 @@
         <hr>
         <h3>Your Recipes</h3>
         {{> personalShowRecipe}}
-        <!-- <div name="favoritedRecipes">
-          <h3>Favorited</h3>
-            <table class="table">
-                <thead>
-                    <th>Dish</th><th>Date</th><th>Rating</th>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div> -->
+
     </div>
   </body>
 </template>
@@ -34,6 +24,7 @@
 <template name="showProfile">
   <div name="personInfo">
     <h3>Personal Information</h3>
+    <img src={{content.pic}}>
       <ul>
         <li>Username: {{content.name}}</li>
         <li>Age: {{content.age}}</li>
@@ -44,9 +35,53 @@
   </div>
 </template>
 
+<template name="personalShowRecipe">
+    {{#if currentUser}}
+  <table class="table table-hover">
+    <thead>
+      <tr><th></th><th width="50%">Dish</th><th width="50%">Description</th><th></th></tr>
+    </thead>
+    <tbody>
+        {{#each recipe in recipeData}}
+
+            {{> personalRecipeRow recipe = recipe}}
+
+        {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  You need an account to write recipes
+  {{/if}}
+</template>
+
+<template name="personalRecipeRow">
+  {{#if isOwner}}
+  <tr>
+      <td width="10%"><img src={{recipe.image}} style="width:80px"></td>
+      <td style="cursor:pointer"  width="30%"> {{recipe.title}}</td>
+      <td width="50%">{{recipe.description}}</td>
+      <td><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td>
+  </tr>
+  {{/if}}
+</template>
+
 <template name="askProfile">
     <div class="container">
-        Full Name<br><input type="text" id="name_profile" name="name" placeholder="Your full name.."><br>
+      <select class="image-picker">
+            <option data-img-src="bull.png" data-img-class="first" data-img-alt="Page 1" value="1">  Bull  </option>
+            <option data-img-src="chick.png" data-img-alt="Page 2" value="2">  Chick  </option>
+            <option data-img-src="crab.png" data-img-alt="Page 3" value="3">  Crab  </option>
+            <option data-img-src="fox.png" data-img-alt="Page 4" value="4">  Fox  </option>
+            <option data-img-src="hedgehog.png" data-img-alt="Page 5" value="5">  Hedgehog  </option>
+            <option data-img-src="hippopotamus.png" data-img-alt="Page 6" value="6">  Hippo  </option>
+            <option data-img-src="koala.png" data-img-alt="Page 7" value="7">  Koala  </option>
+            <option data-img-src="lemur.png" data-img-alt="Page 8" value="8">  Lemur  </option>
+            <option data-img-src="pig.png" data-img-alt="Page 9" value="9">  Pig  </option>
+            <option data-img-src="tiger.png" data-img-alt="Page 10" value="10"> Tiger </option>
+            <option data-img-src="whale.png" data-img-alt="Page 11" value="11"> Whale </option>
+            <option data-img-src="zebra.png" data-img-alt="Page 12" data-img-class="last" value="12"> Zebra </option>
+      </select>
+        <br>Full Name<br><input type="text" id="name_profile" name="name" placeholder="Your full name.."><br>
         Age<br><input type="text" id="age_profile" name="age" placeholder="Your age"><br>
         Your Diet Restrictions <br>
         <textarea id="restriction_profile" name="restriction" placeholder="Write something.." style="height:200px"></textarea><br>
@@ -68,7 +103,7 @@
     {{#if currentUser}}
     <table class="table table-hover">
         <thead>
-            <tr><th>Dish</th><th>Dish Type</th><th></th></tr>
+            <tr><th></th><th width="50%">Dish</th><th width="50%">Dish Type</th><th></th></tr>
         </thead>
         <tbody>
           {{#each s in savedRecipe}}
@@ -83,38 +118,10 @@
 
 <template name="savedrow">
     <tr>
-      <td class="clickable-row">{{saved.recipe.title}}</td>
-      <td>{{saved.recipe.dishTypes.[0]}}</td>
+      <td width="10%"><img src={{saved.recipe.image}} style="width:80px"> </td>
+      <td class="clickable-row" width="50%">{{saved.recipe.title}}</td>
+      <td width="50%">{{saved.recipe.dishTypes.[0]}}</td>
       <!-- <td>{{saved.recipe.healthScore}}</td> -->
       <td><span class="glyphicon glyphicon-remove-circle" style="cursor: pointer;"></span></td>
     </tr>
-</template>
-
-<template name="personalShowRecipe">
-  {{#if currentUser}}
-  <table class="table table-hover">
-    <thead>
-      <tr><th>Dish</th><th>Description</th><th></th></tr>
-    </thead>
-    <tbody>
-        {{#each recipe in recipeData}}
-
-            {{> personalRecipeRow recipe = recipe}}
-
-        {{/each}}
-    </tbody>
-  </table>
-  {{else}}
-  You need an account to write recipes
-  {{/if}}
-</template>
-
-<template name="personalRecipeRow">
-  {{#if isOwner}}
-  <tr>
-      <td style="cursor:pointer">{{recipe.title}}</td>
-      <td>{{recipe.description}}</td>
-      <td><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td>
-  </tr>
-  {{/if}}
 </template>
