@@ -37,13 +37,10 @@ Template.askProfile.events({
       console.log(elt.currentTarget.src)
       document.getElementById('icon').value = elt.currentTarget.src;
       console.dir(document.getElementsByClassName('icon'));
-        //document.getElementsByTagName('img').style.backgroundColor = "white";
         var list= document.getElementsByClassName("icon");
         for (var i = 0; i < list.length; i++) {
-            list[i].style.backgroundColor="white"; //second console output
+            list[i].style.backgroundColor="white";
         }
-
-
       document.getElementById(elt.currentTarget.id).style.backgroundColor="lightblue";
     }
 })
