@@ -37,8 +37,8 @@
 		  </div> -->
 			<div id="topnav">
 				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-				<div style="margin:0 auto;  padding-left:100px;"><a href="{{pathFor 'home'}}" style="font-size:40px; text-align:center;"> <span class="glyphicon glyphicon-record" id="pageListen" style="font-size:27px;"></span> Cookie </a></div>
-				<div style="float:right; ">{{> loginButtons}}</div>
+				<div style="margin:0 auto;  padding-left:100px;"><button class="btn btn-circle" id="pageListen" style="padding-bottom: 13px; padding-top: 8px; margin-top: -15px; border-radius: 50%; padding-left: 10px; padding-right: 8px;"><img src="/images/microphone1600.png" width="30px"></button><a href="{{pathFor 'home'}}" style="font-size:35px; text-align:center;"> Cookie </a></div>
+				<div style="float:right; font-size:15px;">{{> loginButtons}}</div>
 				<!-- style="float:right" <div class="w3-center w3-padding-16 "> <span class="glyphicon glyphicon-record" id="pageListen"></span><a href="{{pathFor 'home'}}"> Cookie </a> </div> -->
 			</div>
 			{{> yield}}
