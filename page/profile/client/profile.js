@@ -88,6 +88,11 @@ Template.personalShowRecipe.helpers({
   },
   recipeData() {return Myrecipe.find()}
 })
+Template.personalShowRecipe.events({
+  'click #add-new'(elt,instance){
+    window.location.pathname = '/addRecipe';
+  }
+})
 Template.personalShowRecipe.onCreated(function(){
   Meteor.subscribe('myrecipe');
 })

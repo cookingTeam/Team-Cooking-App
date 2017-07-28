@@ -12,7 +12,7 @@
         You need to Sign in
         {{/if}}
         {{> showSave}}
-      
+
         {{> personalShowRecipe}}
 
     </div>
@@ -51,7 +51,9 @@
 <template name="personalShowRecipe">
   <div class="panel panel-warning">
     <div class="panel-heading">
-      <h3 class="panel-title">Your Recipes</h3>
+      <h3 class="panel-title">Your Recipes <button class="btn btn-danger btn-xs" style="float:right" id="add-new">
+      <span class="hidden-xs"> + Add New</span>
+    </button></h3>
     </div>
     <div class="panel-body">
       {{#if currentUser}}
