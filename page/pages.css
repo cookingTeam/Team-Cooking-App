@@ -29,7 +29,7 @@ button.enter {
   width: 95%;
   height: 430px;
   overflow-x: scroll;
-  overflow-y: scroll;
+  overflow-y: hidden;
   display: -webkit-box
 }
 .card-2 {
@@ -190,7 +190,7 @@ textarea {
   height: 350px;
   left: 10%;
   bottom: 7px;
-  overflow: hidden;
+  overflow: scroll;
   position: absolute;
 }
 .popup-share .close {
