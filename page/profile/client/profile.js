@@ -33,9 +33,17 @@ Template.askProfile.events({
         }
         Meteor.call('info.insert',info);
     },
-    'click img'(elt,instance){
+    'click .icon'(elt,instance){
       console.log(elt.currentTarget.src)
       document.getElementById('icon').value = elt.currentTarget.src;
+      console.dir(document.getElementsByClassName('icon'));
+        //document.getElementsByTagName('img').style.backgroundColor = "white";
+        var list= document.getElementsByClassName("icon");
+        for (var i = 0; i < list.length; i++) {
+            list[i].style.backgroundColor="white"; //second console output
+        }
+
+
       document.getElementById(elt.currentTarget.id).style.backgroundColor="lightblue";
     }
 })
@@ -90,7 +98,7 @@ Template.savedrow.events({
 })
 Template.personalShowRecipe.helpers({
   hasRecipe() {
-    console.log(MyRecipe.find({owner:Meteor.userId()}));
+    console.log(Myrecipe.find({owner:Meteor.userId()}));
     // return MyRecipe.find({})
   },
   recipeData() {return Myrecipe.find()}
