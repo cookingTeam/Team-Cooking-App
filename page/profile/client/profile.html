@@ -11,10 +11,8 @@
         {{else}}
         You need to Sign in
         {{/if}}
-        <hr>
         {{> showSave}}
-        <hr>
-        <h3>Your Recipes</h3>
+      
         {{> personalShowRecipe}}
 
     </div>
@@ -22,7 +20,22 @@
 </template>
 
 <template name="showProfile">
-  <div name="personInfo">
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title">Personal Information</h3>
+    </div>
+    <div class="panel-body">
+      <img src={{content.pic}}>
+        <ul>
+          <li>Username: {{content.name}}</li>
+          <li>Age: {{content.age}}</li>
+          <li>Diet Restrictions: {{content.restriction}}</li>
+          <li>Preferred Cuisine: {{content.cuisine}}</li>
+        </ul>
+        <button type="btn" id="delete">Edit</button>
+    </div>
+  </div>
+  <!-- <div name="personInfo">
     <h3>Personal Information</h3>
     <img src={{content.pic}}>
       <ul>
@@ -32,26 +45,36 @@
         <li>Preferred Cuisine: {{content.cuisine}}</li>
       </ul>
       <button type="btn" id="delete">Edit</button>
-  </div>
+  </div> -->
 </template>
 
 <template name="personalShowRecipe">
-    {{#if currentUser}}
-  <table class="table table-hover">
-    <thead>
-      <tr><th></th><th width="50%">Dish</th><th width="50%">Description</th><th></th></tr>
-    </thead>
-    <tbody>
-        {{#each recipe in recipeData}}
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title">Your Recipes</h3>
+    </div>
+    <div class="panel-body">
+      {{#if currentUser}}
+      {{#if hasRecipe}}
+      <table class="table table-hover">
+      <thead>
+        <tr><th></th><th width="50%">Dish</th><th width="50%">Description</th><th></th></tr>
+      </thead>
+      <tbody>
+          {{#each recipe in recipeData}}
+              {{> personalRecipeRow recipe = recipe}}
+          {{/each}}
+      </tbody>
+      </table>
+      {{else}}
+      You have not added any recipes for now
+      {{/if}}
+      {{else}}
+      You need an account to write recipes
+      {{/if}}
+    </div>
+  </div>
 
-            {{> personalRecipeRow recipe = recipe}}
-
-        {{/each}}
-    </tbody>
-  </table>
-  {{else}}
-  You need an account to write recipes
-  {{/if}}
 </template>
 
 <template name="personalRecipeRow">
@@ -99,7 +122,28 @@
 </template>
 
 <template name="showSave">
-  <h3>Saved</h3>
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title">Saved Recipes</h3>
+    </div>
+    <div class="panel-body">
+      {{#if currentUser}}
+      <table class="table table-hover">
+          <thead>
+              <tr><th></th><th width="50%">Dish</th><th width="50%">Dish Type</th><th></th></tr>
+          </thead>
+          <tbody>
+            {{#each s in savedRecipe}}
+              {{> savedrow saved=s}}
+            {{/each}}
+          </tbody>
+      </table>
+      {{else}}
+      You need an account to save recipes
+      {{/if}}
+    </div>
+  </div>
+  <!-- <h3>Saved</h3>
     {{#if currentUser}}
     <table class="table table-hover">
         <thead>
@@ -113,7 +157,7 @@
     </table>
     {{else}}
     You need an account to save recipes
-    {{/if}}
+    {{/if}} -->
 </template>
 
 <template name="savedrow">

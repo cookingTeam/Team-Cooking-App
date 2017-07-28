@@ -82,6 +82,10 @@ Template.savedrow.events({
       }
 })
 Template.personalShowRecipe.helpers({
+  hasRecipe() {
+    console.log(MyRecipe.find({owner:Meteor.userId()}));
+    // return MyRecipe.find({})
+  },
   recipeData() {return Myrecipe.find()}
 })
 Template.personalShowRecipe.onCreated(function(){
@@ -91,7 +95,8 @@ Template.personalShowRecipe.onCreated(function(){
 Template.personalRecipeRow.helpers({
   isOwner() {
     console.dir(this);
-    return this.recipe.owner == Meteor.userId()}
+    return this.recipe.owner == Meteor.userId();
+  }
 })
 
 Template.personalRecipeRow.events({

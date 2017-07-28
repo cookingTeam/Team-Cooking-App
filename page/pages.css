@@ -16,6 +16,7 @@ img.profile {
   z-index: 1;
   padding: 10px;
   display:inline-flex;
+  transition: 0.3s;
 }
 a:hover {
   text-decoration: none;
@@ -535,4 +536,14 @@ input.searchbar_recipeSearch:hover {
 }
 .social-button-group span:hover{
   color: black;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
 }
