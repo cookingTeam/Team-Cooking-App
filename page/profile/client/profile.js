@@ -48,11 +48,14 @@ Template.askProfile.events({
 Template.askProfile.onRendered(
   function(){
     console.dir(originalProfile.name);
+    console.dir(originalProfile.pic);
     console.dir($('#name_profile').val())
     $('#name_profile').val(originalProfile.name);
     $('#age_profile').val(originalProfile.age);
     $('#restriction_profile').val(originalProfile.restriction);
     $('#cuisine_profile').val(originalProfile.cuisine);
+    $('#icon').val((originalProfile.pic));
+    document.getElementById(originalProfile.pic.substring(29)).style.backgroundColor="lightblue";
   }
 )
 
