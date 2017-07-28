@@ -114,6 +114,13 @@ Template.ownSlide.onCreated(function (){
                           responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
                           //i++, write function nextStep(recipe.steps[i]) and call it here
                       }
+                      if (data.result.action=='stop'){
+                          console.log(data);
+                          responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
+                      }
+                      if (data.result.action=='input.unknown'){
+                          responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
+                      }
                       if (data.result.action=='show_instruction'){
                         console.log("show_instruction");
                         $("#popup_button").click();

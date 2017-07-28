@@ -119,6 +119,13 @@ Template.slide.onCreated(function(){
                         var current_step_instruction = Session.get("step").step;
                         responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
                       }
+                      if (data.result.action=='stop'){
+                          console.log(data);
+                          responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
+                      }
+                      if (data.result.action=='input.unknown'){
+                          responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
+                      }
                       if (data.result.action=='show_ingredients'){
                         console.log("show_ingredient");
                         var ingre = Session.get("ingredient_in_each_step");
@@ -213,8 +220,6 @@ Template.slide.onCreated(function(){
                             } else {
                               responsiveVoice.speak("no, it is not" + attribute,  "US English Female", {pitch:1.2});
                             }
-                          } else {
-                            responsiveVoice.speak("I cannot help you with that. Try reading the recipe",  "US English Female", {pitch:1.2});
                           }
                       }
 

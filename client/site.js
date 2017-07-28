@@ -35,7 +35,7 @@ Template.layout.events({
                     if (recognition) {
                       recognition.stop();
                       recognition = null;
-                      document.getElementById('pageListen').style.backgroundColor="#9DA1A2";
+                      document.getElementById('pageListen').style.backgroundColor="#d1d1d1";
                     }
                     // updateRec();
             }
@@ -76,6 +76,13 @@ Template.layout.events({
                               console.log(current_step_instruction);
                               responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
                               //i++, write function nextStep(recipe.steps[i]) and call it here
+                          }
+                          if (data.result.action=='stop'){
+                              console.log(data);
+                              responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
+                          }
+                          if (data.result.action=='input.unknown'){
+                              responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
                           }
                           if (data.result.action=='show_instruction'){
                             console.log("show_instruction");
@@ -178,9 +185,7 @@ Template.layout.events({
                                 } else {
                                   responsiveVoice.speak("no, it is not" + attribute,  "US English Female", {pitch:1.2});
                                 }
-                              } else {
-                                responsiveVoice.speak("I cannot help you with that. Try reading the recipe",  "US English Female", {pitch:1.2});
-                              }
+                              } 
                           }
 
                           console.log(data);
