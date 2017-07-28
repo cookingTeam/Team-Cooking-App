@@ -24,13 +24,13 @@
 <template name="showProfile">
   <div name="personInfo">
     <h3>Personal Information</h3>
-    <img src={{content.pic}}>
-      <ul>
-        <li>Username: {{content.name}}</li>
-        <li>Age: {{content.age}}</li>
-        <li>Diet Restrictions: {{content.restriction}}</li>
-        <li>Preferred Cuisine: {{content.cuisine}}</li>
-      </ul>
+    <img src={{content.pic}} style="width:20%; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);"><br><br>
+
+        Username: {{content.name}}<br>
+        Age: {{content.age}}<br>
+        Diet Restrictions: {{content.restriction}}<br>
+        Preferred Cuisine: {{content.cuisine}}<br>
+
       <button type="btn" id="delete">Edit</button>
   </div>
 </template>
@@ -67,20 +67,21 @@
 
 <template name="askProfile">
     <div class="container">
-      <select class="image-picker">
-            <option data-img-src="bull.png" data-img-class="first" data-img-alt="Page 1" value="1">  Bull  </option>
-            <option data-img-src="chick.png" data-img-alt="Page 2" value="2">  Chick  </option>
-            <option data-img-src="crab.png" data-img-alt="Page 3" value="3">  Crab  </option>
-            <option data-img-src="fox.png" data-img-alt="Page 4" value="4">  Fox  </option>
-            <option data-img-src="hedgehog.png" data-img-alt="Page 5" value="5">  Hedgehog  </option>
-            <option data-img-src="hippopotamus.png" data-img-alt="Page 6" value="6">  Hippo  </option>
-            <option data-img-src="koala.png" data-img-alt="Page 7" value="7">  Koala  </option>
-            <option data-img-src="lemur.png" data-img-alt="Page 8" value="8">  Lemur  </option>
-            <option data-img-src="pig.png" data-img-alt="Page 9" value="9">  Pig  </option>
-            <option data-img-src="tiger.png" data-img-alt="Page 10" value="10"> Tiger </option>
-            <option data-img-src="whale.png" data-img-alt="Page 11" value="11"> Whale </option>
-            <option data-img-src="zebra.png" data-img-alt="Page 12" data-img-class="last" value="12"> Zebra </option>
-      </select>
+      <div style="cursor:pointer; width:20;">
+        <img id='bull' src="/images/bull.png" width="20" height="20" class="icon">
+        <img id='chick' src="/images/chick.png" width="20" height="20" class="icon">
+        <img id='crab' src="/images/crab.png" width="20" height="20" class="icon">
+        <img id='fox' src="/images/fox.png" width="20" height="20" class="icon">
+        <img id='hedgehog' src="/images/hedgehog.png" width="20" height="20" class="icon">
+        <img id='hippopotamus' src="/images/hippopotamus.png" width="20" height="20" class="icon">
+        <img id='koala' src="/images/koala.png" width="20" height="20" class="icon">
+        <img id='lemur' src="/images/lemur.png" width="20" height="20" class="icon">
+        <img id='pig' src="/images/pig.png" width="20" height="20" class="icon">
+        <img id='tiger' src="/images/tiger.png" width="20" height="20" class="icon">
+        <img id='whale' src="/images/whale.png" width="20" height="20" class="icon">
+        <img id='zebra' src="/images/zebra.png" width="20" height="20" class="icon">
+      </div>
+        <input accept="img" id="icon" type="hidden">
         <br>Full Name<br><input type="text" id="name_profile" name="name" placeholder="Your full name.."><br>
         Age<br><input type="text" id="age_profile" name="age" placeholder="Your age"><br>
         Your Diet Restrictions <br>

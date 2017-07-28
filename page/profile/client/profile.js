@@ -22,14 +22,21 @@ Template.askProfile.events({
         const age = instance.$('#age_profile').val();
         const restriction = instance.$('#restriction_profile').val();
         const cuisine = instance.$('#cuisine_profile').val();
+        const pic = instance.$('#icon').val();
         var info = {
             name:name,
             age:age,
             restriction:restriction,
             cuisine:cuisine,
+            pic:pic,
             id:Meteor.userId()
         }
         Meteor.call('info.insert',info);
+    },
+    'click img'(elt,instance){
+      console.log(elt.currentTarget.src)
+      document.getElementById('icon').value = elt.currentTarget.src;
+      document.getElementById(elt.currentTarget.id).style.backgroundColor="lightblue";
     }
 })
 
