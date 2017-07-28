@@ -104,6 +104,7 @@ Template.askforrecipe.events({
       del.setAttribute('id', "delIng"+Session.get('textboxNum'));
 
       input.type = "text";
+      input.style = "width:90%";
       input.id= "ing"+Session.get('textboxNum');
       input.placeholder= "Ingredient ";
 

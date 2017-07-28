@@ -4,8 +4,7 @@
           <h1>Add Recipes to Profile</h1>
           {{#if currentUser}}
               {{> askforrecipe}}
-              <!-- <hr> -->
-              <!-- {{> showRecipe}} -->
+              <br>
           {{else}}
               You need to be logged in to write recipes.
           {{/if}}
@@ -17,46 +16,64 @@
 
 
 <template name="askforrecipe">
-  <div class='imageUpload'>
-    <input type="text" placeholder="Dish Name" id="dishName"><br><br>
-    <textarea id="recipeDescription" placeholder="Add Brief Description Of Your Recipe"></textarea>
-    <span class="btn btn-file"><h5>Upload an image for this dish</h5>
-        <input class="file-upload-input" type="file">
-        <img id="ownRecipeImage" style="max-width: 200px;">
-    </span>
+  <div class="panel panel-info imageUpload">
+    <div class="panel-heading">
+      <h3 class="panel-title">About your dish</h3>
+    </div>
+    <div class="panel-body">
+      <input type="text" placeholder="Dish Name" id="dishName"><br><br>
+      <textarea id="recipeDescription" placeholder="Add Brief Description Of Your Recipe"></textarea>
+      <span class="btn btn-file"><h5>Upload an image for this dish</h5>
+          <input class="file-upload-input" type="file">
+          <img id="ownRecipeImage" style="max-width: 200px;">
+      </span>
+    </div>
   </div>
 
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">How to make it</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table" id="addRecipeTable">
+        <thead>
+          <tr><th>Steps</th><th>Ingredients</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="cell1"><div id="stepcontainer">
+              <textarea id="step1" placeholder="Step 1"></textarea><br>
+            </div></td>
+            <td><div id="container1">
+              <span class="glyphicon glyphicon-remove" id="delIng1"></span><input type="text" id="ing1" placeholder="Ingredient" style="width:90%"><br id="br1">
+              <span class="glyphicon glyphicon-remove" id="delIng2"></span><input type="text" id="ing2" placeholder="Ingredient" style="width:90%"><br id='br2'>
+              <span class="glyphicon glyphicon-remove" id="delIng3"></span><input type="text" id="ing3" placeholder="Ingredient" style="width:90%"><br id='br3'>
+              <button class="addIng btn btn-sm btn-info" id="1"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button>
+            </div></td>
+          </tr>
+        </tbody>
+      </table>
+      <button id="addStep" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus plus-minus"></span> Step</button> <button id="delStep" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus plus-minus"></span> Step</button><br><br>
+    </div>
+  </div>
 
-  <table class="table table-bordered" id="addRecipeTable">
-    <thead>
-      <tr><th>Steps</th><th>Ingredients</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id="cell1"><div id="stepcontainer">
-          <textarea id="step1" placeholder="Step 1"></textarea><br>
-        </div></td>
-        <td><div id="container1">
-          <span class="glyphicon glyphicon-remove" id="delIng1"></span><input type="text" id="ing1" placeholder="Ingredient"><br id="br1">
-          <span class="glyphicon glyphicon-remove" id="delIng2"></span><input type="text" id="ing2" placeholder="Ingredient"><br id='br2'>
-          <span class="glyphicon glyphicon-remove" id="delIng3"></span><input type="text" id="ing3" placeholder="Ingredient"><br id='br3'>
-          <button class="addIng btn btn-sm btn-info" id="1"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button>
-        </div></td>
-      </tr>
-    </tbody>
-  </table>
-  <button id="addStep" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus plus-minus"></span> Step</button> <button id="delStep" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus plus-minus"></span> Step</button><br><br>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Any restrictions (check all that apply)</h3>
+    </div>
+    <div class="panel-body">
+      <div class=attributes>
+          <input type="checkbox" class='attributes' id="vegetarian"> Vegetarian <br>
+          <input type="checkbox" class='attributes' id="vegan"> Vegan<br>
+          <input type="checkbox" class='attributes' id="gluten"> Gluten Free<br>
+          <input type="checkbox" class='attributes' id="dairy"> Dairy Free<br>
+          <input type="checkbox" class='attributes' id="healthy"> Healthy<br>
+          <input type="checkbox" class='attributes' id="cheap"> Inexpensive<br>
+          <input type="checkbox" class='attributes' id="keto"> Ketogenic<br>
+      </div><br>
+      <p data-toggle="tooltip" title="Would you like to make this recipe public?">Publish? <input type="checkbox" id="public" ></p>
+      <button class="btn btn-block btn-outline-primary" id="add">Add My Recipe</button>
+    </div>
+  </div>
 
-  Check all that apply!<br>
-  <div class=attributes>
-      <input type="checkbox" class='attributes' id="vegetarian"> Vegetarian <br>
-      <input type="checkbox" class='attributes' id="vegan"> Vegan<br>
-      <input type="checkbox" class='attributes' id="gluten"> Gluten Free<br>
-      <input type="checkbox" class='attributes' id="dairy"> Dairy Free<br>
-      <input type="checkbox" class='attributes' id="healthy"> Healthy<br>
-      <input type="checkbox" class='attributes' id="cheap"> Inexpensive<br>
-      <input type="checkbox" class='attributes' id="keto"> Ketogenic<br>
-  </div><br>
-  <p data-toggle="tooltip" title="Would you like to make this recipe public?">Publish? <input type="checkbox" id="public" ></p>
-  <button class="btn btn-small btn-primary" id="add">Add My Recipe</button>
 </template>
