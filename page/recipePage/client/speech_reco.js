@@ -31,7 +31,7 @@ Template.slide.onCreated(function(){
                 recognition_engine.stop();
               }
               if(interim_result.includes('cookie')){
-                // recognition_engine.stop();
+                responsiveVoice.cancel();
                 console.log("Alexa is here");
                 // This is our accessToken to our group's account
                 var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
@@ -72,7 +72,7 @@ Template.slide.onCreated(function(){
                     recognition.stop();
                     recognition_engine.start();
                     recognition = null;
-                    document.getElementById('pageListen').style.backgroundColor="#9DA1A2";
+                    document.getElementById('pageListen').style.backgroundColor="#d1d1d1";
                   }
                   // updateRec();
                 }
@@ -82,7 +82,6 @@ Template.slide.onCreated(function(){
                   } else {
                     startRecognition();
                   }
-// <<<<<<< HEAD
                 }
                 //this just prints the utterance in the textbar
                 function setInput(text) {
