@@ -397,3 +397,46 @@
 .label-danger[href]:focus {
   background-color: #d62c1a;
 }
+
+.alert {
+  padding: 15px;
+  margin-bottom: 21px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+.alert .alert-link {
+  font-weight: bold;
+}
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+.alert > p + p {
+  margin-top: 5px;
+}
+.alert-dismissable,
+.alert-dismissible {
+  padding-right: 35px;
+}
+.alert-dismissable .close,
+.alert-dismissible .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  color: inherit;
+}
+.alert-success {
+  background-color: #18bc9c;
+  border-color: #18bc9c;
+  color: #ffffff;
+}
+.alert-success hr {
+  border-top-color: #15a589;
+}
+.alert-success .alert-link {
+  color: #e6e6e6;
+}

@@ -144,7 +144,7 @@ Template.askforrecipe.events({
       //container.appendChild(input);
       // container.appendChild(del);
       //container.appendChild(document.createElement("br"));
-      instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><span class="glyphicon glyphicon-remove" id="delIng'+Session.get('textboxNum')+'"></span><input type="text" placeholder="Ingredient" id="ing'+Session.get('textboxNum')+'"><br><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></div></td></tr>');
+      instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><span class="glyphicon glyphicon-remove" id="delIng'+Session.get('textboxNum')+'"></span><input type="text" placeholder="Ingredient" style="width:90%" id="ing'+Session.get('textboxNum')+'"><br><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></div></td></tr>');
   },
 
   'click #delStep': function(event, instance){
