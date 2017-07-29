@@ -31,11 +31,10 @@ Template.slide.onCreated(function(){
                 recognition_engine.stop();
               }
               if(interim_result.includes('cookie')){
-<<<<<<< HEAD
+
                 // recognition_engine.stop();
-=======
+
                 responsiveVoice.cancel();
->>>>>>> master
                 console.log("Alexa is here");
                 // This is our accessToken to our group's account
                 var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
@@ -81,6 +80,7 @@ Template.slide.onCreated(function(){
                   // updateRec();
                 }
                 function switchRecognition() {
+                  console.log("switch in speech_reco.js");
                   if (recognition) {
                     stopRecognition();
                   } else {
@@ -123,6 +123,13 @@ Template.slide.onCreated(function(){
                         var current_step_instruction = Session.get("step").step;
                         responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
                       }
+                      if (data.result.action=='ask_ingredient'){
+                        console.log('ask_ingredient');
+
+                        // var current_step = Session.get("step");
+                        // var ingre = Session.get("ingredient_in_each_step");
+                      // responsiveVoice.speak("step"+ current_step.number + current_step_instruction,  "US English Female", {pitch:1.2});
+                      }
                       if (data.result.action=='stop'){
                           console.log(data);
                           responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
@@ -133,8 +140,12 @@ Template.slide.onCreated(function(){
                       if (data.result.action=='show_ingredients'){
                         console.log("show_ingredient");
                         var ingre = Session.get("ingredient_in_each_step");
-                        console.log(ingred);
-                        // responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
+                        var leng = ingre.length;
+                        for(var i=0; i<leng; i++){
+                          console.log(ingre[i]);
+                          var num = i+1;
+                          responsiveVoice.speak("Ingredient"+ num + "is" +ingre[i], "US English Female", {pitch:1.2});
+                        }
                       }
                       if (data.result.action=='repeat'){
                         console.log('repeat');

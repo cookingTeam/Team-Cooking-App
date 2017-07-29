@@ -144,6 +144,7 @@ Template.recipePage.events({
               // updateRec();
             }
             function switchRecognition() {
+              console.log("switch in recipePage.js");
               if (recognition) {
                 stopRecognition();
               } else {
@@ -191,13 +192,26 @@ Template.recipePage.events({
                     console.log("show_ingredient");
                     var ingre = Session.get("ingredient_in_each_step");
                     var leng = ingre.length;
-                    for(var i=0; i<leng; i++){
-                      console.log(ingre[i]);
-                      var num = i+1;
-                      responsiveVoice.speak("Ingredient"+ num + "is" +ingre[i], "US English Female", {pitch:1.2});
-                    }
+                    responsiveVoice.speak("Ingredient "+ "is " +ingre, "US English Female", {pitch:1.2});
                     // console.log(Session.get("ingredient_in_each_step"));
-
+                  }
+                  if (data.result.action=='ask_ingredient'){
+                    console.log('ask_ingredient');
+                    console.log(data.result.parameters.ingredients);
+                    var ingredient_param = data.result.parameters.ingredients[0];
+                    if(ingredient_param.charAt(ingredient_param.length-1)=="s"){
+                      ingredient_param=ingredient_param.slice(0, -1);
+                    }
+                    console.log(ingredient_param);
+                    // var current_step = Session.get("step");
+                    var ingre = Session.get("ingredient_in_each_step");
+                    ingre.forEach( function (each_ingredient){
+                      // console.log(each_ingredient);
+                      if(each_ingredient.includes(ingredient_param)){
+                        responsiveVoice.speak("You need "+each_ingredient);
+                      }
+                    })
+                  // responsiveVoice.speak("step"+ current_step.number + current_step_instruction,  "US English Female", {pitch:1.2});
                   }
                   if (data.result.action=='repeat'){
                     console.log('repeat');
