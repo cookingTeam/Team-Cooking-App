@@ -64,7 +64,7 @@ Template.ownSlide.onCreated(function (){
                   recognition.lang = "en-US";
                   recognition.start();
                   recognition_engine.stop();
-                  document.getElementById('pageListen').style.color="red";
+                  document.getElementById('pageListen').style.color="rgb(217, 83, 79)";
 
                 }
 
@@ -73,7 +73,7 @@ Template.ownSlide.onCreated(function (){
                     recognition.stop();
                     recognition_engine.start();
                     recognition = null;
-                    document.getElementById('pageListen').style.color="#9DA1A2";
+                    document.getElementById('pageListen').style.color="#d1d1d1";
                   }
                   // updateRec();
                 }
@@ -113,6 +113,13 @@ Template.ownSlide.onCreated(function (){
                           console.log(current_step_instruction);
                           responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
                           //i++, write function nextStep(recipe.steps[i]) and call it here
+                      }
+                      if (data.result.action=='stop'){
+                          console.log(data);
+                          responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
+                      }
+                      if (data.result.action=='input.unknown'){
+                          responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
                       }
                       if (data.result.action=='show_instruction'){
                         console.log("show_instruction");

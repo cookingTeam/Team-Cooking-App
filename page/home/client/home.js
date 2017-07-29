@@ -53,13 +53,6 @@ Template.home.events({
     else if(elt.which==13&&elt.currentTarget.id=="intolerances"){
       instance.$('#filterSearch').click();
     }
-    // if(elt.currentTarget.id=="homeSearch"){
-    //   recipe_name = instance.$('#home_input').val();
-    //   console.log(recipe_name);
-    // }
-    // else{
-    //   recipe_name = instance.$('#recipe_name').val();
-    // }
 
     else if(elt.currentTarget.id=="home_input"){
       autoFillQuery = instance.$('#home_input').val();
@@ -119,6 +112,6 @@ Template.oneAutoFill.events({
 })
 
 Template.home.onCreated(function(){
-  responsiveVoice.speak("Welcome. My name is Cookie, and I am here as your sous chef. When you open a recipe you can ask me for guidance.", "US English Female", {pitch:1.2});
+  responsiveVoice.speak("Welcome. My name is Cookie, and I am here as your sous chef. When you open a recipe you can ask me for guidance by saying 'Cookie'", "US English Female", {pitch:1.2});
 
 })

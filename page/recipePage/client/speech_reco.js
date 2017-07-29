@@ -1,6 +1,6 @@
 Template.slide.onCreated(function(){
         var interim_result, final_result, stop_word;
-        stop_word="stop";
+        stop_word="stop listening";
         var recognition_engine = new webkitSpeechRecognition();
         recognition_engine.continuous = true;
         recognition_engine.interimResults = true;
@@ -31,7 +31,11 @@ Template.slide.onCreated(function(){
                 recognition_engine.stop();
               }
               if(interim_result.includes('cookie')){
+<<<<<<< HEAD
                 // recognition_engine.stop();
+=======
+                responsiveVoice.cancel();
+>>>>>>> master
                 console.log("Alexa is here");
                 // This is our accessToken to our group's account
                 var accessToken = "6a670d47c5ba447facf2684bd9a3c0ee";
@@ -63,7 +67,7 @@ Template.slide.onCreated(function(){
                   recognition.lang = "en-US";
                   recognition.start();
                   recognition_engine.stop();
-                  document.getElementById('pageListen').style.color="red";
+                  document.getElementById('pageListen').style.backgroundColor="rgb(217, 83, 79)";
 
                 }
 
@@ -72,7 +76,7 @@ Template.slide.onCreated(function(){
                     recognition.stop();
                     recognition_engine.start();
                     recognition = null;
-                    document.getElementById('pageListen').style.color="#9DA1A2";
+                    document.getElementById('pageListen').style.backgroundColor="#d1d1d1";
                   }
                   // updateRec();
                 }
@@ -82,7 +86,6 @@ Template.slide.onCreated(function(){
                   } else {
                     startRecognition();
                   }
-// <<<<<<< HEAD
                 }
                 //this just prints the utterance in the textbar
                 function setInput(text) {
@@ -119,6 +122,13 @@ Template.slide.onCreated(function(){
                         var current_step = Session.get("step");
                         var current_step_instruction = Session.get("step").step;
                         responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
+                      }
+                      if (data.result.action=='stop'){
+                          console.log(data);
+                          responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
+                      }
+                      if (data.result.action=='input.unknown'){
+                          responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
                       }
                       if (data.result.action=='show_ingredients'){
                         console.log("show_ingredient");
@@ -214,8 +224,6 @@ Template.slide.onCreated(function(){
                             } else {
                               responsiveVoice.speak("no, it is not" + attribute,  "US English Female", {pitch:1.2});
                             }
-                          } else {
-                            responsiveVoice.speak("I cannot help you with that. Try reading the recipe",  "US English Female", {pitch:1.2});
                           }
                       }
 

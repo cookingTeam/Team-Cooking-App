@@ -1,8 +1,7 @@
 <template name="profile">
   <body>
-    <div class="center">
+    <div class="center" style="margin-top: 100px;">
         <h1>Profile</h1>
-        <img src="https://cdn1.iconfinder.com/data/icons/profession-avatar-solid-1/48/43-512.png" class="w3-card-4" style="width:16%"><br><br>
         {{#if currentUser}}
             {{#if hasProfile}}
               {{> showProfile}}
@@ -12,41 +11,104 @@
         {{else}}
         You need to Sign in
         {{/if}}
-        <hr>
         {{> showSave}}
-        <hr>
-        <h3>Your Recipes</h3>
-        {{> showRecipe}}
-        <!-- <div name="favoritedRecipes">
-          <h3>Favorited</h3>
-            <table class="table">
-                <thead>
-                    <th>Dish</th><th>Date</th><th>Rating</th>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div> -->
+
+        {{> personalShowRecipe}}
+
     </div>
   </body>
 </template>
 
 <template name="showProfile">
-  <div name="personInfo">
-    <h3>Personal Information</h3>
-      <ul>
-        <li>Username: {{content.name}}</li>
-        <li>Age: {{content.age}}</li>
-        <li>Diet Restrictions: {{content.restriction}}</li>
-        <li>Preferred Cuisine: {{content.cuisine}}</li>
-      </ul>
-      <button type="btn" id="delete">Edit</button>
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title">Personal Information</h3>
+    </div>
+    <div class="panel-body">
+
+        <ul style="list-style-type: none;">
+          <li><img src={{content.pic}} width="10%" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);"></li><br>
+          <li>Username: {{content.name}}</li>
+          <li>Age: {{content.age}}</li>
+          <li>Diet Restrictions: {{content.restriction}}</li>
+          <li>Preferred Cuisine: {{content.cuisine}}</li>
+        </ul>
+        <button type="btn" id="delete">Edit</button>
+    </div>
   </div>
+  <!-- <div name="personInfo">
+    <h3>Personal Information</h3>
+    <img src={{content.pic}} style="width:20%; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);"><br><br>
+
+        Username: {{content.name}}<br>
+        Age: {{content.age}}<br>
+        Diet Restrictions: {{content.restriction}}<br>
+        Preferred Cuisine: {{content.cuisine}}<br>
+
+      <button type="btn" id="delete">Edit</button>
+  </div> -->
+</template>
+
+<template name="personalShowRecipe">
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title">Your Recipes <button class="btn btn-danger btn-xs" style="float:right" id="add-new">
+      <span class="hidden-xs"> + Add New</span>
+    </button></h3>
+    </div>
+    <div class="panel-body">
+      {{#if currentUser}}
+      {{#if hasRecipe}}
+      <table class="table table-hover">
+      <thead>
+        <tr><th></th><th width="50%">Dish</th><th width="50%">Description</th><th></th></tr>
+      </thead>
+      <tbody>
+          {{#each recipe in recipeData}}
+              {{> personalRecipeRow recipe = recipe}}
+          {{/each}}
+      </tbody>
+      </table>
+      {{else}}
+      You have not added any recipes for now
+      {{/if}}
+      {{else}}
+      You need an account to write recipes
+      {{/if}}
+    </div>
+  </div>
+
+</template>
+
+<template name="personalRecipeRow">
+  {{#if isOwner}}
+  <tr>
+      <td width="10%"><img src={{recipe.image}} style="width:80px"></td>
+      <td style="cursor:pointer"  width="30%"> {{recipe.title}}</td>
+      <td width="50%">{{recipe.description}}</td>
+      <td><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td>
+  </tr>
+  {{/if}}
 </template>
 
 <template name="askProfile">
     <div class="container">
-        Full Name<br><input type="text" id="name_profile" name="name" placeholder="Your full name.."><br>
+      <div style="cursor:pointer; width:20;">
+        <img id='bull.png' src="/images/bull.png" width="20" height="20" class="icon">
+        <img id='chick.png' src="/images/chick.png" width="20" height="20" class="icon">
+        <img id='crab.png' src="/images/crab.png" width="20" height="20" class="icon">
+        <img id='fox.png' src="/images/fox.png" width="20" height="20" class="icon">
+        <img id='hedgehog.png' src="/images/hedgehog.png" width="20" height="20" class="icon">
+        <img id='hippopotamus.png' src="/images/hippopotamus.png" width="20" height="20" class="icon">
+        <img id='koala.png' src="/images/koala.png" width="20" height="20" class="icon">
+        <img id='lemur.png' src="/images/lemur.png" width="20" height="20" class="icon">
+        <img id='pig.png' src="/images/pig.png" width="20" height="20" class="icon">
+        <img id='tiger.png' src="/images/tiger.png" width="20" height="20" class="icon">
+        <img id='whale.png' src="/images/whale.png" width="20" height="20" class="icon">
+        <img id='zebra.png' src="/images/zebra.png" width="20" height="20" class="icon">
+      </div>
+        <input accept="img" id="icon" type="hidden">
+        <br>Full Name<br><input type="text" id="name_profile" name="name" placeholder="Your full name.."><br>
         Age<br><input type="text" id="age_profile" name="age" placeholder="Your age"><br>
         Your Diet Restrictions <br>
         <textarea id="restriction_profile" name="restriction" placeholder="Write something.." style="height:200px"></textarea><br>
@@ -64,11 +126,32 @@
 </template>
 
 <template name="showSave">
-  <h3>Saved</h3>
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title">Saved Recipes</h3>
+    </div>
+    <div class="panel-body">
+      {{#if currentUser}}
+      <table class="table table-hover">
+          <thead>
+              <tr><th></th><th width="50%">Dish</th><th width="50%">Dish Type</th><th></th></tr>
+          </thead>
+          <tbody>
+            {{#each s in savedRecipe}}
+              {{> savedrow saved=s}}
+            {{/each}}
+          </tbody>
+      </table>
+      {{else}}
+      You need an account to save recipes
+      {{/if}}
+    </div>
+  </div>
+  <!-- <h3>Saved</h3>
     {{#if currentUser}}
     <table class="table table-hover">
         <thead>
-            <tr><th>Dish</th><th>Dish Type</th><th></th></tr>
+            <tr><th></th><th width="50%">Dish</th><th width="50%">Dish Type</th><th></th></tr>
         </thead>
         <tbody>
           {{#each s in savedRecipe}}
@@ -78,13 +161,14 @@
     </table>
     {{else}}
     You need an account to save recipes
-    {{/if}}
+    {{/if}} -->
 </template>
 
 <template name="savedrow">
     <tr>
-      <td class="clickable-row">{{saved.recipe.title}}</td>
-      <td>{{saved.recipe.dishTypes.[0]}}</td>
+      <td width="10%"><img src={{saved.recipe.image}} style="width:80px"> </td>
+      <td class="clickable-row" width="50%">{{saved.recipe.title}}</td>
+      <td width="50%">{{saved.recipe.dishTypes.[0]}}</td>
       <!-- <td>{{saved.recipe.healthScore}}</td> -->
       <td><span class="glyphicon glyphicon-remove-circle" style="cursor: pointer;"></span></td>
     </tr>

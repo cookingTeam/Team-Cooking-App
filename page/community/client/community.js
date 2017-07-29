@@ -8,11 +8,19 @@ Template.showRecipe.helpers({
 
 Template.showRecipe.onCreated(function(){
   Meteor.subscribe('myrecipe');
+  Meteor.subscribe('content');
 })
 
 Template.recipeRow.helpers({
   isOwner() {console.dir(this);
-    return this.recipe.owner == Meteor.userId()}
+    return this.recipe.owner == Meteor.userId()
+  },
+  owner(){
+    console.dir(this.recipe.owner);
+    var person = this.recipe.owner;
+    console.dir(Content.findOne({id:person}))
+    return Content.findOne({id:person});
+  }
 })
 
 Template.recipeRow.events({

@@ -46,14 +46,11 @@ Template.entershare.events({
 
 
   'click button'(elt,instance){
-    console.log('clicked')
     const think = instance.$('#think').val();
     var rate = '';
     if(document.querySelector("input[name=rate]:checked")){
       const number = document.querySelector("input[name=rate]:checked").value;
-      console.log(number);
       rate = parseInt(number);
-      console.log(rate)
     }
 
     if(Content.findOne({id:Meteor.userId()})){
