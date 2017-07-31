@@ -78,7 +78,7 @@ Template.askforrecipe.events({
         };
         console.dir(dish);
         if (dish.public){
-          alert('Your recipe has successfully been published! To see it, go to User Recipes')
+          alert('Your recipe has successfully been published! To see it, go to Library')
         }
         Meteor.call('myrecipe.insert', dish, function(err,response){
           console.log(err);
