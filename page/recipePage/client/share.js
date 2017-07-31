@@ -1,4 +1,10 @@
 var imagePath = '';
+var reader = new FileReader();
+var file = {};
+var fileName = '';
+var uploaded = false;
+
+
 Template.entershare.onCreated(function(){
   Meteor.subscribe('content');
 })
@@ -26,27 +32,33 @@ Template.item.events({
 })
 Template.entershare.events({
     "change .file-upload-input": function(event, template){
-       var func = this;
        console.dir(event.currentTarget);
-       var file = event.currentTarget.files[0];
+       file = event.currentTarget.files[0];
        console.log(file.name);
        user = Meteor.userId()
        fileName = user+file.name;
        console.log(fileName)
-       var reader = new FileReader();
-       reader.onload = function(fileLoadEvent) {
-
-          Meteor.call('file-upload', fileName, reader.result);
-       };
-       reader.readAsBinaryString(file);
+      reader.onload = function(fileLoadEvent) {
+        $("#ownRecipeImage").attr("src", fileLoadEvent.currentTarget.result);
+      };
+       reader.readAsDataURL(file);
        imagePath = 'images/'+fileName;
-       template.$('.imageUpload > span').append("<img id='ownRecipeImage' src='/"+imagePath+"'>");
+       uploaded = true;
+       //template.$('.imageUpload > span').append("<img id='ownRecipeImage' src='/"+imagePath+"'>");
      },
 
 
 
   'click button'(elt,instance){
     const think = instance.$('#think').val();
+    if(uploaded){
+      console.log("in if")
+        reader.onload = function(fileLoadEvent) {
+          Meteor.call('file-upload', fileName, reader.result);
+        };
+              reader.readAsBinaryString(file);
+    }
+
     var rate = '';
     if(document.querySelector("input[name=rate]:checked")){
       const number = document.querySelector("input[name=rate]:checked").value;

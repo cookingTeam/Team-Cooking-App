@@ -137,13 +137,6 @@ Template.askforrecipe.events({
       var input = document.createElement("textarea");
       var stepId = "step"+Session.get('textareaNum');
       Session.set('textboxNum', Session.get('textboxNum')+1);
-      // input.type = "text";
-      // input.id= "step"+Session.get('textareaNum');
-      // input.placeholder= "Step "+Session.get('textareaNum');
-
-      //container.appendChild(input);
-      // container.appendChild(del);
-      //container.appendChild(document.createElement("br"));
       instance.$('#addRecipeTable > tbody:last-child').append('<tr id="tableRow'+Session.get('textareaNum')+'"><td><textarea id='+stepId+' placeholder="Step '+Session.get('textareaNum')+'"></textarea></td><td><div id="container'+Session.get('textareaNum')+'""><span class="glyphicon glyphicon-remove" id="delIng'+Session.get('textboxNum')+'"></span><input type="text" placeholder="Ingredient" style="width:90%" id="ing'+Session.get('textboxNum')+'"><br><button class="addIng btn btn-sm btn-info"  id="'+Session.get('textareaNum')+'"><span class="glyphicon glyphicon-plus plus-minus"></span> Ingredient</button></div></td></tr>');
   },
 
