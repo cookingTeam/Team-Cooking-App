@@ -213,6 +213,27 @@ Template.recipePage.events({
                     })
                   // responsiveVoice.speak("step"+ current_step.number + current_step_instruction,  "US English Female", {pitch:1.2});
                   }
+                  if (data.result.action=='conversion'){
+                    console.log("conversion");
+                    var ingredientName = data.result.parameters.ingredients;
+                    var targetUnit = data.result.parameters.targetUnit;
+                    var amt = data.result.parameters.number;
+                    var sourceUnit = data.result.parameters.sourceUnit;
+                    var api_query = 'ingredientName='+ingredientName+'&sourceAmount='+amt+'&sourceUnit='+sourceUnit+'&targetUnit='+targetUnit;
+                    console.log(api_query);
+                    Meteor.apply("getConversion",[api_query],{returnStubValue: true},
+                      function(error,result){
+                        console.dir(['getRecipe',error,result]);
+                        if (error) {
+                          console.log("Error!!"+JSON.stringify(error)); return;
+                        }
+
+                        r = JSON.parse(result);
+                        console.log(r);
+                        responsiveVoice.speak(r.answer);
+                      });
+                    // console.log(Session.get("ingredient_in_each_step"));
+                  }
                   if (data.result.action=='repeat'){
                     console.log('repeat');
                     var current_step = Session.get("step");
