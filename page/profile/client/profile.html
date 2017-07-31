@@ -27,8 +27,10 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-1">
-          <img src={{content.pic}} width="100px" style="border-radius:50%;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)">
+          <img src={{content.pic}} width="100px" ><br><br>
+          <button type="btn" id="delete">Edit</button>
         </div>
+
         <div class="col-md-8">
           <ul>
             <li>Username: {{content.name}}</li>
@@ -36,8 +38,10 @@
             <li>Diet Restrictions: {{content.restriction}}</li>
             <li>Preferred Cuisine: {{content.cuisine}}</li>
           </ul>
-          <button type="btn" id="delete">Edit</button>
+          <br>
+
         </div>
+
       </div>
     </div>
   </div>
