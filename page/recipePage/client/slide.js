@@ -14,6 +14,10 @@ Template.slide.onCreated(function(){
   Session.set("ingredient_in_each_step", {});
 })
 
+Template.slide.onCreated(function(){
+          speechReco();
+})
+
 
 
 
@@ -70,6 +74,7 @@ Template.slide.events({
     console.log(Session.get("dict").analyzedInstructions[0].steps[elt.currentTarget.innerText-1]);
     Session.set("step",Session.get("dict").analyzedInstructions[0].steps[elt.currentTarget.innerText-1]);
     Session.set("step_number",elt.currentTarget.innerText-1);
+    speechReco();
     // console.log(Session.get("dict").extendedIngredients[0].id);
     // for (var i = 0, len=Session.get("dict").extendedIngredients.length; i<len; i++) {
     //   console.log(Session.get("dict").extendedIngredients[i].id);
