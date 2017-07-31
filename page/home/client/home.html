@@ -16,6 +16,50 @@
         <button class='advanceSearch btn btn-md btn-success'>Advance Search</button><br>
   </div>
 
+
+
+  <div class="w3-content w3-display-container" style="max-width:800px">
+    <img class="mySlides" src="http://www.omahasteaks.com/gifs/990x594/pr_ts004.jpg" style="width:100%">
+    <img class="mySlides" src="https://cdn.gearpatrol.com/wp-content/uploads/2015/03/Fast-Flip-Steak-GEar-Patrol-Lead-Full.jpg" style="width:100%">
+    <img class="mySlides" src="https://static01.nyt.com/images/2015/04/29/dining/steak-ginger-sauce/steak-ginger-sauce-superJumbo.jpg" style="width:100%">
+    <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+      <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+      <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+      <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+      <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+      <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+    </div>
+  </div>
+
+  <script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " w3-white";
+}
+</script>
+
   <div id="popup2" class="overlay">
       <div class="popup advanceSearchPopup">
         <a class="close" id="popup_close2">&times;</a>
