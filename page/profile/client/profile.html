@@ -25,15 +25,20 @@
       <h3 class="panel-title">Personal Information</h3>
     </div>
     <div class="panel-body">
-
-        <ul style="list-style-type: none;">
-          <li><img src={{content.pic}} width="10%" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);"></li><br>
-          <li>Username: {{content.name}}</li>
-          <li>Age: {{content.age}}</li>
-          <li>Diet Restrictions: {{content.restriction}}</li>
-          <li>Preferred Cuisine: {{content.cuisine}}</li>
-        </ul>
-        <button type="btn" id="delete">Edit</button>
+      <div class="row">
+        <div class="col-md-1">
+          <img src={{content.pic}} width="100px" style="border-radius:50%;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)">
+        </div>
+        <div class="col-md-8">
+          <ul>
+            <li>Username: {{content.name}}</li>
+            <li>Age: {{content.age}}</li>
+            <li>Diet Restrictions: {{content.restriction}}</li>
+            <li>Preferred Cuisine: {{content.cuisine}}</li>
+          </ul>
+          <button type="btn" id="delete">Edit</button>
+        </div>
+      </div>
     </div>
   </div>
   <!-- <div name="personInfo">
@@ -53,7 +58,7 @@
   <div class="panel panel-warning">
     <div class="panel-heading">
       <h3 class="panel-title">Your Recipes <button class="btn btn-danger btn-xs" style="float:right" id="add-new">
-      <span class="hidden-xs"> + Add New</span>
+       + Add New
     </button></h3>
     </div>
     <div class="panel-body">

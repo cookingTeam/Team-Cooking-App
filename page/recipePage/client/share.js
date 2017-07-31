@@ -65,6 +65,7 @@ Template.entershare.events({
       rate:rate,
       id:Session.get('dict').id,
       username:Content.findOne({id:Meteor.userId()}).name,
+      pic:Content.findOne({id:Meteor.userId()}).pic,
       time:new Date(),
       image: imagePath,
       owner: Meteor.userId()
