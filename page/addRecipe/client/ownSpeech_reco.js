@@ -83,9 +83,7 @@ Template.ownSlide.onCreated(function (){
                   } else {
                     startRecognition();
                   }
-// <<<<<<< HEAD
                 }
-                //this just prints the utterance in the textbar
                 function setInput(text) {
                   action(text);
                 }

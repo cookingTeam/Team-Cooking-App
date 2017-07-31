@@ -121,6 +121,11 @@ speechReco = (function () {
                   var current_step_instruction = Session.get("step").step;
                   responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
                 }
+                if (data.result.action=='stop'){
+                    console.log(data);
+                    recognition_engine.stop();
+                    responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
+                }
                 if (data.result.action=='show_ingredients'){
                   console.log("show_ingredient");
                   var ingre = Session.get("ingredient_in_each_step");
@@ -141,7 +146,7 @@ speechReco = (function () {
                   ingre.forEach( function (each_ingredient){
                     // console.log(each_ingredient);
                     if(each_ingredient.includes(ingredient_param)){
-                      responsiveVoice.speak("You need "+each_ingredient);
+                      responsiveVoice.speak("You need "+each_ingredient, "US English Female", {pitch:1.2});
                     }
                   })
                 // responsiveVoice.speak("step"+ current_step.number + current_step_instruction,  "US English Female", {pitch:1.2});
@@ -163,7 +168,7 @@ speechReco = (function () {
 
                       r = JSON.parse(result);
                       console.log(r);
-                      responsiveVoice.speak(r.answer);
+                      responsiveVoice.speak(r.answer, "US English Female", {pitch:1.2});
                     });
                   // console.log(Session.get("ingredient_in_each_step"));
                 }
