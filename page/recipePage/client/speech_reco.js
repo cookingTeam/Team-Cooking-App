@@ -121,6 +121,11 @@ speechReco = (function () {
                   var current_step_instruction = Session.get("step").step;
                   responsiveVoice.speak("step"+ current_step.number + current_step_instruction, "US English Female", {pitch:1.2});
                 }
+                if (data.result.action=='stop'){
+                    console.log(data);
+                    recognition_engine.stop();
+                    responsiveVoice.speak(data.result.fulfillment.speech,  "US English Female", {pitch:1.2});
+                }
                 if (data.result.action=='show_ingredients'){
                   console.log("show_ingredient");
                   var ingre = Session.get("ingredient_in_each_step");
