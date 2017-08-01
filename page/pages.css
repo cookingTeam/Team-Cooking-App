@@ -608,3 +608,39 @@ input.searchbar_recipeSearch:hover {
 .mySlides {display:none}
 .w3-left, .w3-right, .w3-badge {cursor:pointer}
 .w3-badge {height: 18px;width:13px;padding:0}
+
+.homeImg {
+  height: 370px;
+  margin-bottom: 5px;
+}
+
+#homeSearch{
+  position:relative;
+  padding:6px 15px;
+  border:2px solid #6a707a;
+  /*background-color:#207cca;
+  color:#fafafa;*/
+  background-color:#fafafa;
+  color:black;
+  height: 47px;
+  width:100px;
+  font-size: 18px;
+}
+
+#homeAdvancedSearch{
+  position:relative;
+  padding:6px 15px;
+  border:2px solid #6a707a;
+  /*background-color:#207cca;
+  color:#fafafa;*/
+  background-color:#fafafa;
+  color:black;
+  height: 47px;
+  width:200px;
+  font-size: 18px;
+}
+
+#homeSearch:hover, #homeAdvancedSearch:hover  {
+                background-color:#6a707a;
+                color:#fafafa;
+}

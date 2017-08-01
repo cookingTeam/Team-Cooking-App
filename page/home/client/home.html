@@ -2,9 +2,7 @@
 
   <div style="margin:auto; width:80%; padding-top:100px">
 
-    <p>
-    Talk to Cookie while cooking your recipes to navigate through steps and ingredients.
-    </p>
+    <h3>Search for your favorite recipes!</h3>
     <div class="searchForm">
         <input type="text" placeholder="Search for recipe names" id='home_input' class="searchbar">
         <ul class='autoFill'>
@@ -12,23 +10,23 @@
             {{> oneAutoFill result=result}}
           {{/each}}
         </ul>
-        <button class='search btn btn-md btn-primary' id='homeSearch'>Search</button>
-        <button class='advanceSearch btn btn-md btn-success'>Advance Search</button><br>
+        <button class='search' id='homeSearch'>Search</button>
+        <button class='advanceSearch' id='homeAdvancedSearch'>Advanced Search</button><br>
   </div>
   <br><br>
-  
+
   <div class="row">
     <div class="col-md-3">
-      <img src="https://mbkr-minimalistbaker.netdna-ssl.com/wp-content/uploads/2014/09/AMAZING-30-minute-Dinner-Mediterranean-Baked-Sweet-Potatoes-vegan-glutenfree.jpg" width="100%" height="400px">
+      <img class='homeImg' src="https://mbkr-minimalistbaker.netdna-ssl.com/wp-content/uploads/2014/09/AMAZING-30-minute-Dinner-Mediterranean-Baked-Sweet-Potatoes-vegan-glutenfree.jpg" width="100%">
     </div>
     <div class="col-md-3">
-      <img src="http://wdy.h-cdn.co/assets/17/20/480x720/gallery-1495043786-recipes-hawaiian-steak-kebabs-with-scallion-rice-0617.jpg" width="100%" height="400px">
+      <img class='homeImg' src="http://wdy.h-cdn.co/assets/17/20/480x720/gallery-1495043786-recipes-hawaiian-steak-kebabs-with-scallion-rice-0617.jpg" width="100%">
     </div>
     <div class="col-md-3">
-      <img src="http://www.simplyrecipes.com/wp-content/uploads/2016/02/dads-fish-stew-vertical-a-1600.jpg" width="100%" height="400px">
+      <img class='homeImg' src="http://www.simplyrecipes.com/wp-content/uploads/2016/02/dads-fish-stew-vertical-a-1600.jpg" width="100%">
     </div>
     <div class="col-md-3">
-      <img src="https://s-media-cache-ak0.pinimg.com/736x/3e/06/57/3e06574e1922d3ba4030ec616a3560f4--mashed-potato-cakes-potatoe-cakes.jpg" width="100%" height="400px">
+      <img class='homeImg' src="https://s-media-cache-ak0.pinimg.com/736x/3e/06/57/3e06574e1922d3ba4030ec616a3560f4--mashed-potato-cakes-potatoe-cakes.jpg" width="100%">
     </div>
   </div>
 
