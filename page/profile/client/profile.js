@@ -98,8 +98,8 @@ Template.savedrow.events({
 })
 Template.personalShowRecipe.helpers({
   hasRecipe() {
-    console.log(Myrecipe.find({owner:Meteor.userId()}));
-    // return MyRecipe.find({})
+    // console.log(Myrecipe.find({owner:Meteor.userId()}));
+    return Myrecipe.find().fetch()
   },
   recipeData() {return Myrecipe.find()}
 })
